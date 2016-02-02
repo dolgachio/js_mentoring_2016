@@ -4,7 +4,21 @@
 var dispatcher = require('./modules/app.dispatcher.js');
 var clockView = require('./modules/clock/clock-view.js');
 
-module.exports = {};
+var router = seal.router();
+
+router.add('docs', {
+    templateUrl: '/templates/docs.html',
+    views: []
+}).add('home', {
+    templateUrl: '/templates/home.html',
+    views: [clockView]
+}).add('donate', {
+    templateUrl: '/templates/donate.html',
+    views: []
+});
+
+router.switchTo('home');
+router.listen();
 
 },{"./modules/app.dispatcher.js":2,"./modules/clock/clock-view.js":4}],2:[function(require,module,exports){
 'use strict';
@@ -89,9 +103,12 @@ function clockView(subscribeToStore) {
     function init() {
         updateBtn = document.querySelector(UPDATE_TIME_BTN);
         updateTime = dispatcher.createAction(UPDATE_TIME_EVENT);
-        updateBtn.addEventListener('click', function () {
-            updateTime();
-        });
+
+        if (updateBtn) {
+            updateBtn.addEventListener('click', function () {
+                updateTime();
+            });
+        }
     }
 }
 

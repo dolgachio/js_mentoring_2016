@@ -26,9 +26,13 @@
     }
   }
 
-  &-logo-container {
-    display: inline-block;
-    margin-right: 50px;
+  &-logo {
+    border-radius: 50%;
+
+    &-container {
+      display: inline-block;
+      margin-right: 50px;
+    }
   }
 }
 

@@ -47,8 +47,11 @@ function clockView(subscribeToStore) {
     function init() {
         updateBtn = document.querySelector(UPDATE_TIME_BTN);
         updateTime = dispatcher.createAction(UPDATE_TIME_EVENT);
-        updateBtn.addEventListener('click', function () {
-            updateTime();
-        });
+
+        if(updateBtn) {
+            updateBtn.addEventListener('click', function () {
+                updateTime();
+            });
+        }
     }
 }

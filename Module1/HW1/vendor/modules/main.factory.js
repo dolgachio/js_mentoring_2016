@@ -4,6 +4,7 @@ var moduleFactory = require('./module.factory.js');
 var createDispatcher = require('./dispatcher.factory.js');
 var createStore = require('./store.factory.js');
 var createView = require('./view.factory.js');
+var router = require('./router.js');
 
 
 function factory() {
@@ -12,7 +13,8 @@ function factory() {
         module: moduleFactory,
         dispatcher: createDispatcher,
         store: createStore,
-        view: createView
+        view: createView,
+        router: router
     };
 }
 

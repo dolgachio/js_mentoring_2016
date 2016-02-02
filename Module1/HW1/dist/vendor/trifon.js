@@ -69,6 +69,7 @@ var moduleFactory = require('./module.factory.js');
 var createDispatcher = require('./dispatcher.factory.js');
 var createStore = require('./store.factory.js');
 var createView = require('./view.factory.js');
+var router = require('./router.js');
 
 function factory() {
 
@@ -76,13 +77,14 @@ function factory() {
         module: moduleFactory,
         dispatcher: createDispatcher,
         store: createStore,
-        view: createView
+        view: createView,
+        router: router
     };
 }
 
 module.exports = factory;
 
-},{"./dispatcher.factory.js":1,"./module.factory.js":3,"./store.factory.js":4,"./view.factory.js":5}],3:[function(require,module,exports){
+},{"./dispatcher.factory.js":1,"./module.factory.js":3,"./router.js":4,"./store.factory.js":5,"./view.factory.js":6}],3:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -122,6 +124,111 @@ module.exports = ModuleFactory;
 },{}],4:[function(require,module,exports){
 'use strict';
 
+var xhr = require('../utils/xhr.js');
+
+var router;
+var el;
+
+module.exports = getRouter;
+
+function getRouter() {
+    if (!router) {
+        router = CreateRouter();
+    }
+
+    return router;
+}
+
+function CreateRouter() {
+    el = document.querySelector('[data-view]');
+
+    if (!el) {
+        throw new Error('cannot init router, because of absence of HTML hook');
+    }
+
+    return {
+        routes: [],
+        curRoute: '',
+        add: add,
+        check: check,
+        switchTo: switchTo,
+        listen: listen
+    };
+
+    function add(url, config) {
+        if (typeof url === "string") {
+            for (var i = 0; i < this.routes.length; i++) {
+                if (this.routes[i].url === url) {
+                    console.log("[Router]: Route ", url, "is already exist ");
+                    return this;
+                }
+            }
+            this.routes.push({ url: url, templateUrl: config.templateUrl, views: config.views });
+        }
+
+        return this;
+    }
+
+    function check(route) {
+        for (var i = 0; i < this.routes.length; i++) {
+            if (this.routes[i].url === route) {
+                return i;
+            }
+        }
+    }
+
+    function switchTo(newRoute) {
+        var routeId = this.check(newRoute);
+        var route = this.routes[routeId];
+
+        if (route === this.routes[this.curRoute]) {
+            return;
+        }
+
+        if (route) {
+            location.hash = route.url;
+
+            xhr.get(route.templateUrl, function (response) {
+                if (el) {
+                    el.innerHTML = response;
+                }
+
+                route.views.forEach(function (view) {
+                    view.init();
+                });
+            });
+
+            this.curRoute = routeId;
+            console.log("[router]: switched to", newRoute);
+
+            return true;
+        } else {
+            console.log("[router]: such route doesn't exist: ", newRoute);
+            location.hash = this.routes[this.curRoute].url;
+            return false;
+        }
+    }
+
+    function listen() {
+        var self = this;
+
+        function fn() {
+            var match = window.location.href.match(/#(.*)$/);
+            var newHash = match ? match[1] : '';
+            newHash = newHash.toString().replace(/#/, '');
+
+            console.log("[router]hash changed to", newHash);
+            switchTo.call(self, newHash);
+        }
+
+        clearInterval(self.interval);
+        self.interval = setInterval(fn, 50);
+    }
+}
+
+},{"../utils/xhr.js":8}],5:[function(require,module,exports){
+'use strict';
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 function storeFactory(factoryFunction) {
@@ -146,7 +253,7 @@ function storeFactory(factoryFunction) {
 
 module.exports = storeFactory;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -177,7 +284,7 @@ function _validateView(view) {
 
 module.exports = View;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -194,7 +301,34 @@ var factory = require('./modules/main.factory.js');
     root.seal = factory();
 })(factory);
 
-},{"./modules/main.factory.js":2}]},{},[6])
+},{"./modules/main.factory.js":2}],8:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+    return {
+        get: get
+    };
+
+    function get(url, callback) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url, true);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+            // (3)
+            if (xhr.readyState != 4) return;
+
+            if (xhr.status != 200) {
+                alert(xhr.status + ': ' + xhr.statusText);
+            } else {
+                callback(xhr.responseText);
+            }
+        };
+    }
+}();
+
+},{}]},{},[7])
 
 
 //# sourceMappingURL=trifon.js.map

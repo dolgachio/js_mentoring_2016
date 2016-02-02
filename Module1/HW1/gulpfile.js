@@ -24,6 +24,7 @@ var buildPath = 'dist';
 
 var src = {
         html: examplePath + '/*.html',
+        templates: examplePath + '/templates/*.*',
         js: examplePath + '/js/**/*.*',
         jsMain: examplePath + '/js/index.js',
         sass: examplePath + '/sass/**/*.scss',
@@ -35,6 +36,7 @@ var src = {
 
 var dest = {
         html: buildPath,
+        templates: buildPath + '/templates',
         js: buildPath + '/js',
         styles: buildPath + '/css',
         img: buildPath + '/img',
@@ -56,6 +58,13 @@ gulp.task('html', function() {
     gulp.src(src.html)
         .pipe(plumber())
         .pipe(gulp.dest(dest.html))
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('templates', function () {
+    gulp.src(src.templates)
+        .pipe(plumber())
+        .pipe(gulp.dest(dest.templates))
         .pipe(reload({stream: true}));
 });
 
@@ -130,6 +139,10 @@ gulp.task('watch', function(){
         gulp.start('html');
     });
 
+    watch([src.templates], function (event, cb) {
+        gulp.start('templates');
+    });
+
     watch([src.sass], function (event, cb) {
         gulp.start('sass');
     });
@@ -143,6 +156,6 @@ gulp.task('watch', function(){
     });
 });
 
-gulp.task('build', ['js:vendor', 'html', 'sass', 'img', 'js', 'server', 'lint']);
+gulp.task('build', ['js:vendor', 'html', 'templates', 'sass', 'img', 'js', 'server', 'lint']);
 
 gulp.task('develop',['build', 'watch']);
