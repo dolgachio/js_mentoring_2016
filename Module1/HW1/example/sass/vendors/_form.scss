@@ -1,0 +1,30 @@
+.form {
+    &-btns {
+        float: right;
+        border: 2px solid #0058ab;
+        padding: 20px;
+        margin-right: 50px
+    }
+
+    &__btn {
+        padding: 15px;
+        background-color: #00ABA9;
+        color: #fff;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 5px;
+
+        &_donate {
+            margin-bottom: 30px;
+            font-size: 30px;
+            font-weight: bold;
+            background-color: #0058ab;
+        }
+
+        &_doc {
+            font-size: 30px;
+            font-weight: bold;
+            background-color: #0030ab;
+        }
+    }
+}
