@@ -24,7 +24,7 @@ var buildPath = 'dist';
 
 var src = {
         html: examplePath + '/*.html',
-        templates: examplePath + '/templates/*.*',
+        templates: examplePath + '/templates/*.html',
         js: examplePath + '/js/**/*.*',
         jsMain: examplePath + '/js/index.js',
         sass: examplePath + '/sass/**/*.scss',
@@ -83,7 +83,7 @@ gulp.task('js', function () {
 });
 
 gulp.task('js:vendor', function () {
-    return deployJS(src.vendorJsMain, 'trifon.js', dest.vendor);
+    return deployJS(src.vendorJsMain, 'seal.js', dest.vendor);
 });
 
 function deployJS(fromFile, toFile, toPath) {

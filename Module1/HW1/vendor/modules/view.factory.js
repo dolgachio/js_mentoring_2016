@@ -14,16 +14,14 @@ function View(subscribeToStore, factoryFunction) {
 }
 
 function _validateStore(subscribeToStore) {
-    var subscribeToStore = typeof subscribeToStore;
-
-    return subscribeToStore === 'function';
+    return typeof subscribeToStore === 'function';
 }
 
 function _validateView(view) {
     var viewType = typeof view;
 
     return viewType === 'object' && view.hasOwnProperty
-        && view.hasOwnProperty('render');
+        && view.hasOwnProperty('render') && view.hasOwnProperty('init');
 }
 
 module.exports = View;

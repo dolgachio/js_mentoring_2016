@@ -94,7 +94,6 @@ function CreateRouter() {
             var newHash = match ? match[1] : '';
             newHash = newHash.toString().replace(/#/, '');
 
-            console.log("[router]hash changed to", newHash);
             switchTo.call(self, newHash);
         }
 

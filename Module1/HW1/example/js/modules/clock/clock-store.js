@@ -22,5 +22,5 @@ function clockStore() {
     return {
         update: update,
         get: get
-    }
+    };
 }
