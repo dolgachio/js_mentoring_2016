@@ -1,2 +1,2 @@
-/framework/node_modules
-/framework/dist
+/**/node_modules
+/**/dist

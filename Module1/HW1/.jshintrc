@@ -27,6 +27,7 @@
     "node": true,
     "moz": true,
     "globals": {
-        "browserify": true
+        "browserify": true,
+        "seal": true
     }
 }
