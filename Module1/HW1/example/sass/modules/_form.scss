@@ -1,9 +1,21 @@
 .form {
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
     &-btns {
         float: right;
         border: 2px solid #0058ab;
         padding: 20px;
         border-radius: 5px;
+    }
+
+    &__ipt {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2em;
     }
 
     &__btn {
@@ -13,18 +25,14 @@
         text-transform: uppercase;
         border: none;
         border-radius: 5px;
+        text-decoration: none;
 
-        &_donate {
+        &_navigation {
             margin-bottom: 30px;
             font-size: 30px;
             font-weight: bold;
             background-color: #0058ab;
         }
 
-        &_doc {
-            font-size: 30px;
-            font-weight: bold;
-            background-color: #0030ab;
-        }
     }
 }

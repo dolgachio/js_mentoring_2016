@@ -26,9 +26,10 @@ var src = {
         html: examplePath + '/*.html',
         templates: examplePath + '/templates/*.html',
         js: examplePath + '/js/**/*.*',
-        jsMain: examplePath + '/js/index.js',
+        jsMain: examplePath + '/js/app.js',
         sass: examplePath + '/sass/**/*.scss',
         img: examplePath + '/img/**/*.*',
+        data: examplePath + '/data/**/*.*',
 
         vendorJsMain: vendorPath + '/root.js',
         vendorJs: vendorPath + '/**/*.*'
@@ -40,6 +41,7 @@ var dest = {
         js: buildPath + '/js',
         styles: buildPath + '/css',
         img: buildPath + '/img',
+        data: buildPath + '/data',
 
         vendor: buildPath + '/vendor'
 };
@@ -129,10 +131,26 @@ gulp.task('clean:css', function () {
 });
 
 gulp.task('img', function() {
+   copyFiles(src.img, dest.img);
+});
+
+gulp.task('data', function () {
+   copyFiles(src.data, dest.data);
+});
+
+function copyFiles(from, to) {
+    gulp.src(from)
+        .pipe(gulp.dest(to))
+        .pipe(reload({stream: true}));
+}
+
+gulp.task('img', function() {
     gulp.src(src.img)
         .pipe(gulp.dest(dest.img))
         .pipe(reload({stream: true}));
 });
+
+
 
 gulp.task('watch', function(){
     watch([src.html], function (event, cb) {
@@ -154,8 +172,12 @@ gulp.task('watch', function(){
     watch([src.vendorJs], function (event, cb) {
         gulp.start('js:vendor');
     });
+
+    watch([src.data], function (event, cb) {
+        gulp.start('data');
+    });
 });
 
-gulp.task('build', ['js:vendor', 'html', 'templates', 'sass', 'img', 'js', 'server', 'lint']);
+gulp.task('build', ['js:vendor', 'html', 'templates', 'sass', 'img', 'data', 'js', 'server', 'lint']);
 
 gulp.task('develop',['build', 'watch']);

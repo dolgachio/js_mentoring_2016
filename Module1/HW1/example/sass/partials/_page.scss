@@ -4,7 +4,7 @@
   @include clearfix;
   position: relative;
   width: 50%;
-  height: 500px;
+  min-height: 500px;
 
   margin: 50px auto;
   padding: 50px;
@@ -23,6 +23,12 @@
       font-weight: bold;
 
       color: #0b97c4;
+    }
+
+    &__desc {
+      font-size: 25px;
+      font-weight: bold;
+      padding-bottom: 20px;
     }
   }
 

@@ -1,6 +1,7 @@
-@import 'vendors/normalize';
-@import 'vendors/page';
-@import 'vendors/clock';
-@import 'vendors/logo';
-@import 'vendors/form';
-
+@import 'vendor/normalize';
+@import 'partials/core';
+@import 'partials/page';
+@import 'modules/clock';
+@import 'modules/logo';
+@import 'modules/form';
+@import 'modules/list';

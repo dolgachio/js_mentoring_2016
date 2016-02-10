@@ -1,25 +1,33 @@
 'use strict';
 
-function storeFactory(factoryFunction) {
-    var store;
+var typeChecker = require('../utils/typeChecker.js');
 
-    if(typeof factoryFunction !== 'function') {
-        throw new Error('To create store you need to send factory function');
-    }
+module.exports = Store;
 
-    store = factoryFunction();
+function Store(factoryFunction) {
+    if(typeChecker.isFunction(factoryFunction)) {
+        let store = factoryFunction();
 
-    if(typeof store !== 'object') {
-        throw new Error('Factory function should return object');
-    }
+        if(typeChecker.isObject(store) && _hasCorrectAPI(store)) {
+            return store;
+        } else {
+            throw new Error('[storeFactory] cannot create store, ' +
+                'factory function returns incorrect value')
+        }
 
-    if(typeof store.update === 'function'
-        && typeof store.get === 'function' ) {
-        return store;
     } else {
-        throw new Error('Store should have "get" and "update" methods');
+        throw new Error('[storeFactory] cannot create store, ' +
+            'factory function should return object');
     }
 }
 
-module.exports = storeFactory;
+function _hasCorrectAPI(store) {
+    var methodsMap = [
+        'emitChange',
+        'addChangeListener',
+        'removeChangeListener'
+    ];
+
+    return methodsMap.every((method) => store.hasOwnProperty(method));
+}
 

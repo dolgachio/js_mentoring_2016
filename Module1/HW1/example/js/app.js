@@ -1,6 +1,7 @@
 'use strict';
-var dispatcher = require('./modules/app.dispatcher.js');
-var clockView = require('./modules/clock/clock-view.js');
+var dispatcher = require('./dispatcher/app.dispatcher.js');
+var clockView = require('./views/clock.view.js');
+var maenteesView = require('./views/mentees.view.js');
 
 var router = seal.router();
 
@@ -14,8 +15,8 @@ router
         views: [clockView]
     })
     .add('donate', {
-        templateUrl : '/templates/donate.html',
-        views: []
+        templateUrl : '/templates/mentees.html',
+        views: [maenteesView]
     });
 
 router.switchTo('home');

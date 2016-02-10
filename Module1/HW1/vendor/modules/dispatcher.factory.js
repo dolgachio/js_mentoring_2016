@@ -1,62 +1,46 @@
 'use strict';
+var typeChecker = require('../utils/typeChecker.js');
 
-module.exports = dispatcherFactory;
+module.exports = function () {
+    return new Dispatcher();
+};
 
-function dispatcherFactory() {
-    let dispatcher;
+class Dispatcher {
+    constructor() {
+        this._storesCallbacks = [];
+    }
 
-        dispatcher = _Dispatcher();
-
-        function createAction(type) {
-            if (!type) {
-                throw new Error('Please, provide action\'s type.');
-            } else {
-                return function (payload) {
-                    return dispatcher.dispatch({ type: type, payload: payload });
-                }
-            }
+    register(storeCallback) {
+        if (typeChecker.isFunction(storeCallback)) {
+            this._storesCallbacks.push(storeCallback);
+        } else {
+            throw new Error('[dispatcher:register] ' +
+                'You should provide a store that has an `update` method.');
         }
+    }
 
-        function createSubscriber(store) {
-            return dispatcher.register(store);
-        }
+    dispatch(payload) {
+        this._storesCallbacks.forEach(function (callback) {
+            callback(payload);
+        })
+    }
 
-        return {
-            createAction: createAction,
-            createSubscriber: createSubscriber
-        };
-}
+    handleAction(actionType) {
+        if(typeChecker.isString(actionType)) {
+            let _this = this;
 
-function _Dispatcher() {
-    return {
-        _stores: [],
+            return function (payload) {
+                return _this.dispatch({
+                    action: actionType,
+                    payload: payload
+                })
+            };
 
-        register: function (store) {
-            if (!store || !store.update) {
-                throw new Error('You should provide a store that has an `update` method.');
-            } else {
-                var consumers = [];
-                var change = function () {
-                    consumers.forEach(function (l) {
-                        l(store);
-                    });
-                };
-                var subscribe = function (consumer, noInit) {
-                    consumers.push(consumer);
-                    !noInit ? consumer(store) : null;
-                };
-
-                this._stores.push({store: store, change: change});
-                return subscribe;
-            }
-        },
-
-        dispatch: function (action) {
-            if (this._stores.length > 0) {
-                this._stores.forEach(function (entry) {
-                    entry.store.update(action, entry.change);
-                });
-            }
+        } else {
+            throw new Error('[dispatcher:register] cannot create handler for action');
         }
     }
 }
+
+
+

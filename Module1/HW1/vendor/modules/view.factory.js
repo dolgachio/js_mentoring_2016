@@ -1,27 +1,36 @@
 'use strict';
 
-function View(subscribeToStore, factoryFunction) {
-    if(_validateStore(subscribeToStore) && typeof factoryFunction === 'function') {
-        let view = factoryFunction(subscribeToStore);
-
-        if(_validateView(view)) {
-            return view;
-        }
-
-    }
-
-    throw new Error('cannot create view');
-}
-
-function _validateStore(subscribeToStore) {
-    return typeof subscribeToStore === 'function';
-}
-
-function _validateView(view) {
-    var viewType = typeof view;
-
-    return viewType === 'object' && view.hasOwnProperty
-        && view.hasOwnProperty('render') && view.hasOwnProperty('init');
-}
+var typeChecker = require('../utils/typeChecker.js');
 
 module.exports = View;
+
+function View(factoryFunction) {
+    if(typeChecker.isFunction(factoryFunction)) {
+        let view = factoryFunction();
+
+        if(typeChecker.isObject(view) && _hasCorrectMethods(view)) {
+            return view;
+        } else {
+            throw new Error('[view factory] cannot create view, ' +
+                'incorrect output of factory function')
+        }
+
+    } else {
+        throw new Error('[view factory] cannot create view, incorrect arguments');
+    }
+}
+
+
+function _hasCorrectMethods(view) {
+    var methodsMap = [
+        'init',
+        'setState',
+        'updateView',
+        'afterRender',
+        'render',
+        'updateState'
+    ];
+
+    return methodsMap.every((method) => view.hasOwnProperty(method));
+}
+

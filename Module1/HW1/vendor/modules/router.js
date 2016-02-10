@@ -3,61 +3,67 @@
 var xhr = require('../utils/xhr.js');
 
 var router;
-var el;
 
 module.exports = getRouter;
 
 function getRouter() {
     if(!router) {
-        router = CreateRouter();
+        router = new Router();
     }
 
     return router;
 }
 
-function CreateRouter() {
-    el = document.querySelector('[data-view]');
+class Router {
+    constructor() {
+        this.el = document.querySelector('[data-view]');
+        if(this.el) {
+            this._routes = [];
+            this.curRoute = '';
 
-    if(!el) {
-        throw new Error('cannot init router, because of absence of HTML hook');
+        } else {
+            throw new Error('cannot init router, because of absence of HTML hook');
+        }
     }
 
-    return {
-        routes: [],
-        curRoute: '',
-        add: add,
-        check: check,
-        switchTo: switchTo,
-        listen: listen
-    };
-
-    function add(url, config){
+    add(url, config) {
         if(typeof url === "string"){
-            for (var i = 0; i < this.routes.length; i++) {
-                if(this.routes[i].url === url) {
+            let routes = this._routes;
+            let routesQty = routes.length;
+            let i;
+
+            for (i = 0; i < routesQty; i++) {
+                if(routes.url === url) {
                     console.log("[Router]: Route ", url, "is already exist ");
                     return this;
                 }
             }
-            this.routes.push({url: url, templateUrl: config.templateUrl, views: config.views});
+
+            routes.push({url: url, templateUrl: config.templateUrl, views: config.views});
         }
 
         return this;
     }
 
-    function check(route){
-        for (var i = 0; i < this.routes.length; i++) {
-            if(this.routes[i].url === route) {
+    check(route) {
+        let routes = this._routes;
+        let routesQty = routes.length;
+        let i;
+
+        for (i = 0; i < routesQty; i++) {
+            if(routes[i].url === route) {
                 return i;
             }
         }
     }
 
-    function switchTo(newRoute){
-        var routeId = this.check(newRoute);
-        var route = this.routes[routeId];
+    switchTo(newRouteUrl){
+        let _this = this;
+        let routes = this._routes;
+        let routeId = this.check(newRouteUrl);
+        let route = routes[routeId];
 
-        if(route === this.routes[this.curRoute]){
+        if(route === routes[this.curRoute]){
             return;
         }
 
@@ -65,39 +71,40 @@ function CreateRouter() {
             location.hash = route.url;
 
             xhr.get(route.templateUrl, function (response) {
-                if(el) {
-                    el.innerHTML = response;
+                if(_this.el) {
+                    _this.el.innerHTML = response;
                 }
 
                 route.views.forEach(function (view) {
                     view.init();
                 });
+
+                _this.curRoute = routeId;
+                console.log("[router]: switched to" + newRouteUrl);
             });
 
-            this.curRoute = routeId;
-            console.log("[router]: switched to", newRoute);
-
             return true;
-        }
-        else{
-            console.log("[router]: such route doesn't exist: ", newRoute);
-            location.hash = this.routes[this.curRoute].url;
+        } else {
+            console.log("[router]: such route doesn't exist: " + newRouteUrl);
+            location.hash = this._routes[this.curRoute].url;
             return false;
         }
+
+
     }
 
-    function listen(){
-        var self = this;
+    listen() {
+        let _this = this;
 
         function fn(){
             var match = window.location.href.match(/#(.*)$/);
             var newHash = match ? match[1] : '';
             newHash = newHash.toString().replace(/#/, '');
 
-            switchTo.call(self, newHash);
+            _this.switchTo(newHash);
         }
 
-        clearInterval(self.interval);
-        self.interval = setInterval(fn, 50);
+        clearInterval(_this.interval);
+        _this.interval = setInterval(fn, 50);
     }
 }

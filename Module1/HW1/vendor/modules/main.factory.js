@@ -5,16 +5,24 @@ var createDispatcher = require('./dispatcher.factory.js');
 var createStore = require('./store.factory.js');
 var createView = require('./view.factory.js');
 var router = require('./router.js');
+var typeChecker = require('../utils/typeChecker.js');
+var xhr = require('../utils/xhr.js');
 
 
 function factory() {
 
     return {
-        module: moduleFactory,
-        dispatcher: createDispatcher,
-        store: createStore,
-        view: createView,
-        router: router
+        Module: moduleFactory,
+        Dispatcher: createDispatcher,
+        Store: createStore,
+        View: createView,
+        router: router,
+
+        isObject: typeChecker.isObject,
+        isArray: typeChecker.isArray,
+        isFunction: typeChecker.isFunction,
+
+        xhr: xhr
     };
 }
 

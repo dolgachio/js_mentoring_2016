@@ -9,7 +9,7 @@ module.exports = (function(){
         xhr.open('GET', url, true);
         xhr.send();
 
-        xhr.onreadystatechange = function() { // (3)
+        xhr.onreadystatechange = function() {
             if (xhr.readyState != 4) return;
 
             if (xhr.status != 200) {
