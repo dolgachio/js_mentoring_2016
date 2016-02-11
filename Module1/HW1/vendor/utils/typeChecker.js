@@ -2,9 +2,9 @@
 
 module.exports = {
     isObject: function (value) {
-        return value !== null
-            && typeof value === 'object'
-            && value.hasOwnProperty;
+        return value !== null &&
+            typeof value === 'object' &&
+            value.hasOwnProperty;
     },
 
     isFunction: function (value) {

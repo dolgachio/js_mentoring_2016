@@ -2,7 +2,6 @@
     "nonew": true,
     "jquery": true,
     "curly": true,
-    "latedef": "nofunc",
     "unused": true,
     "noarg": true,
     "indent": 4,
@@ -17,17 +16,19 @@
     "newcap": true,
     "immed": true,
     "browser": true,
-    "es3": true,
     "camelcase": true,
     "nonbsp": true,
     "maxlen": 140,
     "freeze": true,
     "devel": true,
     "jasmine": true,
+    "esversion": 6,
     "node": true,
     "moz": true,
+
     "globals": {
         "browserify": true,
-        "seal": true
+        "seal": true,
+        "self": true
     }
 }

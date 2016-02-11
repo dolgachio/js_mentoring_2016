@@ -22,7 +22,7 @@ class Dispatcher {
     dispatch(payload) {
         this._storesCallbacks.forEach(function (callback) {
             callback(payload);
-        })
+        });
     }
 
     handleAction(actionType) {
@@ -33,7 +33,7 @@ class Dispatcher {
                 return _this.dispatch({
                     action: actionType,
                     payload: payload
-                })
+                });
             };
 
         } else {

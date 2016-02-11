@@ -2,7 +2,7 @@ var typeChecker = require('./typeChecker.js');
 
 module.exports = createFactory;
 
-function createFactory(methodsMap) {
+function createFactory(name, methodsMap) {
     if(typeChecker.isArray(methodsMap) && _allKeysAreString(methodsMap)) {
         return function(factoryFunction) {
             if(typeChecker.isFunction(factoryFunction)) {
@@ -11,12 +11,12 @@ function createFactory(methodsMap) {
                 if(typeChecker.isObject(instance) && _hasCorrectMethods(instance, methodsMap)) {
                     return instance;
                 } else {
-                    throw new Error('[factory] cannot create instance, ' +
-                        'incorrect output of factory function')
+                    throw new Error('[' + name + ' factory] cannot create instance, ' +
+                        'incorrect output of factory function');
                 }
 
             } else {
-                throw new Error('[instance factory] cannot create view, incorrect arguments');
+                throw new Error('[' + name + ' factory] cannot create view, incorrect arguments');
             }
         };
     } else {
@@ -29,5 +29,5 @@ function _hasCorrectMethods(view, methodsMap) {
 }
 
 function _allKeysAreString(methodsMap) {
-    return methodsMap.every((methods) => typeChecker.isString(methods));
+    return methodsMap.every((method) => typeChecker.isString(method));
 }

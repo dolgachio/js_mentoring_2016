@@ -102,10 +102,18 @@ function deployJS(fromFile, toFile, toPath) {
 }
 
 gulp.task('lint', function () {
-   gulp.src(src.js)
-    .pipe(jshint('./.jshintrc'))
-    .pipe(jshint.reporter(stylish));
+   lintFiles([src.js, src.vendorJs]);
 });
+
+function lintFiles(paths) {
+    paths.forEach((path) => {
+        gulp.src(path)
+            .pipe(jshint('./.jshintrc'))
+            .pipe(jshint.reporter(stylish));
+    })
+
+
+}
 
 gulp.task('sass', ['clean:css'], function () {
     return gulp.src(src.sass)
@@ -167,10 +175,12 @@ gulp.task('watch', function(){
 
     watch([src.js], function (event, cb) {
         gulp.start('js');
+        gulp.start('lint');
     });
 
     watch([src.vendorJs], function (event, cb) {
         gulp.start('js:vendor');
+        gulp.start('lint');
     });
 
     watch([src.data], function (event, cb) {

@@ -1,6 +1,7 @@
 'use strict';
 
 var xhr = require('../utils/xhr.js');
+var typeChecker = require('../utils/typeChecker.js');
 
 var router;
 
@@ -26,15 +27,15 @@ class Router {
         }
     }
 
-    add(url, config) {
-        if(typeof url === "string"){
+    route(url, config) {
+        if(typeof url === 'string'){
             let routes = this._routes;
             let routesQty = routes.length;
             let i;
 
             for (i = 0; i < routesQty; i++) {
                 if(routes.url === url) {
-                    console.log("[Router]: Route ", url, "is already exist ");
+                    console.log('[Router]: Route ', url, 'is already exist ');
                     return this;
                 }
             }
@@ -67,6 +68,10 @@ class Router {
             return;
         }
 
+        if(!!_this.curRoute && typeChecker.isObject(routes[_this.curRoute])) {
+            _destroyViews(routes[_this.curRoute].views);
+        }
+
         if(route){
             location.hash = route.url;
 
@@ -75,17 +80,15 @@ class Router {
                     _this.el.innerHTML = response;
                 }
 
-                route.views.forEach(function (view) {
-                    view.init();
-                });
+                _initViews(route.views);
 
                 _this.curRoute = routeId;
-                console.log("[router]: switched to" + newRouteUrl);
+                console.log('[router]: switched to ' + newRouteUrl);
             });
 
             return true;
         } else {
-            console.log("[router]: such route doesn't exist: " + newRouteUrl);
+            console.log('[router]: such route doesn\'t exist: ' + newRouteUrl);
             location.hash = this._routes[this.curRoute].url;
             return false;
         }
@@ -106,5 +109,17 @@ class Router {
 
         clearInterval(_this.interval);
         _this.interval = setInterval(fn, 50);
+    }
+}
+
+function _destroyViews(views) {
+    if(typeChecker.isArray(views)) {
+        views.forEach((view) => view.destroy());
+    }
+}
+
+function _initViews(views) {
+    if(typeChecker.isArray(views)) {
+        views.forEach((view) => view.init());
     }
 }

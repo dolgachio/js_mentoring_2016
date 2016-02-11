@@ -12,14 +12,14 @@ menteesStore.addChangeListener(function () {
 module.exports = view;
 
 function menteesView() {
-    var _addButton;
-    var _menteesList;
+    let _addButton;
+    let _menteesList;
 
-    var _menteeName;
-    var _menteeSurname;
-    var _menteeHasMentor;
+    let _menteeName;
+    let _menteeSurname;
+    let _menteeHasMentor;
 
-    return {
+    let _view = {
         init: init,
 
         setState: setState,
@@ -33,6 +33,8 @@ function menteesView() {
         destroy: destroy
     };
 
+    return _view;
+
     function init() {
         _addButton = document.querySelector('.js-add-button');
         _menteesList = document.querySelector('.js-mentees-list');
@@ -45,36 +47,36 @@ function menteesView() {
             _addButton.addEventListener('click', addMentee);
         }
 
-        this.updateState();
+        _view.updateState();
     }
 
     function updateState() {
         var data = menteesStore.getMentees();
         var state = {mentees: data};
 
-        this.setState(state);
+        _view.setState(state);
     }
 
     function setState(state) {
-        this.state = this.state || {};
+        _view.state = _view.state || {};
         state = state || {};
 
-        this.state.mentees = state.mentees;
+        _view.state.mentees = state.mentees;
 
-        this.updateView();
+        _view.updateView();
     }
 
     function updateView() {
-        this.render();
-        this.afterRender();
+        _view.render();
+        _view.afterRender();
     }
 
     function render() {
-        var rawMentees = this.state.mentees;
+        var rawMenteeDatas = _view.state.mentees;
         var formartedMentees = TEMPLATES_CONST.MENTEES_CAPTION;
 
-        rawMentees.forEach((mentee) => {
-            formartedMentees += _formatMentee(mentee);
+        rawMenteeDatas.forEach((mentee, index) => {
+            formartedMentees += _formatMentee(mentee, index + 1);
         });
 
         if(_menteesList) {
@@ -114,16 +116,16 @@ function menteesView() {
         return newMentee;
     }
 
-    function _formatMentee(rawMentee) {
+    function _formatMentee(rawMenteeData, index) {
         var mentee = '<li class="list-body-row">' +
-            '<div class="list-body-row__col">#</div>' +
-            '<div class="list-body-row__col">';
+            '<div class="list-body-row__col">' + index;
 
-        mentee += rawMentee.name;
         mentee += '</div><div class="list-body-row__col">';
-        mentee += rawMentee.surname;
+        mentee += rawMenteeData.name;
         mentee += '</div><div class="list-body-row__col">';
-        mentee += !!rawMentee.mentor;
+        mentee += rawMenteeData.surname;
+        mentee += '</div><div class="list-body-row__col">';
+        mentee += rawMenteeData.mentor ? 'yes' : 'no';
         mentee += '</div></li>';
 
         return mentee;

@@ -6,27 +6,14 @@ var CONSTANTS = require('../CONSTANTS/app.constants.js');
 var storeInstance = seal.Store(menteesStore);
 storeInstance.init();
 
-dispatcher.register(function (payload) {
-    var action = payload.action;
-
-    switch(action) {
-        case CONSTANTS.ADD_MENTEE:
-            storeInstance.add(payload.payload);
-            break;
-        default:
-            return true;
-    }
-
-    storeInstance.emitChange();
-});
+dispatcher.register(onAction);
 
 module.exports  = storeInstance;
 
 function menteesStore() {
-    var _mentees = [];
-    var _callbackStore = [];
-
-    return {
+    let _mentees = [];
+    let _callbackStore = [];
+    let _store = {
         init: init,
         add: add,
         getMentees: getMentees,
@@ -35,15 +22,15 @@ function menteesStore() {
         removeChangeListener: removeChangeListener
     };
 
-    function init() {
-        var _this = this;
+    return _store;
 
+    function init() {
         seal.xhr.get('/data/mentees.json', function (resp) {
             let normalizedResp = JSON.parse(resp);
 
             if(seal.isArray(normalizedResp)) {
                 _mentees = normalizedResp;
-                _this.emitChange();
+                _store.emitChange();
             }
         });
     }
@@ -70,26 +57,31 @@ function menteesStore() {
         if(seal.isFunction(callback)) {
             _callbackStore.push(callback);
         } else {
-            console.log('[store instance] cannot add listener')
+            console.log('[store instance] cannot add listener');
         }
     }
 
     function removeChangeListener(callback) {
         if(seal.isFunction(callback)) {
-            let deleteIndex;
-
             _callbackStore.forEach(function (cb, index) {
                 if(cb === callback) {
-                    deleteIndex = index;
+                    _callbackStore.splice(index, 1);
                 }
             });
-
-            if(deleteIndex) {
-                _callbackStore.splice(deleteIndex, 1)
-            } else {
-                console.log('[clock store] there is no such callback');
-            }
         }
     }
+}
 
+function onAction(payload) {
+    var action = payload.action;
+
+    switch(action) {
+        case CONSTANTS.ADD_MENTEE:
+            storeInstance.add(payload.payload);
+            break;
+        default:
+            return true;
+    }
+
+    storeInstance.emitChange();
 }

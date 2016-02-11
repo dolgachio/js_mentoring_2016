@@ -1,33 +1,11 @@
 'use strict';
 
-var typeChecker = require('../utils/typeChecker.js');
+var baseFactory = require('../utils/base.factory.js');
 
-module.exports = Store;
+var methodsMap = [
+    'emitChange',
+    'addChangeListener',
+    'removeChangeListener'
+];
 
-function Store(factoryFunction) {
-    if(typeChecker.isFunction(factoryFunction)) {
-        let store = factoryFunction();
-
-        if(typeChecker.isObject(store) && _hasCorrectAPI(store)) {
-            return store;
-        } else {
-            throw new Error('[storeFactory] cannot create store, ' +
-                'factory function returns incorrect value')
-        }
-
-    } else {
-        throw new Error('[storeFactory] cannot create store, ' +
-            'factory function should return object');
-    }
-}
-
-function _hasCorrectAPI(store) {
-    var methodsMap = [
-        'emitChange',
-        'addChangeListener',
-        'removeChangeListener'
-    ];
-
-    return methodsMap.every((method) => store.hasOwnProperty(method));
-}
-
+module.exports = baseFactory('store', methodsMap);

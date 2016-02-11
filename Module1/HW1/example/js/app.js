@@ -1,24 +1,23 @@
 'use strict';
-var dispatcher = require('./dispatcher/app.dispatcher.js');
 var clockView = require('./views/clock.view.js');
-var maenteesView = require('./views/mentees.view.js');
+var menteesView = require('./views/mentees.view.js');
 
 var router = seal.router();
 
 router
-    .add('docs', {
-        templateUrl : '/templates/docs.html',
-        views: []
-    })
-    .add('home', {
+    .route('/home', {
         templateUrl : '/templates/home.html',
         views: [clockView]
     })
-    .add('donate', {
+    .route('/mentees', {
         templateUrl : '/templates/mentees.html',
-        views: [maenteesView]
+        views: [menteesView]
+    })
+    .route('/homework', {
+        templateUrl : '/templates/homework.html',
+        views: []
     });
 
-router.switchTo('home');
+router.switchTo('/home');
 router.listen();
 

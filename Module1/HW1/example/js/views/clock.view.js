@@ -2,12 +2,9 @@
 
 var clockStore = require('../stores/clock.store.js');
 var actions = require('../actions/app.actions.js');
-var view =  new seal.View(clockView);
+var view =  seal.View(clockView);
 
-clockStore.addChangeListener(function () {
-    view.updateState();
-});
-
+clockStore.addChangeListener(onChange);
 module.exports = view;
 
 function clockView() {
@@ -16,14 +13,11 @@ function clockView() {
     const MM_SELECTOR = '.js-clock .js-clock-mm';
     const SS_SELECTOR = '.js-clock .js-clock-ss';
 
-    var _updateBtn;
-
-    init();
-
-    return {
+    let _updateBtn;
+    let _timer;
+    let _view = {
         init: init,
 
-        setState: setState,
         updateState: updateState,
 
         updateView: updateView,
@@ -34,34 +28,31 @@ function clockView() {
         destroy: destroy
     };
 
+    return _view;
+
     function init() {
         _updateBtn = document.querySelector(UPDATE_TIME_BTN);
-        updateTime();
+
+        _timer = setInterval(function() {
+            updateTime();
+        }, 200);
 
         if(_updateBtn) {
-            _updateBtn.addEventListener('click',updateTime);
+            _updateBtn.addEventListener('click', stopTime);
         }
     }
 
     function updateState() {
         var data = clockStore.getValue();
-        var state = {time: data};
+        _view.state = _view.state || {};
+        _view.state.time = data;
 
-        this.setState(state);
-    }
-
-    function setState(state) {
-        this.state = this.state || {};
-        state = state || {};
-
-        this.state.time = state.time;
-
-        this.updateView();
+        _view.updateView();
     }
 
     function updateView() {
-        this.render();
-        this.afterRender();
+        _view.render();
+        _view.afterRender();
     }
 
     function render() {
@@ -70,7 +61,7 @@ function clockView() {
         var ss = document.querySelector(SS_SELECTOR);
 
         if(hh && mm && ss) {
-            let time = this.state.time;
+            let time = _view.state.time;
             hh.innerHTML = _normalizeNumber(time.getHours());
             mm.innerHTML = _normalizeNumber(time.getMinutes());
             ss.innerHTML = _normalizeNumber(time.getSeconds());
@@ -82,7 +73,9 @@ function clockView() {
     }
 
     function destroy() {
-        _updateBtn.removeEventListener('click', updateTime);
+        if(_timer) {
+            clearInterval(_timer);
+        }
     }
 
     function _normalizeNumber(number) {
@@ -95,5 +88,12 @@ function clockView() {
         actions.updateTime(new Date());
     }
 
+    function stopTime() {
+        clearInterval(_timer);
+        console.log(_timer);
+    }
+}
 
+function onChange() {
+    view.updateState();
 }

@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports =  seal.Dispatcher();
+module.exports = seal.Dispatcher();

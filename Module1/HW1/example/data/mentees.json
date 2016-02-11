@@ -2,12 +2,12 @@
   {
     "name": "Ivan",
     "surname": "Ivanov",
-    "mentor": "yes"
+    "mentor": true
   },
 
   {
     "name": "Petr",
     "surname": "Petrov",
-    "mentor": "no"
+    "mentor": false
   }
 ]
