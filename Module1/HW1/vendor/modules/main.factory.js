@@ -19,6 +19,7 @@ function factory() {
         isObject: typeChecker.isObject,
         isArray: typeChecker.isArray,
         isFunction: typeChecker.isFunction,
+        isString: typeChecker.isString,
 
         xhr: xhr
     };

@@ -16,6 +16,14 @@ router
     .route('/homework', {
         templateUrl : '/templates/homework.html',
         views: []
+    })
+    .route('/homework/description', {
+        templateUrl: '/templates/homework-description.html',
+        views: []
+    })
+    .route('/homework/description/nested', {
+        templateUrl: '/templates/homework-description-nested.html',
+        views: []
     });
 
 router.switchTo('/home');

@@ -17,7 +17,7 @@ function getRouter() {
 
 class Router {
     constructor() {
-        this.el = document.querySelector('[data-view]');
+        this.el = document.querySelector('.js-data-view');
         if(this.el) {
             this._routes = [];
             this.curRoute = '';
@@ -29,71 +29,52 @@ class Router {
 
     route(url, config) {
         if(typeof url === 'string'){
-            let routes = this._routes;
-            let routesQty = routes.length;
-            let i;
+            let normalizedConfig = {};
+            let configUrls = _splitUrl(url);
+            Object.assign(normalizedConfig, configUrls, config);
 
-            for (i = 0; i < routesQty; i++) {
-                if(routes.url === url) {
-                    console.log('[Router]: Route ', url, 'is already exist ');
-                    return this;
-                }
-            }
+            let normalizedRoute = _normalizeRoute(normalizedConfig);
 
-            routes.push({url: url, templateUrl: config.templateUrl, views: config.views});
+            this._routes.push(normalizedRoute);
         }
 
         return this;
     }
 
-    check(route) {
-        let routes = this._routes;
-        let routesQty = routes.length;
-        let i;
-
-        for (i = 0; i < routesQty; i++) {
-            if(routes[i].url === route) {
-                return i;
-            }
-        }
-    }
-
-    switchTo(newRouteUrl){
+    switchTo(newRouteUrl) {
         let _this = this;
-        let routes = this._routes;
-        let routeId = this.check(newRouteUrl);
-        let route = routes[routeId];
+        let route = this._getRouteByUrl(newRouteUrl);
 
-        if(route === routes[this.curRoute]){
+        if(route === _this.curRoute){
             return;
         }
 
-        if(!!_this.curRoute && typeChecker.isObject(routes[_this.curRoute])) {
-            _destroyViews(routes[_this.curRoute].views);
+        if(typeChecker.isObject(_this.curRoute)) {
+            _destroyViews(_this.curRoute.views);
         }
 
         if(route){
             location.hash = route.url;
+            this.curRoute = route;
 
             xhr.get(route.templateUrl, function (response) {
-                if(_this.el) {
-                    _this.el.innerHTML = response;
+                if(route.parent) {
+                    let parser = new DOMParser();
+                    let parsedTemplate = parser.parseFromString(response, "text/xml");
+
+                    _this._switchNested(parsedTemplate, _this._getRouteByUrl(route.parent));
+                } else {
+                    _this._insertTemplate(response, route);
                 }
-
-                _initViews(route.views);
-
-                _this.curRoute = routeId;
-                console.log('[router]: switched to ' + newRouteUrl);
             });
 
             return true;
         } else {
             console.log('[router]: such route doesn\'t exist: ' + newRouteUrl);
-            location.hash = this._routes[this.curRoute].url;
+            location.hash = this.curRoute.url;
+
             return false;
         }
-
-
     }
 
     listen() {
@@ -110,6 +91,65 @@ class Router {
         clearInterval(_this.interval);
         _this.interval = setInterval(fn, 50);
     }
+
+    _insertTemplate(template) {
+        let el = this.el;
+        let normalizedTemplate;
+
+        if(el) {
+            if(!seal.isString(template)) {
+                normalizedTemplate = new XMLSerializer().serializeToString(template);
+            } else {
+                normalizedTemplate = template;
+            }
+
+            el.innerHTML = normalizedTemplate;
+
+            this._initRouteViews();
+        }
+    }
+
+    _initRouteViews(route) {
+        var processRoute;
+
+        processRoute = route || this.curRoute;
+
+        _initViews(processRoute.views);
+
+        if(processRoute.parent) {
+            this._initRouteViews(this._getRouteByUrl(processRoute.parent))
+        }
+    }
+
+    _getRouteByUrl(route) {
+        let routes = this._routes;
+        let routesQty = routes.length;
+        let i;
+
+        for (i = 0; i < routesQty; i++) {
+            if(routes[i].url === route) {
+                return routes[i];
+            }
+        }
+    }
+
+    _switchNested(childTemplate, parentRoute) {
+        let _this = this;
+        let currentParent = parentRoute;
+
+        seal.xhr.get(currentParent.templateUrl, function (template) {
+            let parser = new DOMParser();
+            let parsedTemplate = parser.parseFromString(template, "text/xml");
+            let insertView = parsedTemplate.querySelector('.js-data-view');
+            insertView.innerHTML = _XMLtoString(childTemplate);
+
+            if(currentParent.parent) {
+                _this._switchNested(parsedTemplate, _this._getRouteByUrl(currentParent.parent));
+            } else {
+                _this._insertTemplate(parsedTemplate);
+            }
+        })
+    }
 }
 
 function _destroyViews(views) {
@@ -121,5 +161,51 @@ function _destroyViews(views) {
 function _initViews(views) {
     if(typeChecker.isArray(views)) {
         views.forEach((view) => view.init());
+    }
+}
+
+function _isRouteExist(routes, routeUrl) {
+    if(seal.isArray(routes) && seal.isString(routeUrl)) {
+        return routes.some((route) => {
+            if(route.url === routeUrl) {
+                console.log('[Router]: Route ', routeUrl, 'is already exist ');
+                return true;
+            }
+        });
+    } else {
+        return false;
+    }
+}
+
+function _XMLtoString(xml) {
+    return new XMLSerializer().serializeToString(xml);
+}
+
+function _normalizeRoute(config) {
+    let normalizedRoute = {
+        templateUrl: config.templateUrl,
+        views: config.views || []
+    };
+
+    if(config.parent) {
+        normalizedRoute.parent = config.parent;
+    }
+
+    normalizedRoute.url = config.url;
+
+    return normalizedRoute;
+}
+
+function _splitUrl(url) {
+    let paths = url.split('/');
+    let pathsLength = paths.length;
+
+    if(pathsLength > 1) {
+        paths.pop();
+
+        return {
+            url: url,
+            parent: paths.join('/')
+        }
     }
 }
