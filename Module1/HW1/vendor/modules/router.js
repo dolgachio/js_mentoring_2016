@@ -60,7 +60,7 @@ class Router {
             xhr.get(route.templateUrl, function (response) {
                 if(route.parent) {
                     let parser = new DOMParser();
-                    let parsedTemplate = parser.parseFromString(response, "text/xml");
+                    let parsedTemplate = parser.parseFromString(response, 'text/xml');
 
                     _this._switchNested(parsedTemplate, _this._getRouteByUrl(route.parent));
                 } else {
@@ -117,7 +117,7 @@ class Router {
         _initViews(processRoute.views);
 
         if(processRoute.parent) {
-            this._initRouteViews(this._getRouteByUrl(processRoute.parent))
+            this._initRouteViews(this._getRouteByUrl(processRoute.parent));
         }
     }
 
@@ -139,7 +139,7 @@ class Router {
 
         seal.xhr.get(currentParent.templateUrl, function (template) {
             let parser = new DOMParser();
-            let parsedTemplate = parser.parseFromString(template, "text/xml");
+            let parsedTemplate = parser.parseFromString(template, 'text/xml');
             let insertView = parsedTemplate.querySelector('.js-data-view');
             insertView.innerHTML = _XMLtoString(childTemplate);
 
@@ -148,7 +148,7 @@ class Router {
             } else {
                 _this._insertTemplate(parsedTemplate);
             }
-        })
+        });
     }
 }
 
@@ -161,19 +161,6 @@ function _destroyViews(views) {
 function _initViews(views) {
     if(typeChecker.isArray(views)) {
         views.forEach((view) => view.init());
-    }
-}
-
-function _isRouteExist(routes, routeUrl) {
-    if(seal.isArray(routes) && seal.isString(routeUrl)) {
-        return routes.some((route) => {
-            if(route.url === routeUrl) {
-                console.log('[Router]: Route ', routeUrl, 'is already exist ');
-                return true;
-            }
-        });
-    } else {
-        return false;
     }
 }
 
@@ -206,6 +193,6 @@ function _splitUrl(url) {
         return {
             url: url,
             parent: paths.join('/')
-        }
+        };
     }
 }
