@@ -25,14 +25,14 @@ var buildPath = 'dist';
 var src = {
         html: examplePath + '/*.html',
         templates: examplePath + '/templates/*.html',
-        js: examplePath + '/js/**/*.*',
+        js: examplePath + '/js/**/*.js',
         jsMain: examplePath + '/js/app.js',
         sass: examplePath + '/sass/**/*.scss',
         img: examplePath + '/img/**/*.*',
         data: examplePath + '/data/**/*.*',
 
         vendorJsMain: vendorPath + '/root.js',
-        vendorJs: vendorPath + '/**/*.*'
+        vendorJs: vendorPath + '/**/*.js'
     };
 
 var dest = {
