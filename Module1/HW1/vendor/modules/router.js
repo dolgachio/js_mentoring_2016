@@ -82,7 +82,7 @@ class Router {
 
         function fn(){
             var match = window.location.href.match(/#(.*)$/);
-            var newHash = match ? match[1] : '';
+            var newHash = match ? match[1] : '/home';
             newHash = newHash.toString().replace(/#/, '');
 
             _this.switchTo(newHash);

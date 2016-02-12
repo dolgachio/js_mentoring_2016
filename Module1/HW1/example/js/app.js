@@ -26,6 +26,5 @@ router
         views: []
     });
 
-router.switchTo('/home');
 router.listen();
 
