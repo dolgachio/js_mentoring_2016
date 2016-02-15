@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Ivan",
+    "surname": "Ivanov",
+    "mentor": true
+  },
+
+  {
+    "name": "Petr",
+    "surname": "Petrov",
+    "mentor": false
+  }
+]

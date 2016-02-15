@@ -1,0 +1,19 @@
+.homework {
+
+    &__title {
+        font-size: 25px;
+        color: #0b97c4;
+    }
+
+    &__desc {
+        font-size: 20px;
+        color: #0b97c4;
+        test-transform: italic;
+    }
+
+    &__switcher {
+        &-wrap {
+            padding: 20px 0;
+        }
+    }
+}
