@@ -1,3 +1,5 @@
+'use strict';
+
 var typeChecker = require('./typeChecker.js');
 
 module.exports = createFactory;

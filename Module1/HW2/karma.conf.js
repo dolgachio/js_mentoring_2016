@@ -3,21 +3,23 @@ module.exports = function(config) {
 
         basePath: '',
 
-        frameworks: ['browserify', 'mocha'],
+        frameworks: ['mocha', 'chai', 'sinon', 'browserify'],
 
         files: [
-            '/**/*.spec.js'
+            './vendor/**/*.spec.js',
+            './vendor/**/*.js'
         ],
+
         browserify: {
-            debug: true
+            transform: [ 'babelify' ]
         },
-        exclude: [
-            '**/*.swp'
-        ],
+
         preprocessors: {
-            '/**/*.spec.js': ['browserify']
+            './vendor/**/*.spec.js': ['browserify'],
+            './vendor/**/*.js': ['browserify']
         },
-        reporters: ['progress'],
+
+        reporters: ['dots'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
