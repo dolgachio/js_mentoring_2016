@@ -1,6 +1,5 @@
 {
     "nonew": true,
-    "jquery": true,
     "curly": true,
     "unused": true,
     "noarg": true,
