@@ -1,4 +1,16 @@
-var Dispatcher = require('./dispatcher.factory.js');
+'use strict';
+
+var proxyquire = require('proxyquireify')(require);
+
+var typeCheckerMock = {
+   isFunction: sinon.stub().returns(true),
+   isString: sinon.stub().returns(true)
+};
+
+var Dispatcher = proxyquire('../modules/dispatcher.factory.js', {
+   '../utils/typeChecker.js' : typeCheckerMock
+});
+
 var sut;
 var testCallback;
 
@@ -14,7 +26,6 @@ describe('Dispatcher', function () {
          sut = new Dispatcher();
          testCallback = sinon.stub();
       });
-
 
       it('should be able to register actions listeners', function () {
          var registerType = typeof sut.register;
@@ -43,6 +54,7 @@ describe('Dispatcher', function () {
       describe('will register callbacks', function () {
          context('when call register with "function" type parameter', function () {
             it('should add callback to callbacks set', function () {
+               typeCheckerMock.isFunction.returns(true);
                sut.register(testCallback);
 
                var callbacks = sut._storesCallbacks || [];
@@ -58,15 +70,18 @@ describe('Dispatcher', function () {
             var expectedErrorMsg;
 
             it('should throw expected error', function () {
+               typeCheckerMock.isFunction.returns(false);
+
                expectedErrorMsg = '[dispatcher:register] You should provide a store that has an `update` method.';
 
                expect(sut.register.bind(sut, 'test')).to.throw(Error, expectedErrorMsg);
             });
-         })
+         });
       });
 
       describe('will dispatch actions', function () {
          beforeEach(function () {
+            typeCheckerMock.isFunction.returns(true);
             sut.register(testCallback);
          });
 
@@ -76,7 +91,7 @@ describe('Dispatcher', function () {
             sut.dispatch(payload);
 
             testCallback.calledWith(payload).should.be.ok;
-         })
+         });
       });
 
       describe('will handle actions', function () {
@@ -84,6 +99,7 @@ describe('Dispatcher', function () {
             var expectedErrorMsg;
 
             beforeEach(function () {
+               typeCheckerMock.isString.returns(false);
                expectedErrorMsg = '[dispatcher:register] cannot create handler for action';
             });
 
@@ -98,6 +114,7 @@ describe('Dispatcher', function () {
 
             beforeEach(function () {
                actionType = 'test';
+               typeCheckerMock.isString.returns(true);
                sut.dispatch = testCallback;
 
                expectedActionHandler = sut.handleAction(actionType);

@@ -1,3 +1,5 @@
+var proxyquire = require('proxyquireify');
+
 module.exports = function(config) {
     config.set({
 
@@ -11,7 +13,18 @@ module.exports = function(config) {
         ],
 
         browserify: {
-            transform: [ 'babelify' ]
+            debug: true,
+            extensions: ['.js'],
+            configure: function(bundle) {
+                bundle
+                    .transform(['babelify', {
+                        presets: 'es2015'
+                    }])
+                    .plugin(proxyquire.plugin)
+                    .require(require.resolve('./vendor/tests'), { entry: true });
+
+            }
+
         },
 
         preprocessors: {
@@ -26,7 +39,7 @@ module.exports = function(config) {
         autoWatch: true,
         browserNoActivityTimeout: 10000,
 
-        browsers: ['Chrome'],
+        browsers: ['PhantomJS'],
 
         singleRun: false
     });
