@@ -1,0 +1,37 @@
+@import '../mixins';
+
+.list {
+
+  &__title {
+    font-size: 30px;
+    color: #0b97c4;
+  }
+
+  &-body {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &-row {
+      display: block;
+      height: 50px;
+      @include clearfix;
+
+      &:nth-child(odd) {
+        background-color: #ddd;
+      }
+
+      &_caption {
+        font-weight: bold;
+        background-color: cadetblue;
+      }
+
+      &__col {
+        float: left;
+        padding: 10px;
+        width: 25%;
+        height: 100%;
+      }
+    }
+  }
+}

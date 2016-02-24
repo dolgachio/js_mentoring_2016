@@ -1,0 +1,1 @@
+require('./dispatcher.factory.spec.js');
