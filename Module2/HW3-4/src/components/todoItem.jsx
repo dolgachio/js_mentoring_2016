@@ -12,7 +12,7 @@ class TodoItem extends React.Component{
 		this.state = {editText: this.props.todo.title};
 	}
 
-	handleSubmit(event) {
+	handleSubmit() {
 		var val = this.state.editText.trim();
 		if (val) {
 			this.props.onSave(val);

@@ -13,6 +13,7 @@ class TodoApp extends React.Component{
 	constructor(props) {
 		super(props);
 
+		//TODO: move to store *
 		this.state = {
 			nowShowing: CONST.ALL_TODOS,
 			editing: null,
@@ -20,7 +21,9 @@ class TodoApp extends React.Component{
 		};
 	}
 
+
 	componentDidMount() {
+		//TODO: replace with dispatch events in footer component
 		let setState = this.setState;
 		let router = Router({
 			'/': setState.bind(this, {nowShowing: CONST.ALL_TODOS}),
@@ -31,6 +34,7 @@ class TodoApp extends React.Component{
 	}
 
 	handleChange(event) {
+		//TODO: remove
 		this.setState({newTodo: event.target.value});
 	}
 
@@ -43,6 +47,7 @@ class TodoApp extends React.Component{
 
 		let val = this.state.newTodo.trim();
 
+		//TODO: dispatch event ADD_TODO *
 		if (val) {
 			this.props.model.addTodo(val);
 			this.setState({newTodo: ''});
@@ -50,32 +55,39 @@ class TodoApp extends React.Component{
 	}
 
 	toggleAll(event) {
+		//TODO: dispatch event TOGGLE_ALL *
 		let checked = event.target.checked;
 		this.props.model.toggleAll(checked);
 	}
 
 	toggle(todoToToggle) {
+		//TODO: dispatch event TOGGLE_TODO *
 		this.props.model.toggle(todoToToggle);
 	}
 
 	destroy(todo) {
+		//TODO: dispatch event DESTROY_TODO *
 		this.props.model.destroy(todo);
 	}
 
 	edit(todo) {
+		//TODO: dispatch event EDIT_TODO
 		this.setState({editing: todo.id});
 	}
 
 	save(todoToSave, text) {
+		//TODO: dispatch event SAVE_TODO
 		this.props.model.save(todoToSave, text);
 		this.setState({editing: null});
 	}
 
 	cancel() {
+		//TODO: dispatch event CANCEL_EDIT
 		this.setState({editing: null});
 	}
 
 	clearCompleted() {
+		//TODO: switch to filter usage
 		this.props.model.clearCompleted();
 	}
 
