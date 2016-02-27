@@ -50,7 +50,6 @@ const AddTodo = ({handleNewTodoKeyDown}) => {
     );
 };
 
-
 const AddTodoContainer = connect(null, mapDispatchToProps)(AddTodo);
 
 export default AddTodoContainer;

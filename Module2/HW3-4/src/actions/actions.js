@@ -2,6 +2,8 @@
 import ACTIONS_NAMES from '../constants/ACTIONS_NAMES.js';
 
 export default {
+
+    //------Todos action------
     toggleTodo(todo) {
         return {
             type: ACTIONS_NAMES.TOGGLE_TODO,
@@ -28,5 +30,20 @@ export default {
             type: ACTIONS_NAMES.ADD_TODO,
             payload: {todo}
         }
+    },
+
+    clearCompleted() {
+        return {
+            type: ACTIONS_NAMES.CLEAR_COMPLETED
+        }
+    },
+
+    //------Filter action------
+    setVisibilityFilter(filter) {
+        return {
+            type: ACTIONS_NAMES.SET_VISIBILITY_FILTER,
+            filter: filter
+        }
     }
+
 }

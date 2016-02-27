@@ -1,27 +1,33 @@
 'use strict';
 import todo from './todo.js';
+import ACTIONS_NAMES from '../../constants/ACTIONS_NAMES.js';
 
 const todos = (state = [], action) => {
   switch(action.type) {
-      case 'ADD_TODO':
+      case ACTIONS_NAMES.ADD_TODO:
           return [
               ...state,
               todo(undefined, action)
           ];
 
-      case 'TOGGLE_TODO':
+      case ACTIONS_NAMES.TOGGLE_TODO:
           return state.map(
               (item) => todo(item, action)
           );
 
-      case 'TOGGLE_ALL':
+      case ACTIONS_NAMES.TOGGLE_ALL:
           return state.map(
               (item) => {
                   Object.assign({}, item, {completed: action.checked})
               }
           );
 
-      case 'DESTROY_TODO':
+      case ACTIONS_NAMES.CLEAR_COMPLETED:
+          return state.filter((todo) => {
+              return !todo.completed;
+          });
+
+      case ACTIONS_NAMES.DESTROY_TODO:
           return state.filter(function (todo) {
               return todo !== action.todo;
           });
