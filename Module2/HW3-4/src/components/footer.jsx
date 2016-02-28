@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
-import Utils from '../utils/utils.js';
+
+import Utils from '../utils';
 import CONST from '../constants/CONST.js';
 
 import ClearButton from '../containers/ClearButton.jsx';
@@ -38,11 +39,6 @@ const TodoFooter = (props) => {
     );
 
 };
-
-/*TodoFooter.propTypes = {
-    count: React.PropTypes.isRequired,
-    completedCount: React.PropTypes.isRequired
-};*/
 
 export default TodoFooter;
 

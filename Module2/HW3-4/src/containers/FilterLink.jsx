@@ -1,37 +1,24 @@
 'use strict';
-import React from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 
-import actions from '../actions/actions.js'
+import { setVisibilityFilter } from '../actions';
+import Link from '../components/Link.jsx';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        active: ownProps.filter === state.visibilityFilter,
-        children: ownProps.children
+        active: ownProps.filter === state.visibilityFilter
     }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onFilterChange: () => {
-            dispatch(actions.setVisibilityFilter(ownProps.filter))
+            dispatch(setVisibilityFilter(ownProps.filter))
         }
     }
 };
 
-const FilterLink = ({onFilterChange, active, children}) => {
-    return (
-        <a
-            href="#"
-            className={classNames({selected: active})}
-            onClick={onFilterChange}>
-            {children}
-        </a>
-    )
-};
-
-const FilterLinkContainer = connect(mapStateToProps, mapDispatchToProps)(FilterLink);
+const FilterLinkContainer = connect(mapStateToProps, mapDispatchToProps)(Link);
 
 export default FilterLinkContainer;
 

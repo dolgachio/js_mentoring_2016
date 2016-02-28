@@ -2,11 +2,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../actions/actions.js'
+import { clearCompleted } from '../actions';
 
 const ClearButon = ({completedCount, dispatch}) => {
     const onClearCompleted = () => {
-        dispatch(actions.clearCompleted());
+        dispatch(clearCompleted());
     };
     let showButton = completedCount > 0 ? '' : 'none';
 

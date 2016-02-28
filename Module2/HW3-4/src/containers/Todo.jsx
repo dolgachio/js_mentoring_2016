@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import CONST from '../constants/CONST.js';
-import actions from '../actions/actions.js';
+import { destroyTodo, toggleTodo, updateTodo, editTodo } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -16,23 +16,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     let id = ownProps.todo.id;
 
     const destroy = () => {
-        dispatch(actions.destroyTodo(id))
+        dispatch(destroyTodo(id))
     };
 
     const toggle = () => {
-        dispatch(actions.toggleTodo(id))
+        dispatch(toggleTodo(id))
     };
 
     const onTitleUpdate = (title) => {
-        dispatch(actions.updateTodo({id, title}));
+        dispatch(updateTodo({id, title}));
     };
 
     const startEdit = () => {
-        dispatch(actions.editTodo(id));
+        dispatch(editTodo(id));
     };
 
     const stopEdit = () => {
-        dispatch(actions.editTodo(null));
+        dispatch(editTodo(null));
     };
 
     return {

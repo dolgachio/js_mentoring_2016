@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import AddTodo from './addTodo.jsx'
-import TodoList from './todoList.jsx'
+import TodoList from './VisibleTodoList.jsx'
 import TodoFooter from '../components/Footer.jsx';
 
 const mapStateToProps = (state) => {
@@ -21,7 +21,6 @@ const mapStateToProps = (state) => {
         hasTodos
     }
 };
-
 
 const TodoApp = ({activeTodoCount, completedCount, hasTodos}) => {
         let footer;

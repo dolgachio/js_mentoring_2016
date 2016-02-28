@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CONST from '../constants/CONST.js';
-import actions from '../actions/actions.js';
-import Utils from '../utils/utils.js';
+import { addTodo } from '../actions';
+import Utils from '../utils';
 
 const mapDispatchToProps = (dispatch) => {
     const handleNewTodoKeyDown = (value) => {
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
                 title: value
             };
 
-            dispatch(actions.addTodo(todo));
+            dispatch(addTodo(todo));
         }
     };
 
