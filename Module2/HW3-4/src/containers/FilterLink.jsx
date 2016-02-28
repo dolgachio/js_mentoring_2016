@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
-import CONST from '../constants/CONST.js';
 import actions from '../actions/actions.js'
 
 const mapStateToProps = (state, ownProps) => {
@@ -21,23 +20,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-const FilterLink = ({onFilterChange, active}) => {
+const FilterLink = ({onFilterChange, active, children}) => {
     return (
         <a
             href="#"
             className={classNames({selected: active})}
             onClick={onFilterChange}>
-            {props.children}
+            {children}
         </a>
     )
 };
 
 const FilterLinkContainer = connect(mapStateToProps, mapDispatchToProps)(FilterLink);
-
-FilterLinkContainer.propTypes = {
-    filter: React.propTypes.isRequired,
-    children: React.propTypes.isRequired
-};
 
 export default FilterLinkContainer;
 

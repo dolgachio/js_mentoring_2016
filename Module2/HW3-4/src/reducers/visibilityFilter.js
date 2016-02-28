@@ -1,9 +1,10 @@
 'use strict';
+import ACTIONS_NAMES from '../constants/ACTIONS_NAMES.js';
 
 const visibilityFilter = (state = 'SHOW_ALL', action) => {
     switch(action.type) {
-        case 'SET_VISIBILITY':
-            return action.payload.filter;
+        case ACTIONS_NAMES.SET_VISIBILITY_FILTER:
+            return action.filter;
         default:
             return state;
     }

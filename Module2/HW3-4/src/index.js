@@ -1,21 +1,32 @@
+'use strict';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoApp from './components/app.jsx';
-import TodoModel from './components/todoModel.js';
-import todosStore from './stores/todosStore.js';
-
+import { createStore, combineReducers, compose } from 'redux';
 import { Provider } from 'react-redux';
+import persistState from 'redux-localstorage'
 
-let model = new TodoModel('react-todos');
+//reducers
+import todos from './reducers/todos.js';
+import visibilityFilter from './reducers/visibilityFilter.js';
+import editingTodo from './reducers/editingTodo.js';
+import TodoApp from './containers/App.jsx';
 
-function render() {
-    ReactDOM.render(
-        <Provider store={todosStore}>
-            <TodoApp model={model}/>
-        </Provider>,
+const createPersistentStore = compose(
+    persistState()
+)(createStore);
 
-        document.getElementById('app'));
-}
+const rootReducer = combineReducers({
+    todos,
+    visibilityFilter,
+    editingTodo
+});
 
-model.subscribe(render);
-render();
+const store = createPersistentStore(rootReducer);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <TodoApp />
+    </Provider>,
+    document.getElementById('app'));
+

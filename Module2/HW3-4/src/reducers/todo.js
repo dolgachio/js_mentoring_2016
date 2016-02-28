@@ -1,14 +1,12 @@
 'use strict';
-import ACTIONS_NAMES from '../../constants/ACTIONS_NAMES.js';
+import ACTIONS_NAMES from '../constants/ACTIONS_NAMES.js';
 
 const todo = (state, action) => {
-    let payload = action.payload;
-
     switch(action.type) {
         case ACTIONS_NAMES.ADD_TODO:
             return {
-                id: payload.id,
-                title: payload.title,
+                id: action.id,
+                title: action.title,
                 completed: false
             };
 
@@ -21,6 +19,15 @@ const todo = (state, action) => {
                 state,
                 {completed: !state.completed}
             );
+
+        case ACTIONS_NAMES.UPDATE_TODO:
+            if(state.id !== action.id) {
+                return state;
+            }
+
+            return Object.assign({},
+                state,
+                {title: action.title});
 
         default:
             return state;

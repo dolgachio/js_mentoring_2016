@@ -4,31 +4,40 @@ import ACTIONS_NAMES from '../constants/ACTIONS_NAMES.js';
 export default {
 
     //------Todos action------
-    toggleTodo(todo) {
+    toggleTodo(id) {
         return {
             type: ACTIONS_NAMES.TOGGLE_TODO,
-            payload: {todo: todo}
-        };
+            id: id
+        }
     },
 
-    destroyTodo(todo) {
-        return {
-            type: ACTIONS_NAMES.DESTROY_TODO,
-            payload: {todo: todo}
-        }
+    destroyTodo(id) {
+        return {type: ACTIONS_NAMES.DESTROY_TODO, id: id};
     },
 
     toggleAll(checked) {
         return {
             type: ACTIONS_NAMES.TOGGLE_ALL,
-            payload: {checked: checked}
+            checked: checked
         }
     },
 
     addTodo(todo) {
+        return Object.assign({}, {type: ACTIONS_NAMES.ADD_TODO}, todo);
+    },
+
+    updateTodo(todo) {
         return {
-            type: ACTIONS_NAMES.ADD_TODO,
-            payload: {todo}
+            type: ACTIONS_NAMES.UPDATE_TODO,
+            id: todo.id,
+            title: todo.title
+        }
+    },
+
+    editTodo(id) {
+        return {
+            type: ACTIONS_NAMES.EDIT_TODO,
+            id: id
         }
     },
 

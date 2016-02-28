@@ -1,6 +1,6 @@
 'use strict';
 import todo from './todo.js';
-import ACTIONS_NAMES from '../../constants/ACTIONS_NAMES.js';
+import ACTIONS_NAMES from '../constants/ACTIONS_NAMES.js';
 
 const todos = (state = [], action) => {
   switch(action.type) {
@@ -10,6 +10,11 @@ const todos = (state = [], action) => {
               todo(undefined, action)
           ];
 
+      case ACTIONS_NAMES.UPDATE_TODO:
+          return state.map(
+              (item) => todo(item, action)
+          );
+
       case ACTIONS_NAMES.TOGGLE_TODO:
           return state.map(
               (item) => todo(item, action)
@@ -18,7 +23,7 @@ const todos = (state = [], action) => {
       case ACTIONS_NAMES.TOGGLE_ALL:
           return state.map(
               (item) => {
-                  Object.assign({}, item, {completed: action.checked})
+                  return Object.assign({}, item, {completed: action.checked})
               }
           );
 
@@ -29,7 +34,7 @@ const todos = (state = [], action) => {
 
       case ACTIONS_NAMES.DESTROY_TODO:
           return state.filter(function (todo) {
-              return todo !== action.todo;
+              return todo.id !== action.id;
           });
 
       default:

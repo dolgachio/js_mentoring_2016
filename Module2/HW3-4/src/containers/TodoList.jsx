@@ -1,9 +1,11 @@
 'use strict';
 import React from 'react';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
 import CONST from '../constants/CONST.js';
-import actions from '../actions/actions.js'
+import actions from '../actions/actions.js';
+
+import Todo from  './Todo.js';
 
 const mapStateToProps = (state) => ({
     todos: state.todos,
@@ -11,27 +13,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => {
-    const toggle = (todoToToggle) => {
-        dispatch(actions.toggleTodo(todoToToggle))
-    };
-
-    const destroy = (todoToDestroy) => {
-        dispatch(actions.toggleTodo(todoToDestroy))
-    };
-
     const toggleAll = (event) => {
         let checked = event.target.checked;
         dispatch(actions.toggleAll(checked))
     };
 
     return {
-        toggle,
-        destroy,
         toggleAll
     }
 };
 
-const TodoList = ({todos, visibilityFilter, toggle, destroy, toggleAll}) => {
+const TodoList = ({todos, visibilityFilter,toggleAll}) => {
 
     const getShownTodos = (todos, visibilityFilter) => {
         return todos.filter(function (todo) {
@@ -43,26 +35,14 @@ const TodoList = ({todos, visibilityFilter, toggle, destroy, toggleAll}) => {
                 default:
                     return true;
             }
-        }, this);
+        });
     };
 
     let activeTodoCount = todos.reduce(function (accum, todo) {
         return todo.completed ? accum : accum + 1;
     }, 0);
 
-    let todoItems = getShownTodos(todos, visibilityFilter).map( todo => {
-        return (<TodoItem
-            key={todo.id}
-            todo={todo}
-            onToggle={toggle}
-            onDestroy={destroy}
-            //onEdit={this.edit.bind(this, todo)}
-            //editing={this.state.editing === todo.id}
-            //onSave={this.save.bind(this, todo)}
-            //onCancel={this.cancel.bind(this)}
-        />);
-    });
-
+    let todoItems = getShownTodos(todos, visibilityFilter);
     let main;
 
     if (todos.length) {
@@ -75,7 +55,11 @@ const TodoList = ({todos, visibilityFilter, toggle, destroy, toggleAll}) => {
                     checked={activeTodoCount === 0}
                 />
                 <ul className="todo-list">
-                    {todoItems}
+                    {todoItems.map( (todo) => {
+                        return (<Todo
+                                    todo={todo}
+                                    key = {todo.id} />);
+                        })}
                 </ul>
             </section>
         );

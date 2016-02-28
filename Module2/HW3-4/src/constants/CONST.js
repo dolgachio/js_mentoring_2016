@@ -5,5 +5,8 @@ export default {
     ACTIVE_TODOS: 'active',
     COMPLETED_TODOS: 'completed',
 
-    ENTER_KEY: 13
+    ENTER_KEY: 13,
+    ESCAPE_KEY: 27,
+
+    NAMESPACE: 'TODO_APP'
 }

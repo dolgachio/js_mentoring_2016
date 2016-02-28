@@ -1,10 +1,10 @@
 'use strict';
 import React from 'react';
-import connect from 'react-redux';
+import { connect } from 'react-redux';
 
 import CONST from '../constants/CONST.js';
 import actions from '../actions/actions.js';
-import Utils from './utils.js';
+import Utils from '../utils/utils.js';
 
 const mapDispatchToProps = (dispatch) => {
     const handleNewTodoKeyDown = (value) => {
@@ -35,7 +35,7 @@ const AddTodo = ({handleNewTodoKeyDown}) => {
                 ref={(node) => {addTodoInput = node}}
                 onKeyDown={(e) => {
                     let val;
-                    if (e.keyCode !== ENTER_KEY) {
+                    if (e.keyCode !== CONST.ENTER_KEY) {
                         return;
                     }
 

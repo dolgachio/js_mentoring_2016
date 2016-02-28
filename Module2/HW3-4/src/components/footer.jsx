@@ -1,61 +1,48 @@
 'use strict';
 import React from 'react';
-import classNames from 'classnames';
-import Utils from './utils.js';
+import Utils from '../utils/utils.js';
 import CONST from '../constants/CONST.js';
 
-class TodoFooter extends React.Component {
-	render() {
-		let activeTodoWord = Utils.pluralize(this.props.count, 'item');
-		let clearButton = null;
+import ClearButton from '../containers/ClearButton.jsx';
+import FilterLink from '../containers/FilterLink.jsx';
 
-		if (this.props.completedCount > 0) {
-			clearButton = (
-				<button
-					className="clear-completed"
-					onClick={this.props.onClearCompleted}>
-					Clear completed
-				</button>
-			);
-		}
+const TodoFooter = (props) => {
+    let activeTodoWord = Utils.pluralize(props.count, 'item');
 
-		let nowShowing = this.props.nowShowing;
+    return (
+        <footer className="footer">
+            <span className="todo-count">
+                <strong>{props.count}</strong> {activeTodoWord} left
+            </span>
+            <ul className="filters">
+                <li>
+                    <FilterLink filter={CONST.ALL_TODOS}>
+                        All
+                    </FilterLink>
+                </li>
+                {' '}
+                <li>
+                    <FilterLink filter={CONST.ACTIVE_TODOS}>
+                        Active
+                    </FilterLink>
+                </li>
+                {' '}
+                <li>
+                    <FilterLink filter={CONST.COMPLETED_TODOS}>
+                        Completed
+                    </FilterLink>
+                </li>
+            </ul>
+            <ClearButton completedCount={props.completedCount}/>
+        </footer>
+    );
 
-		return (
-			<footer className="footer">
-				<span className="todo-count">
-					<strong>{this.props.count}</strong> {activeTodoWord} left
-				</span>
-				<ul className="filters">
-					<li>
-						<a
-							href="#/"
-							className={classNames({selected: nowShowing === CONST.ALL_TODOS})}>
-								All
-						</a>
-					</li>
-					{' '}
-					<li>
-						<a
-							href="#/active"
-							className={classNames({selected: nowShowing === CONST.ACTIVE_TODOS})}>
-								Active
-						</a>
-					</li>
-					{' '}
-					<li>
-						<a
-							href="#/completed"
-							className={classNames({selected: nowShowing === CONST.COMPLETED_TODOS})}>
-								Completed
-						</a>
-					</li>
-				</ul>
-				{clearButton}
-			</footer>
-		);
-	}
-}
+};
+
+/*TodoFooter.propTypes = {
+    count: React.PropTypes.isRequired,
+    completedCount: React.PropTypes.isRequired
+};*/
 
 export default TodoFooter;
 
