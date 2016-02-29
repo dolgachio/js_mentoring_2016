@@ -17,19 +17,25 @@ const TodoFooter = (props) => {
             </span>
             <ul className="filters">
                 <li>
-                    <FilterLink filter={CONST.ALL_TODOS}>
+                    <FilterLink
+                        hash="#/"
+                        filter={CONST.ALL_TODOS}>
                         All
                     </FilterLink>
                 </li>
                 {' '}
                 <li>
-                    <FilterLink filter={CONST.ACTIVE_TODOS}>
+                    <FilterLink
+                        hash="#/active"
+                        filter={CONST.ACTIVE_TODOS}>
                         Active
                     </FilterLink>
                 </li>
                 {' '}
                 <li>
-                    <FilterLink filter={CONST.COMPLETED_TODOS}>
+                    <FilterLink
+                        hash="#/completed"
+                        filter={CONST.COMPLETED_TODOS}>
                         Completed
                     </FilterLink>
                 </li>

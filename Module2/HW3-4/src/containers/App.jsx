@@ -1,11 +1,8 @@
 'use strict';
 
-import React from 'react';
 import { connect } from 'react-redux';
-
-import AddTodo from './addTodo.jsx'
-import TodoList from './VisibleTodoList.jsx'
-import TodoFooter from '../components/Footer.jsx';
+import { setVisibilityFilter } from '../actions';
+import TodoApp from '../components/TodoApp.jsx';
 
 const mapStateToProps = (state) => {
     let activeTodoCount = state.todos.reduce(function (accum, todo) {
@@ -22,34 +19,14 @@ const mapStateToProps = (state) => {
     }
 };
 
-const TodoApp = ({activeTodoCount, completedCount, hasTodos}) => {
-        let footer;
-        let main;
-
-        if (activeTodoCount || completedCount) {
-            footer =
-                <TodoFooter
-                    count={activeTodoCount}
-                    completedCount={completedCount}
-                />;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onFilterChange: (filter) => {
+            dispatch(setVisibilityFilter(filter))
         }
-
-        if (hasTodos) {
-            main = (
-                <TodoList />
-            );
-        }
-
-        return (
-            <div>
-                <AddTodo/>
-                {main}
-                {footer}
-            </div>
-        );
-
+    }
 };
 
-const TodoAppContainer = connect(mapStateToProps)(TodoApp);
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(TodoApp);
 
-export default TodoAppContainer;
+export default AppContainer;

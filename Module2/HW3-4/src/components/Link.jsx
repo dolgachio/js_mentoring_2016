@@ -2,12 +2,11 @@
 import classNames from 'classnames';
 import React from 'react';
 
-const Link = ({onFilterChange, active, children}) => {
+const Link = ({ active, children, hash }) => {
     return (
         <a
-            href="#"
-            className={classNames({selected: active})}
-            onClick={onFilterChange}>
+            href={hash}
+            className={classNames({selected: active})}>
             {children}
         </a>
     )

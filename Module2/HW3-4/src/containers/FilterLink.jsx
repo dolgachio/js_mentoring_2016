@@ -6,6 +6,7 @@ import Link from '../components/Link.jsx';
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        hash: ownProps.hash,
         active: ownProps.filter === state.visibilityFilter
     }
 };
