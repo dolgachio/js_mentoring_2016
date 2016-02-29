@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/lib/raised-button';
 
 import { clearCompleted } from '../actions';
 
@@ -11,11 +12,9 @@ const ClearButon = ({completedCount, dispatch}) => {
     let showButton = completedCount > 0 ? '' : 'none';
 
     return (
-        <button style={{display: showButton}}
-            className="clear-completed"
-            onClick={onClearCompleted}>
-            Clear completed
-        </button>
+        <RaisedButton style={{display: showButton, float: 'right', marginTop:'2px'}}
+            label="Clear completed"
+            onClick={onClearCompleted} />
     );
 };
 

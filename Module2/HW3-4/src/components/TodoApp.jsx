@@ -2,6 +2,9 @@
 import React from 'react';
 import director from 'director';
 
+//Material UI Components
+import AppBar from 'material-ui/lib/app-bar';
+
 import CONST from '../constants/CONST.js';
 import AddTodo from '../containers/addTodo.jsx'
 import TodoList from '../containers/VisibleTodoList.jsx'
@@ -42,7 +45,9 @@ class TodoApp extends React.Component {
 
         return (
             <div>
-                <AddTodo/>
+                <AppBar iconClassNameLeft="muidocs-icon-navigation-expand-more" style={{zIndex: 'none'}}>
+                    <AddTodo/>
+                </AppBar>
                 {main}
                 {footer}
             </div>

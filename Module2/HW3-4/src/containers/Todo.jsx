@@ -1,6 +1,10 @@
 'use strict';
 
 import React from 'react';
+import Checkbox from 'material-ui/lib/checkbox';
+import IconButton from 'material-ui/lib/icon-button';
+import NavigationClose from 'material-ui/lib/svg-icons/navigation/close';
+
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import CONST from '../constants/CONST.js';
@@ -58,8 +62,6 @@ class TodoItem extends React.Component{
 
     handleKeyDown(event) {
         if (event.which === CONST.ESCAPE_KEY) {
-            /*this.setState({editText: this.props.todo.title});
-            this.props.onCancel(event);*/
             this.refs.editField.value = this.props.todo.title;
             this.props.stopEdit();
         } else if (event.which === CONST.ENTER_KEY) {
@@ -81,23 +83,35 @@ class TodoItem extends React.Component{
     }
 
     render() {
+        const checkboxStyle = {
+            position: 'absolute',
+            width: '20px',
+            margin: '0',
+            top: '30%',
+            left: '18px'
+        };
+
         return (
             <li className={classNames({
 				completed: this.props.todo.completed,
 				editing: this.props.editing
 			})}>
                 <div className="view">
-                    <input
-                        className="toggle"
-                        type="checkbox"
+                    <Checkbox
+                        className="checkbox"
                         checked={this.props.todo.completed}
-                        onChange={this.props.toggle}
+                        onCheck={this.props.toggle}
+                        style={checkboxStyle}
                     />
                     <label onDoubleClick={this.props.startEdit}>
                         {this.props.todo.title}
                     </label>
-                    <button className="destroy" onClick={this.props.destroy} />
+                    <IconButton
+                        style={{position: 'absolute', right: '0', top: '5px'}}
+                        primary={true}
+                        onClick={this.props.destroy}><NavigationClose /></IconButton>
                 </div>
+
                 <input
                     ref="editField"
                     className="edit"

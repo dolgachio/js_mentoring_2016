@@ -1,20 +1,24 @@
 'use strict';
 import React from 'react';
 
-import Utils from '../utils';
+import Badge from 'material-ui/lib/badge';
+import NotificationsIcon from 'material-ui/lib/svg-icons/social/notifications';
+
 import CONST from '../constants/CONST.js';
 
 import ClearButton from '../containers/ClearButton.jsx';
 import FilterLink from '../containers/FilterLink.jsx';
 
 const TodoFooter = (props) => {
-    let activeTodoWord = Utils.pluralize(props.count, 'item');
-
     return (
         <footer className="footer">
-            <span className="todo-count">
-                <strong>{props.count}</strong> {activeTodoWord} left
-            </span>
+            <Badge
+                badgeContent={props.count}
+                secondary={true}
+                className="notification">
+                <NotificationsIcon />
+            </Badge>
+
             <ul className="filters">
                 <li>
                     <FilterLink

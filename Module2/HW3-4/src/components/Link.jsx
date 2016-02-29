@@ -1,14 +1,18 @@
 'use strict';
-import classNames from 'classnames';
+
 import React from 'react';
+import RaisedButton from 'material-ui/lib/raised-button';
+
 
 const Link = ({ active, children, hash }) => {
     return (
-        <a
-            href={hash}
-            className={classNames({selected: active})}>
-            {children}
-        </a>
+    <RaisedButton
+        label={children}
+        href={hash}
+        primary={active}
+        linkButton={true}
+        secondary={true}
+        style={{boxShadow: 'none', backgroundColor: 'none'}}/>
     )
 };
 
