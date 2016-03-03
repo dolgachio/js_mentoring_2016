@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Upload image</title>
+    <link rel="stylesheet" href="../css/main.css"/>
+
+</head>
+<body>
+<section class="page">
+    <h2>Image upload</h2>
+
+    <form name="post-form"
+          action="/saveImg"
+          method="POST"
+          enctype="multipart/form-data">
+        <input name="img"  type="file">
+        <input type="submit" value="send">
+    </form>
+
+    <br/>
+    <a href="/">Home</a>
+
+</section>
+</body>
+</html>

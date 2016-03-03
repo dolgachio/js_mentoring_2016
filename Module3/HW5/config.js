@@ -1,4 +1,5 @@
 'use strict';
+var path = require('path');
 
 module.exports = {
     getSrc: getSrc,
@@ -8,18 +9,22 @@ module.exports = {
     getServerSrc: getServerSrc
 };
 
-var examplePath = 'app';
-var buildPath = 'dist';
+var appPath = 'app';
+var buildPath = 'server';
 var serverSrc = 'server/server.js';
 
 var src = {
-    html: examplePath + '/*.html',
-    sass: examplePath + '/sass/**/*.scss'
+    html: path.join(appPath,'/*.html'),
+    pages: path.join(appPath, 'pages', '/*.html'),
+    sass: appPath + '/sass/**/*.scss',
+    img: path.join(appPath, 'img', '/*.*')
 };
 
 var dest = {
-    html: buildPath,
-    styles: buildPath + '/css'
+    html: path.join(buildPath, 'public'),
+    pages: path.join(buildPath, 'public', 'static'),
+    styles: path.join(buildPath, 'public', 'css'),
+    img: path.join(buildPath, 'public', 'img')
 };
 
 function getSrc() {

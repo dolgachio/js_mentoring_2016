@@ -11,4 +11,8 @@ gulp.task('html', function() {
     gulp.src(src.html)
         .pipe(plumber())
         .pipe(gulp.dest(dest.html));
+
+    gulp.src(src.pages)
+        .pipe(plumber())
+        .pipe(gulp.dest(dest.pages));
 });
