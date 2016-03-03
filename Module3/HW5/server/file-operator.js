@@ -36,20 +36,21 @@ function sendFileSafe(filePath, res) {
 
     if (!parsedFilePath) {
         res.statusCode = 404;
-        _sendFile(PATHS.NOT_FOUND, res);
+
+        sendFileSafe(PATHS.NOT_FOUND, res);
         return;
     }
 
     if (parsedFilePath.indexOf(config.ROOT) !== 0) {
         res.statusCode = 404;
-        _sendFile(PATHS.NOT_FOUND, res);
+        sendFileSafe(PATHS.NOT_FOUND, res);
         return;
     }
 
     fs.stat(parsedFilePath, function(err, stats) {
         if (err || !stats.isFile()) {
             res.statusCode = 404;
-            _sendFile(PATHS.NOT_FOUND, res);
+            sendFileSafe(PATHS.NOT_FOUND, res);
             return;
         }
 
@@ -70,8 +71,8 @@ function _sendFile(filePath, res) {
 
 }
 
-function writeFileSafe(filePath, req, res) {
-    _writeFile(filePath, req, res);
+function writeFileSafe(req, res) {
+    _writeFile(req, res);
 }
 
 function _writeFile(req, res) {

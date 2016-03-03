@@ -1,7 +1,9 @@
 'use strict';
 
 const url = require('url');
+
 const utils = require('./utils.js');
+const CONST = require('./CONST');
 const fileOperator = require('./file-operator');
 
 class Router {
@@ -42,7 +44,7 @@ function rootListeningFunction(req, res) {
             if(getListeners.hasOwnProperty(urlPath)) {
                 getListeners[urlPath](req, res);
             } else {
-                fileOperator.sendFileSafe(req.url, res);
+                fileOperator.sendFileSafe(urlPath, res);
             }
             break;
         case 'POST':

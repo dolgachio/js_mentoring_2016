@@ -31,9 +31,7 @@ router.get('/post', (req, res) => {
 });
 
 router.post('/saveImg', (req, res) => {
-    let filePath = url.parse(req.url).pathname;
-
-    fileOperator.writeFileSafe(filePath, req, res);
+    fileOperator.writeFileSafe(req, res);
 });
 
 server.listen(config.PORT);
