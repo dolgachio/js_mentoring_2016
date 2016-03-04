@@ -9,6 +9,12 @@ module.exports = {
         SECRET_PROHIBITED: 'static/secret-prohibited.html',
         ADD_FILE_SUCCESS: 'static/add-file-success.html',
         IMG_ALREADY_EXISTS: 'static/image-already-exist.html',
-        BAD_REQUEST: 'static/bad-request.html'
+        BAD_REQUEST: 'static/bad-request.html',
+        IMAGE_LIST: 'static/image-list.html',
+
+        UPLOAD: 'img/upload/',
+        DEFAULT_IMG_PATH: 'img\\upload\\no-img.png',
+
+        REPLACE_FLAG: '%$inject$%'
     }
 };

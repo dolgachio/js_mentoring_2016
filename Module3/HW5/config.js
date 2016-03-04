@@ -17,7 +17,7 @@ var src = {
     html: path.join(appPath,'/*.html'),
     pages: path.join(appPath, 'pages', '/*.html'),
     sass: appPath + '/sass/**/*.scss',
-    img: path.join(appPath, 'img', '/*.*')
+    img: path.join(appPath, 'img', '**', '/*.*')
 };
 
 var dest = {

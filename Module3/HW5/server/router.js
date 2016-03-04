@@ -55,10 +55,9 @@ function rootListeningFunction(req, res) {
             }
             break;
         default:
-            res.end('Ooops, cannot handle this!');
+            res.end('Ooops, cannot handle such request: ' + req.method + ' ' + urlPath);
     }
 }
-
 
 function _checkArguments(url, callback) {
     if(!utils.isFunction(callback)) {
