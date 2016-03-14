@@ -11,8 +11,8 @@ module.exports = {
 };
 
 var appPath = 'app';
-var buildPath = 'dist';
-var serverSrc = 'server/server.js';
+var buildPath = 'server/dist';
+var serverSrc = 'server/bin';
 var serverFiles = 'server/**/**.js';
 
 var src = {
