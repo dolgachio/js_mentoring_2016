@@ -1,0 +1,44 @@
+@import '../mixins';
+
+.page {
+  @include clearfix;
+  position: relative;
+  width: 50%;
+  min-height: 500px;
+
+  margin: 50px auto;
+  padding: 50px;
+
+  border: 2px solid #bbb;
+
+  font-family: Arial, serif;
+  color: #222222;
+  &-header {
+    &__title {
+      font-size: 40px;
+      font-weight: bold;
+
+      color: #0b97c4;
+    }
+
+    &__desc {
+      font-size: 25px;
+      font-weight: bold;
+      padding-bottom: 20px;
+    }
+  }
+
+  &-logo {
+    border-radius: 50%;
+
+    &-container {
+      display: inline-block;
+      margin-right: 50px;
+    }
+  }
+}
+
+.image-list {
+  list-style: none;
+}
+
