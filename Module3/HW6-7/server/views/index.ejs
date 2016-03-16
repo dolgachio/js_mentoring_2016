@@ -6,7 +6,11 @@
 </head>
 <body>
     <section class="page">
-        Hello, <%= name %>!
+        <h2>Hello, <%= name %>!</h2>
+        <% if(unauthorized){ %>
+            <h3><%= message %></h3>
+            <a class="btn btn-info" href="<%= link%>">Login</a>
+        <% } %>
     </section>
 </body>
 </html>

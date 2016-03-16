@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup page</title>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<section class="page">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Register</h1>
+            <p class="lead">Already registered? Please <a href="login">log in</a> instead.</p>
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" >
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" >
+                </div>
+                <button type="submit" class="btn btn-default">Register!</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

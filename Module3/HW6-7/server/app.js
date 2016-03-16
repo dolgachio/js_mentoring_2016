@@ -1,17 +1,20 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var express = require('express');
-var logger = require('morgan');
-var multiparty = require('multiparty');
-var http = require('http');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+const fs = require('fs');
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const flash    = require('connect-flash');
+const logger = require('morgan');
+const multiparty = require('multiparty');
+const http = require('http');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
 
-var config = require('./config');
-var routes = require('./routes');
-var app = express();
+const config = require('./config');
+const routes = require('./api/routes');
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -21,6 +24,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(config.ROOT));
+
+app.use(session({ secret: 'secret', resave: true, saveUninitialized: true, cookie: { maxAge: 60000 }}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.use('/', routes);
 
