@@ -15,12 +15,12 @@
         </h1>
 
         <% if (authorized) {%>
-            <h3>Add thoughts</h3>
-            <form name="post-form"
+            <form class="form"
+                  name="post-form"
                   action="/createPost"
                   method="POST">
                 <div class="form-group">
-                    <label for="email">title</label>
+                    <label for="email">Post:</label>
                     <input name="content" type="text" class="form-control" id="title" placeholder="Enter post title">
                 </div>
                 <button type="submit" class="btn btn-default">publish</button>
@@ -28,13 +28,25 @@
         <%}%>
 
         <%if(posts.length) {%>
-        <ul>
-        <%for(var i = 0; i < posts.length; i++){%>
-            <li>
-                <h4><%= posts[i].postedBy.local.email%></h4>
-                <div><%= posts[i].title%></div>
-            </li>
-        <%}%>
+        <ul class="wall">
+
+            <%if(authorized) {%>
+                <li class ="wall-filter">
+                    <label class="wall-filter__lbl">
+                        <input type="checkbox"> Filter my posts
+                    </label>
+                </li>
+            <%}%>
+
+            <%for(var i = 0; i < posts.length; i++){%>
+                <li class="wall-post">
+                    <h4 class="wall-post__author"><%= posts[i].postedBy.local.email%></h4>
+                    <div class="wall-post__content"><%= posts[i].title%></div>
+                    <div class="wall-post-comments">
+
+                    </div>
+                </li>
+            <%}%>
         </ul>
         <%}%>
 

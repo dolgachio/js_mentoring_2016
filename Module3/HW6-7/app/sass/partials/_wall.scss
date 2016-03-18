@@ -1,0 +1,27 @@
+.wall {
+    padding: 15px 0;
+    margin: 0;
+    border-top: 10px solid #80C4D8;
+    list-style: none;
+
+    &-filter {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 2px solid #78CBFD;
+        
+        &__lbl {
+            cursor: pointer;
+        }
+    }
+    
+    &-post {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 2px solid #ddd;
+        
+        &__author {
+            color: #0d5cce;
+            margin-bottom: 10px;
+        }
+    }
+}
