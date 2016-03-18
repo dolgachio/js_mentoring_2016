@@ -1,3 +1,5 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://sdolgachov:sami-317r@ds015289.mlab.com:15289/wall';
@@ -46,4 +48,4 @@ process.on('SIGTERM', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS
-require('./users');
+require('./users.model.js');

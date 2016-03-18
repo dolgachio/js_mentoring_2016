@@ -1,14 +1,14 @@
 'use strict';
 
-var app = require('../app');
-var debug = require('debug')('app4:server');
-var http = require('http');
-var config = require('../config');
+const app = require('../app');
+const debug = require('debug')('app4:server');
+const http = require('http');
+const config = require('../config');
 
-var port = normalizePort(config.PORT || '3000');
+const port = normalizePort(config.PORT || '3000');
 app.set('port', port);
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 server.listen(port);
 server.on('error', onError);

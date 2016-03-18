@@ -13,8 +13,8 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 
 const config = require('./config');
-const routes = require('./api/routes');
 const app = express();
+const bootstrapRoutes = require('./api/routes');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -30,6 +30,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', routes);
+bootstrapRoutes(app);
 
 module.exports = app;
