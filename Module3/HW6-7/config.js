@@ -1,32 +1,47 @@
 'use strict';
-var path = require('path');
+const path = require('path');
 
 module.exports = {
-    getSrc: getSrc,
-    getDest: getDest,
+    getSrc,
+    getDest,
 
-    getBuildPath: getBuildPath,
-    getServerSrc: getServerSrc,
-    getServerFiles: getServerFiles
+    getBuildPath,
+    getServerSrc,
+    getServerFiles,
+    getVendors
 };
 
-var appPath = 'app';
-var buildPath = 'server/dist';
-var serverSrc = 'server/bin';
-var serverFiles = 'server/**/**.js';
+const appPath = 'app';
+const vendorsPath = path.join(appPath, 'vendors');
+const buildPath = 'server/public';
+const serverSrc = 'server/bin';
+const serverFiles = 'server/**/**.js';
 
-var src = {
+const src = {
     html: path.join(appPath,'/*.html'),
+    js: path.join(appPath, 'js', '**/*.js'),
+    jsMain: path.join(appPath + '/js/app.js'),
     pages: path.join(appPath, 'pages', '/*.html'),
-    sass: appPath + '/sass/**/*.scss',
+    sass: path.join(appPath + '/sass/**/*.scss'),
     img: path.join(appPath, 'img', '**', '/*.*')
 };
 
-var dest = {
-    html: path.join(buildPath, 'public'),
-    pages: path.join(buildPath, 'public', 'static'),
-    styles: path.join(buildPath, 'public', 'css'),
-    img: path.join(buildPath, 'public', 'img')
+const vendors = {
+    scripts: [
+        path.join(vendorsPath, 'vue/dist/vue.js')
+    ],
+
+    scriptsMin: [
+        path.join(vendorsPath, 'vue/dist/vue.min.js')
+    ]
+};
+
+const dest = {
+    html: path.join(buildPath),
+    js: path.join(buildPath, 'js'),
+    pages: path.join(buildPath, 'static'),
+    styles: path.join(buildPath, 'css'),
+    img: path.join(buildPath, 'img')
 };
 
 function getSrc() {
@@ -47,4 +62,8 @@ function getServerSrc() {
 
 function getServerFiles() {
     return serverFiles;
+}
+
+function getVendors() {
+    return vendors;
 }

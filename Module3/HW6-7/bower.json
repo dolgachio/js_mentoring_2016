@@ -1,0 +1,24 @@
+{
+  "name": "wall",
+  "description": "xxx",
+  "main": "gulpfile.js",
+  "authors": [
+    "xxx"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "xxx"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^1.0.18"
+  }
+}
