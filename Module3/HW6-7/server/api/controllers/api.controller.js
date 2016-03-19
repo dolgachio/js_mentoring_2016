@@ -5,7 +5,8 @@ require('../config/passport.js');
 const Post = require('../models/posts.model.js');
 
 module.exports = {
-    getPosts
+    getPosts,
+    getMyPosts
 };
 
 
@@ -16,9 +17,19 @@ function getPosts(req, res) {
         })
 }
 
-function _getPosts() {
-    return Post.find({})
+function getMyPosts(req, res) {
+    const user = req.user || {_id: ''};
+
+    _getPosts({postedBy: user._id})
+        .then(posts => {
+            res.json(posts);
+        });
+}
+
+function _getPosts(query) {
+    const normalizedQuery = query || {};
+
+    return Post.find(normalizedQuery)
         .populate('postedBy')
         .populate('comments.postedBy')
-
 }

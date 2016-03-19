@@ -55,5 +55,4 @@ function _getPosts() {
     return Post.find({})
             .populate('postedBy')
             .populate('comments.postedBy')
-
 }

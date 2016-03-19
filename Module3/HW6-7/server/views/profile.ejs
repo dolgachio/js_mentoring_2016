@@ -32,7 +32,9 @@
             <%if(authorized) {%>
                 <li class ="wall-filter">
                     <label class="wall-filter__lbl">
-                        <input type="checkbox"> Filter my posts
+                        <input type="checkbox"
+                               v-model="showMyPosts"
+                               v-on:change="filterPosts()"> Filter my posts
                     </label>
                 </li>
             <%}%>
