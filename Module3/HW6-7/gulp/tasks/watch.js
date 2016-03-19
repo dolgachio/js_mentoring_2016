@@ -12,4 +12,8 @@ gulp.task('watch', function(){
     watch([src.sass], function (event, cb) {
         gulp.start('styles');
     });
+
+    watch([src.js], function () {
+        gulp.start('js');
+    })
 });

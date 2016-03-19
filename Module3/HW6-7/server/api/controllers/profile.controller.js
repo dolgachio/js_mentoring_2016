@@ -37,7 +37,6 @@ function getProfile(req, res) {
                 res.render('profile', {
                     email : req.user.local.email, // get the user out of session and pass to template
                     authorized: true,
-                    posts: posts,
                     message: req.flash('postMessage')
                 });
 
@@ -45,7 +44,6 @@ function getProfile(req, res) {
                 res.render('profile', {
                     email: 'stranger',
                     authorized: false,
-                    posts: posts,
                     message: req.flash('postMessage')
                 });
             }

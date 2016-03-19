@@ -28,11 +28,13 @@ const src = {
 
 const vendors = {
     scripts: [
-        path.join(vendorsPath, 'vue/dist/vue.js')
+        path.join(vendorsPath, 'vue/dist/vue.js'),
+        path.join(vendorsPath, 'vue-resource/dist/vue-resource.js')
     ],
 
     scriptsMin: [
-        path.join(vendorsPath, 'vue/dist/vue.min.js')
+        path.join(vendorsPath, 'vue/dist/vue.min.js'),
+        path.join(vendorsPath, 'vue-resource/dist/vue-resource.min.js')
     ]
 };
 
