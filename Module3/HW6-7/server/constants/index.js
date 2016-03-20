@@ -14,11 +14,11 @@ module.exports = {
     },
 
     POSTS: {
-        DEF_LENGTH: 5
+        DEF_LIMIT: 3
     },
 
     COMMENTS: {
-        DEF_LENGTH: 3
+        DEF_LIMIT: 3
     }
 
 };
