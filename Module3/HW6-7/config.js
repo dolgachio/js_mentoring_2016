@@ -21,9 +21,9 @@ const src = {
     html: path.join(appPath,'/*.html'),
     js: path.join(appPath, 'js', '**/*.js'),
     jsMain: path.join(appPath + '/js/app.js'),
-    pages: path.join(appPath, 'pages', '/*.html'),
     sass: path.join(appPath + '/sass/**/*.scss'),
-    img: path.join(appPath, 'img', '**', '/*.*')
+    img: path.join(appPath, 'img', '**', '/*.*'),
+    fonts: path.join(appPath, 'fonts', '/*.*')
 };
 
 const vendors = {
@@ -41,9 +41,9 @@ const vendors = {
 const dest = {
     html: path.join(buildPath),
     js: path.join(buildPath, 'js'),
-    pages: path.join(buildPath, 'static'),
     styles: path.join(buildPath, 'css'),
-    img: path.join(buildPath, 'img')
+    img: path.join(buildPath, 'img'),
+    fonts: path.join(buildPath, 'fonts')
 };
 
 function getSrc() {

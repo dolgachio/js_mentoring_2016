@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(config.ROOT));
 
-app.use(session({ secret: 'secret', resave: true, saveUninitialized: true, cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'secret', cookie: { maxAge: 86400000 }}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

@@ -42,9 +42,34 @@
             <li class="wall-post" v-for="post in posts">
                 <h4 class="wall-post__author">{{post.postedBy.local.email}}</h4>
                 <div class="wall-post__content">{{post.title}}</div>
-                <div class="wall-post-comments">
+
+                <%if(authorized) {%>
+                <div class="wall-post-comment-box">
+                    <form v-on:submit.prevent="addComment(post)"
+                          track-by="$index"
+                          class="form form_comment"
+                          name="comment-form">
+                        <div class="form-group">
+                            <label class="form__ipt-lbl" for="comment">Add comment</label>
+                            <input v-model="post.newComment" class="form__ipt form__ipt_comment form-control" name="comment" type="text" class="form-control" id="title" placeholder="Enter comment">
+                            <button type="submit" class="btn btn-info">add</button>
+                        </div>
+                    </form>
+
+                    <ul class="comments">
+                        <li class="comments-item" v-for="comment in post.comments" track-by="$index">
+                            <div class="comments-item__author-pic"></div>
+                            <div class="comments-item__text">{{comment.text}}</div>
+                            <div v-if="comment.author._id === (user ? user._id : '')"
+                                 class="comments-item__delete-btn"
+                                 v-on:click="removeComment(post, comment)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </li>
+                    </ul>
 
                 </div>
+                <%}%>
             </li>
 
         </ul>

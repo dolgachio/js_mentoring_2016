@@ -1,0 +1,29 @@
+.comments {
+    padding-left: 0;
+    list-style: none;
+
+    &-item {
+        position: relative;
+        
+        &__author-pic {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+        }
+
+        &__text {
+            display: inline-block;
+        }
+        
+        &__delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 0;
+            width: 20px;
+            height: 20px;
+
+            cursor: pointer;
+        }
+    }
+}

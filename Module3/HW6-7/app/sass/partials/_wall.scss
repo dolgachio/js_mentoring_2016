@@ -23,5 +23,17 @@
             color: #0d5cce;
             margin-bottom: 10px;
         }
+        
+        &-comment-box {
+            &:before {
+                content: 'comments';
+                display: block;
+                height: 20px;
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+                background-color: #777;
+            }
+        }
     }
 }
