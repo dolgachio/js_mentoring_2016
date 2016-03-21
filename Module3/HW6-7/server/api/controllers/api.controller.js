@@ -5,7 +5,7 @@ require('../config/passport.js');
 const Post = require('../models/posts.model.js');
 const CONST = require('../../constants');
 const POSTS = CONST.POSTS;
-const COMMENTS = CONST.COMMENTS;
+const utils = require('../../services/utils.js');
 
 module.exports = {
     getPosts,
@@ -15,25 +15,26 @@ module.exports = {
     getMoreComments
 };
 
-
 function getPosts(req, res) {
-    const user = _getUser(req);
+    const user = utils.getUserPublicInterface(req.user);
     const limitAmount = req.query.limit || POSTS.DEF_LIMIT;
 
     _getPosts(null, limitAmount)
         .then(posts => {
-            res.json({posts, user});
+            const normalizedPosts = utils.normalizePosts(posts);
+            res.json({posts: normalizedPosts, user});
         })
 }
 
 function getMyPosts(req, res) {
-    const user = _getUser(req);
+    const user = utils.getUserPublicInterface(req.user);
     const limitAmount = req.query.limit || POSTS.DEF_LIMIT;
     const query = {postedBy: user ? user._id : ''};
 
     _getPosts(query, limitAmount)
         .then(posts => {
-            res.json({posts, user});
+            const normalizedPosts = utils.normalizePosts(posts);
+            res.json({posts: normalizedPosts, user});
         })
         .catch((error) => {
             res.status = '500';
@@ -46,8 +47,6 @@ function addCommentToPost(req, res) {
     let postId = req.body.postId;
     let text = req.body.text;
 
-    console.log(postId);
-
     if(postId) {
         Post.findOne({_id: postId})
             .then(post => {
@@ -57,23 +56,12 @@ function addCommentToPost(req, res) {
             .then(post => {
                 return _getComments({_id: postId});
             })
-            .then((posts) => {
-                res.json(posts.comments);
+            .then((post) => {
+                const normalizedComments = utils.normalizeComments(post.comments);
+                res.json(normalizedComments);
             });
 
         //TODO: find way to populate collection after update
-        //Post.findOneAndUpdate(postId,
-        //    {$push: {comments: {author: authorId, text: text}}}, {safe: true, new : true})
-        //    .populate('comments.author')
-        //    .then(post => {
-        //        console.log(post);
-        //
-        //        res.json(post.comments);
-        //    })
-        //    .catch(err => {
-        //        res.status(500);
-        //        res.json({type: err});
-        //    })
     } else {
         res.status(500);
         res.json({type: 'Internal Error'})
@@ -90,24 +78,14 @@ function removeCommentFromPost(req, res) {
             return post.save();
         })
         .then(post => {
-            return _getPosts({_id: postId});
+            return _getComments({_id: postId});
         })
-        .then((posts) => {
-            res.json(posts[0].comments);
+        .then((post) => {
+            const normalizedComments = utils.normalizeComments(post.comments);
+            res.json(normalizedComments);
         });
 
         //TODO: find way to populate collection after update
-
-
-    /*Post.findOneAndUpdate(postId, {$pull: {comments: {_id: commentId}}},{safe: true, upsert: true, new : true})
-        .populate('comments.author')
-        .then(post => {
-            res.json(post.comments);
-        })
-        .catch(err => {
-            res.status(500);
-            res.json({type: err});
-        })*/
 }
 
 function getMoreComments(req, res) {
@@ -116,7 +94,8 @@ function getMoreComments(req, res) {
 
     return _getComments({_id: postId}, limit)
             .then(post => {
-                res.json(post.comments)
+                const normalizedComments = utils.normalizeComments(post.comments);
+                res.json(normalizedComments);
             })
 }
 
@@ -141,11 +120,6 @@ function _getComments(postId, commentsLimit) {
         .slice('comments', normalizedCommentsLimit)
         .populate('postedBy')
         .populate('comments.author');
-}
-
-function _getUser(req) {
-    const user = req.user;
-    return user ? { email: user.local.email, _id: user._id} : null;
 }
 
 function _getNormalizedCommentsLimit(limitAmount) {

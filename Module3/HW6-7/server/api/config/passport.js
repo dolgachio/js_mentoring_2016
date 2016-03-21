@@ -2,10 +2,12 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+
 const User = require('../models/users.model.js');
+const CONST = require('../../constants');
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -32,8 +34,7 @@ passport.use('local-signup', new LocalStrategy({
                         var newUser            = new User();
                         newUser.local.email    = email;
                         newUser.local.password = newUser.generateHash(password);
-
-                        console.log(newUser);
+                        newUser.local.imageUrl = CONST.DEF_IMG;
 
                         newUser.save(function(err) {
                             if (err) {

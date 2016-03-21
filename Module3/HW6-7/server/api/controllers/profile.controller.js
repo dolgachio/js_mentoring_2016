@@ -3,14 +3,18 @@
 const passport = require('passport');
 require('../config/passport.js');
 const Post = require('../models/posts.model.js');
+const utils = require('../../services/utils.js');
+const CONST = require('../../constants');
 
 module.exports = {
-    createPost: createPost,
-    getProfile: getProfile
+    createPost,
+    getProfile,
+    getImageLoadPage
 };
 
 function createPost(req, res) {
     if(req.isAuthenticated()) {
+
         const post = new Post({
             title: req.body.content,
             postedBy: req.user._id
@@ -31,28 +35,30 @@ function createPost(req, res) {
 }
 
 function getProfile(req, res) {
-    _getPosts()
-        .then(posts => {
-            if(req.isAuthenticated()) {
-                res.render('profile', {
-                    email : req.user.local.email, // get the user out of session and pass to template
-                    authorized: true,
-                    message: req.flash('postMessage')
-                });
+        if(req.isAuthenticated()) {
+            const user = utils.getUserPublicInterface(req.user);
 
-            } else {
-                res.render('profile', {
-                    email: 'stranger',
-                    authorized: false,
-                    message: req.flash('postMessage')
-                });
-            }
-        })
+            res.render('profile', {
+                email : user.email, // get the user out of session and pass to template
+                authorized: true,
+                message: req.flash('postMessage'),
+                image: user.imageUrl
+            });
+        } else {
+            res.render('profile', {
+                email: 'stranger',
+                authorized: false,
+                message: req.flash('postMessage')
+            });
+        }
 }
 
+function getImageLoadPage(req, res) {
+    console.log(req.user);
+    const strategy = utils.getCurrentStrategy(req.user);
 
-function _getPosts() {
-    return Post.find({})
-            .populate('postedBy')
-            .populate('comments.postedBy')
+    let renderOptions = {};
+    renderOptions.allowed = strategy === CONST.STRATEGY.LOCAL;
+
+    res.render('load-img', renderOptions);
 }

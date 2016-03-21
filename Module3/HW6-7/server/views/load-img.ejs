@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Upload image</title>
+    <link rel="stylesheet" href="css/main.css"/>
+
+</head>
+<body>
+<section class="page">
+    <h2>Image upload</h2>
+
+    <% if(allowed) {%>
+        <form name="post-form"
+              action= "api/loadImg"
+              method="POST"
+              enctype="multipart/form-data">
+            <input name="img"  type="file">
+            <input type="submit" class="btn" value="send">
+        </form>
+    <%} else {%>
+        <h2>Unfortunately, upload pics can only originally signed up users. Please, sign up</h2>
+    <%}%>
+
+    <br/>
+    <a href="/profile" class="btn btn-info">To profile</a>
+
+</section>
+</body>
+</html>

@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const ctrlAuth = require('../controllers/auth.controller.js');
 
+//local
 router.get('/login', (req, res) => {
     res.render('login', { message: req.flash('loginMessage') })
 });
@@ -20,11 +21,8 @@ router.get('/signup', (req, res) => {
 router.post('/signup', ctrlAuth.signUp);
 router.post('/login', ctrlAuth.login);
 
-function _isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/');
-}
+//Github
+router.get('/login/github', ctrlAuth.loginGithub);
+router.get('/login/github/callback', ctrlAuth.loginGithub, ctrlAuth.loginGithubCallback);
 
 module.exports = router;
