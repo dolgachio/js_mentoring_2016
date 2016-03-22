@@ -6,15 +6,17 @@
 </head>
 <body>
     <section class="page">
-        <h1>Hello, <%= email%></h1>
-        <% if (authorized) { %>
-        <img class="profile__image" src="<%= image%>" alt="">
-        <a class="btn btn-danger" href="/logout">Logout</a>
-        <a class="btn btn-info" href="/loadForm">Upload image</a>
-        <% } else {%>
-        <a class="btn btn-info" href="/login">Login</a>
-        <% }%>
 
+        <div class="profile-info">
+            <h1>Hello, <%= email%></h1>
+            <% if (authorized) { %>
+            <img class="profile-info__image" src="<%= image%>" alt="">
+            <a class="btn btn-danger" href="/logout">Logout</a>
+            <a class="btn btn-info" href="/imageUploadForm">Upload image</a>
+            <% } else {%>
+            <a class="btn btn-info" href="/login">Login</a>
+            <% }%>
+        </div>
 
         <% if (authorized) {%>
             <form class="form"
@@ -39,14 +41,14 @@
                            v-on:change="filterPosts()"> Filter my posts
                 </label>
                 <%}%>
-                <a v-on:click="getMorePosts()">Load few more posts</a>
+                <a class="wall-filter__more-posts" v-on:click="getMorePosts()">Load few more posts</a>
             </li>
 
 
-            <li class="wall-post" v-for="post in posts" track-by="$index">
+            <li v-for="post in posts" class="wall-post" track-by="$index">
                 <img width="70px" v-bind:src="post.postedBy.imageUrl" alt="">
-                <h4 class="wall-post__author">{{post.postedBy.email}}</h4>
-                <div class="wall-post__content">{{post.title}}</div>
+                <span class="wall-post__author">{{post.postedBy.email}}</span>
+                <q class="wall-post__content">{{post.title}}</q>
 
                 <%if(authorized) {%>
                 <div class="wall-post-comment-box">
@@ -62,7 +64,7 @@
                     </form>
 
                     <ul class="comments">
-                        <li class="comments-item" v-for="comment in post.comments" track-by="$index">
+                        <li v-for="comment in post.comments" class="comments-item" track-by="$index">
                             <div class="comments-item__author-pic">
                                 <img v-bind:src="comment.author.imageUrl" height="100%" alt="author">
                             </div>

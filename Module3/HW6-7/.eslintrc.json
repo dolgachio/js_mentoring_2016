@@ -215,7 +215,7 @@
   },
 
   "globals": {
-    "seal": true,
+    "Vue": true,
     "sinon": true,
     "expect": true
   }

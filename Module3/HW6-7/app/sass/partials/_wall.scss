@@ -5,12 +5,17 @@
     list-style: none;
 
     &-filter {
+        @include clearfix;
         padding: 10px;
         margin-bottom: 10px;
         border: 2px solid #78CBFD;
         
         &__lbl {
             cursor: pointer;
+        }
+
+        &__more-posts {
+            float: right;
         }
     }
     
@@ -22,6 +27,14 @@
         &__author {
             color: #0d5cce;
             margin-bottom: 10px;
+        }
+
+        &__content {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            font-size: 1.2em;
         }
         
         &-comment-box {

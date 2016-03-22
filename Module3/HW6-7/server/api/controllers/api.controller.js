@@ -1,9 +1,7 @@
 'use strict';
 
-const passport = require('passport');
-require('../config/passport.js');
 const Post = require('../models/posts.model.js');
-const CONST = require('../../constants');
+const CONST = require('../../CONST');
 const POSTS = CONST.POSTS;
 const utils = require('../../services/utils.js');
 

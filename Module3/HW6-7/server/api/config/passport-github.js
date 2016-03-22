@@ -28,11 +28,11 @@ passport.use(new GithubStrategy({
                 }
 
                 user.github.name = profile.displayName;
-                user.github.imageUrl = profile._json.avatar_url;
                 user.github.email = profile._json.email;
+                user.github.imageUrl = profile._json.avatar_url;
 
                 user.save(function (err, user) {
-                    done(null, user, { strategy: 'github' })
+                    done(null, user)
                 });
         });
     });

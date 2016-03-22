@@ -1,6 +1,6 @@
 'use strict';
 
-const CONST = require('../constants');
+const CONST = require('../CONST');
 
 module.exports = {
     getUserPublicInterface,

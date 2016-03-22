@@ -1,15 +1,13 @@
 'use strict';
 
-const passport = require('passport');
-require('../config/passport.js');
 const Post = require('../models/posts.model.js');
 const utils = require('../../services/utils.js');
-const CONST = require('../../constants');
+const CONST = require('../../CONST');
 
 module.exports = {
     createPost,
     getProfile,
-    getImageLoadPage
+    getImageUploadPage
 };
 
 function createPost(req, res) {
@@ -39,7 +37,7 @@ function getProfile(req, res) {
             const user = utils.getUserPublicInterface(req.user);
 
             res.render('profile', {
-                email : user.email, // get the user out of session and pass to template
+                email : user.email,
                 authorized: true,
                 message: req.flash('postMessage'),
                 image: user.imageUrl
@@ -53,8 +51,7 @@ function getProfile(req, res) {
         }
 }
 
-function getImageLoadPage(req, res) {
-    console.log(req.user);
+function getImageUploadPage(req, res) {
     const strategy = utils.getCurrentStrategy(req.user);
 
     let renderOptions = {};

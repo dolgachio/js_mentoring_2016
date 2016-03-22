@@ -1,7 +1,7 @@
 'use strict';
 const CONST = require('../CONST');
 
-let vm = new Vue({
+new Vue({
     el: '#js-wall',
     data: {
         posts: [],
@@ -16,7 +16,7 @@ let vm = new Vue({
             })
             .catch(error => {
                 console.log('Error:', error);
-            })
+            });
     },
 
     methods: {
@@ -73,7 +73,7 @@ let vm = new Vue({
                 })
                 .catch(error => {
                     console.log(error);
-                })
+                });
         },
 
         loadMoreComments: function (post) {
