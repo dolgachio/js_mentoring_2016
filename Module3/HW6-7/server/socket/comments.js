@@ -20,7 +20,6 @@ module.exports = (socket, io) => {
                     return utils.getComments({_id: postId});
                 })
                 .then((comments) => {
-                    //socket.emit('updateComments', {postId, comments});
                     io.sockets.emit('updateComments', {postId, comments});
                 });
 
@@ -41,8 +40,6 @@ module.exports = (socket, io) => {
                 return utils.getComments({_id: postId});
             })
             .then((comments) => {
-                //socket.emit('updateComments', {postId, comments});
-                //socket.broadcast.emit('updateComments', {postId, comments});
                 io.sockets.emit('updateComments', {postId, comments});
             });
     })

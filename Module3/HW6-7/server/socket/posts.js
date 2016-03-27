@@ -19,14 +19,11 @@ module.exports = (socket, io) => {
                 return  utils.getPosts();
             })
             .then((posts) => {
-                const normalizedPosts = utils.normalizePosts(posts);
-                io.sockets.emit('updatePosts', {posts: normalizedPosts});
+                io.sockets.emit('updatePosts', {posts});
             })
             .catch((err) => {
                 console.log(err);
             })
     })
-
-
 
 };

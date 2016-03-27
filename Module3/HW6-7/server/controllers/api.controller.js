@@ -18,8 +18,7 @@ function getPosts(req, res) {
 
     utils.getPosts(null, limitAmount)
         .then(posts => {
-            const normalizedPosts = utils.normalizePosts(posts);
-            res.json({posts: normalizedPosts, user});
+            res.json({posts, user});
         })
 }
 
@@ -30,8 +29,7 @@ function getMyPosts(req, res) {
 
     utils.getPosts(query, limitAmount)
         .then(posts => {
-            const normalizedPosts = utils.normalizePosts(posts);
-            res.json({posts: normalizedPosts, user});
+            res.json({posts, user});
         })
         .catch((error) => {
             res.status = '500';

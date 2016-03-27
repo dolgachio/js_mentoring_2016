@@ -69,6 +69,12 @@ function getPosts(query, postsLimit) {
         .limit(normalizedPostsLimit)
         .populate('postedBy')
         .populate('comments.author')
+        .then(posts => {
+            return normalizePosts(posts);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 function getComments(postId, commentsLimit) {

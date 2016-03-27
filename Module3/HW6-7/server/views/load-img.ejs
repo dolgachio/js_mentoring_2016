@@ -8,9 +8,8 @@
 </head>
 <body>
 <section class="page">
-    <h2>Image upload</h2>
-
     <% if(allowed) {%>
+        <h2>Image upload</h2>
         <form name="post-form"
               action= "api/loadImg"
               method="POST"
@@ -19,7 +18,7 @@
             <input type="submit" class="btn" value="send">
         </form>
     <%} else {%>
-        <h2>Unfortunately, upload pics can only originally signed up users. Please, sign up</h2>
+        <h2>Unfortunately, only originally signed up users could upload pics. Please, sign up, without github account</h2>
     <%}%>
 
     <br/>
