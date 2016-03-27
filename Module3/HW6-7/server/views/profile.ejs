@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
-    <section class="page">
+    <section class="page" id="js-wall">
 
         <div class="profile-info">
             <h1>Hello, <%= email%></h1>
@@ -20,18 +20,16 @@
 
         <% if (authorized) {%>
             <form class="form"
-                  name="post-form"
-                  action="/createPost"
-                  method="POST">
+                  v-on:submit.prevent="createPost(newPost)">
                 <div class="form-group">
                     <label for="email">Post:</label>
-                    <input name="content" type="text" class="form-control" id="title" placeholder="Enter post title">
+                    <input name="content" v-model="newPost" type="text" class="form-control" id="title" placeholder="Enter post title">
                 </div>
                 <button type="submit" class="btn btn-default">publish</button>
             </form>
         <%}%>
 
-        <ul class="wall" id="js-wall">
+        <ul class="wall" >
 
             <li class ="wall-filter">
                 <%if(authorized) {%>

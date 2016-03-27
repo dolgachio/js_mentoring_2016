@@ -29,7 +29,8 @@ const src = {
 const vendors = {
     scripts: [
         path.join(vendorsPath, 'vue/dist/vue.js'),
-        path.join(vendorsPath, 'vue-resource/dist/vue-resource.js')
+        path.join(vendorsPath, 'vue-resource/dist/vue-resource.js'),
+        path.join(vendorsPath, 'socket.io/')
     ],
 
     scriptsMin: [

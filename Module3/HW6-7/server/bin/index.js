@@ -10,6 +10,9 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
+const io = require('../api/socket')(server);
+app.set('io', io);
+
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

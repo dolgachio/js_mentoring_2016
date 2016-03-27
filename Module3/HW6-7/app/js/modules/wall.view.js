@@ -1,18 +1,46 @@
 'use strict';
 const CONST = require('../CONST');
+const io = require('../../vendors/socket.io-client/socket.io.js');
 
 new Vue({
     el: '#js-wall',
     data: {
         posts: [],
-        user: {},
-        showMyPosts: false
+        user: null,
+        newPost: '',
+        showMyPosts: false,
+        socket: {}
     },
     ready: function () {
+        const _this = this;
+
         this.$http.get('api/posts')
             .then(response => {
-                this.$set('posts', response.data.posts);
-                this.$set('user', response.data.user);
+                const user = response.data.user;
+                const posts = response.data.posts;
+
+                this.$set('posts', posts);
+                this.$set('user', user);
+
+                if(user) {
+                    _this.socket = io('http://localhost:3000');
+
+                    _this.socket.on('updateComments', (data) => {
+                        const postId = data.postId;
+                        const comments = data.comments;
+
+                        _this.posts.forEach((post) => {
+                            if(post._id === postId) {
+                                post.comments = comments;
+                            }
+                        })
+                    });
+
+                    _this.socket.on('updatePosts', (data) => {
+                        console.log(data.posts);
+                        _this.$set('posts', data.posts);
+                    })
+                }
             })
             .catch(error => {
                 console.log('Error:', error);
@@ -20,6 +48,11 @@ new Vue({
     },
 
     methods: {
+        createPost: function (newPost) {
+            this.$set('newPost', '');
+            this.socket.emit('createPost', {text: newPost})
+        },
+
         filterPosts: function () {
             const url = _getUrlForPosts(this.showMyPosts);
 
@@ -47,33 +80,23 @@ new Vue({
                 .catch(error => {
                     console.log('Error:', error);
                 });
-
         },
         
         addComment: function (post) {
-            let postId = post._id;
-            let text = post.newComment;
+            const postId = post._id;
+            const text = post.newComment;
+            const _this = this;
 
-            this.$http.post('api/addComment', {postId: postId, text: text})
-                .then(response => {
-                    _fillComments(post, response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            post.newComment = '';
+            _this.socket.emit('addComment', {postId: postId, text: text} );
         },
 
         removeComment: function (post, comment) {
             const postId = post._id;
             const commentId = comment._id;
+            const _this = this;
 
-            this.$http.delete('api/removeComment', { commentId, postId })
-                .then(response => {
-                    _fillComments(post, response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            _this.socket.emit('removeComment', {postId, commentId});
         },
 
         loadMoreComments: function (post) {
@@ -91,11 +114,6 @@ new Vue({
         }
     }
 });
-
-function _fillComments(post, data) {
-    post.comments = data;
-    post.newComment = '';
-}
 
 function _getUrlForPosts(showMyPosts) {
     return showMyPosts ? 'api/myPosts' : 'api/posts';
