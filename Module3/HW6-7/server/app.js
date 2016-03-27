@@ -14,7 +14,7 @@ const passport = require('passport');
 
 const config = require('./config');
 const app = express();
-const bootstrapRoutes = require('./api/routes');
+const bootstrapRoutes = require('./routes');
 const sessionStore = require('./services/session-store');
 
 app.set('views', path.join(__dirname, 'views'));

@@ -3,7 +3,7 @@
 const defaultRoutes = require('./default');
 const authRoutes = require('./auth');
 const profileRoutes = require('./profile');
-const apiRoutes = require('./api')
+const apiRoutes = require('./api');
 
 module.exports = (app) => {
     app.use('/', defaultRoutes);

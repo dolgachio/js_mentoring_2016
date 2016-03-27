@@ -1,7 +1,7 @@
 'use strict';
 
-const utils = require('../../services/utils.js');
-const CONST = require('../../CONST');
+const utils = require('../services/utils.js');
+const CONST = require('../CONST');
 
 module.exports = {
     getProfile,

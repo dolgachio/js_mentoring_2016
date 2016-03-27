@@ -10,7 +10,7 @@ app.set('port', port);
 
 const server = http.createServer(app);
 
-const io = require('../api/socket')(server);
+const io = require('../socket')(server);
 app.set('io', io);
 
 server.listen(port);

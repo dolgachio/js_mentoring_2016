@@ -1,9 +1,9 @@
 'use strict';
 
 const Post = require('../models/post.js');
-const CONST = require('../../CONST');
+const CONST = require('../CONST');
 const POSTS = CONST.POSTS;
-const utils = require('../../services/utils.js');
+const utils = require('../services/utils.js');
 
 module.exports = {
     getPosts,

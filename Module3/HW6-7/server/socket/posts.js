@@ -1,7 +1,7 @@
 'use strict';
 
 const Post = require('../models/post.js');
-const utils = require('../../services/utils');
+const utils = require('../services/utils');
 
 module.exports = (socket, io) => {
     socket.on('createPost', (data) => {

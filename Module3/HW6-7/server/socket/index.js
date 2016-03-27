@@ -1,15 +1,15 @@
 'use strict';
 
-var config = require('../../config');
+var config = require('../config');
 var connect = require('connect'); // npm i connect
 var async = require('async');
 var cookie = require('cookie');   // npm i cookie
-var sessionStore = require('../../services/session-store');
+var sessionStore = require('../services/session-store');
 var User = require('../models/user.js');
-var utils = require('../../services/utils');
+var utils = require('../services/utils');
 
 const cookieParser = require('cookie-parser');
-const  passport = require('passport');
+const passport = require('passport');
 const addCommentsHandlers = require('./comments');
 const addPostHandlers = require('./posts');
 
