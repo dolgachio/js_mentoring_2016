@@ -25,5 +25,4 @@ module.exports = (socket, io) => {
                 console.log(err);
             })
     })
-
 };

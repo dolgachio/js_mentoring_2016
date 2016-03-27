@@ -14,16 +14,17 @@ module.exports = (socket, io) => {
             Post.findOne({_id: postId})
                 .then(post => {
                     post.comments.push({author: authorId, text: text});
-                    return post.save();
+                    return post.save()
                 })
                 .then(post => {
                     return utils.getComments({_id: postId});
                 })
                 .then((comments) => {
                     io.sockets.emit('updateComments', {postId, comments});
+                })
+                .catch(err => {
+                    console.log(err);
                 });
-
-            //TODO: find way to populate collection after update
         }
     });
 
@@ -37,7 +38,7 @@ module.exports = (socket, io) => {
                 return post.save();
             })
             .then(post => {
-                return utils.getComments({_id: postId});
+                return utils.getComments({_id: post._id});
             })
             .then((comments) => {
                 io.sockets.emit('updateComments', {postId, comments});

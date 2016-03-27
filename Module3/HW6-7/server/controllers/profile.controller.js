@@ -31,7 +31,7 @@ function getImageUploadPage(req, res) {
     const strategy = utils.getCurrentStrategy(req.user);
 
     let renderOptions = {};
-    renderOptions.allowed = strategy === CONST.STRATEGY.LOCAL;
+    renderOptions.allowed = ( strategy === CONST.STRATEGY.LOCAL );
 
     res.render('load-img', renderOptions);
 }

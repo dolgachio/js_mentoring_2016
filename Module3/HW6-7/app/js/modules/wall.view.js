@@ -1,6 +1,5 @@
 'use strict';
 const CONST = require('../CONST');
-const io = require('../../vendors/socket.io-client/socket.io.js');
 
 new Vue({
     el: '#js-wall',
@@ -33,13 +32,13 @@ new Vue({
                             if(post._id === postId) {
                                 post.comments = comments;
                             }
-                        })
+                        });
                     });
 
                     _this.socket.on('updatePosts', (data) => {
                         console.log(data.posts);
                         _this.$set('posts', data.posts);
-                    })
+                    });
                 }
             })
             .catch(error => {
@@ -50,7 +49,7 @@ new Vue({
     methods: {
         createPost: function (newPost) {
             this.$set('newPost', '');
-            this.socket.emit('createPost', {text: newPost})
+            this.socket.emit('createPost', {text: newPost});
         },
 
         filterPosts: function () {

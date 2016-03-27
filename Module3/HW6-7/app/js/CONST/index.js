@@ -2,10 +2,10 @@
 
 module.exports = {
     POSTS: {
-        DELTA_AMOUNT: 2
+        DELTA_AMOUNT: 10
     },
 
     COMMENTS: {
-        DELTA_AMOUNT: 2
+        DELTA_AMOUNT: 10
     }
 };

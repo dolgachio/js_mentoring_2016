@@ -8,7 +8,6 @@ const utils = require('../services/utils.js');
 module.exports = {
     getPosts,
     getMyPosts,
-    createPost,
     getMoreComments
 };
 
@@ -35,28 +34,6 @@ function getMyPosts(req, res) {
             res.status = '500';
             res.json({type: error});
         });
-}
-
-function createPost(req, res) {
-    if(req.isAuthenticated()) {
-
-        const post = new Post({
-            title: req.body.content,
-            postedBy: req.user._id
-        });
-
-        return post.save()
-            .then(() => {
-                res.redirect('/profile');
-            })
-            .catch(() => {
-                req.flash('postMessage', 'post creation error occured');
-                res.redirect('/profile');
-            })
-    } else {
-        req.flash('postMessage', 'you are not authorized');
-        res.redirect('/profile');
-    }
 }
 
 function getMoreComments(req, res) {

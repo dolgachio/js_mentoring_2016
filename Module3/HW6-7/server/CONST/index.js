@@ -8,15 +8,8 @@ module.exports = {
         MESSAGE: 'I don\'t know you yet, please login'
     },
 
-    LINKS: {
-        LOGIN: '/login',
-        REGISTER: '/register',
-        REGISTER_SUCCESS: '/register-success',
-        GITHUB: '/login/github'
-    },
-
     POSTS: {
-        DEF_LIMIT: 3
+        DEF_LIMIT: 10
     },
 
     COMMENTS: {

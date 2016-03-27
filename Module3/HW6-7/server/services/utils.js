@@ -1,8 +1,8 @@
 'use strict';
 
+const Post = require('../models/post.js');
 const CONST = require('../CONST');
 const POSTS = CONST.POSTS;
-const Post = require('../models/post.js');
 
 module.exports = {
     getUserPublicInterface,
