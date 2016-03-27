@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     },
     github         : {
         id           : String,
-        name  : String,
+        name         : String,
         imageUrl     : String,
         email        : String
     }
@@ -26,10 +26,8 @@ userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// checking if password is valid
 userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
-// create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);

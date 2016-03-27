@@ -1,6 +1,6 @@
 'use strict';
 
-const Post = require('../models/posts.model.js');
+const Post = require('../models/post.js');
 const CONST = require('../../CONST');
 const POSTS = CONST.POSTS;
 const utils = require('../../services/utils.js');

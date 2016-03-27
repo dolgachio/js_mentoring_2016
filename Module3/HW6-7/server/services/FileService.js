@@ -8,7 +8,7 @@ const mime = require('mime');
 const util = require('util');
 
 const config = require('../config');
-const User = require('../api/models/users.model.js');
+const User = require('../api/models/user.js');
 
 module.exports = {
     writeFileSafe

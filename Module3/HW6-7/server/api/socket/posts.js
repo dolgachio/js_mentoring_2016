@@ -1,6 +1,6 @@
 'use strict';
 
-const Post = require('../models/posts.model.js');
+const Post = require('../models/post.js');
 const utils = require('../../services/utils');
 
 module.exports = (socket, io) => {

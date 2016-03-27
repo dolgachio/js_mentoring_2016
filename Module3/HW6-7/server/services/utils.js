@@ -2,7 +2,7 @@
 
 const CONST = require('../CONST');
 const POSTS = CONST.POSTS;
-const Post = require('../api/models/posts.model.js');
+const Post = require('../api/models/post.js');
 
 module.exports = {
     getUserPublicInterface,

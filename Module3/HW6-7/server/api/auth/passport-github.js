@@ -2,7 +2,7 @@
 
 const passport = require('passport');
 const GithubStrategy = require('passport-github').Strategy;
-const User = require('../models/users.model.js')
+const User = require('../models/user.js')
 
 
 passport.serializeUser(function(user, done) {
@@ -24,7 +24,7 @@ passport.use(new GithubStrategy({
         User.findOrCreate({'github.id': profile.id},
             function(err, user/*, created*/){
                 if (err) {
-                    //TODO: add error handling
+                    console.log(err);
                 }
 
                 user.github.name = profile.displayName;

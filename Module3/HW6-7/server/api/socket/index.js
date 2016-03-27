@@ -5,14 +5,13 @@ var connect = require('connect'); // npm i connect
 var async = require('async');
 var cookie = require('cookie');   // npm i cookie
 var sessionStore = require('../../services/session-store');
-var User = require('../models/users.model.js');
-var Post = require('../models/posts.model.js');
+var User = require('../models/user.js');
 var utils = require('../../services/utils');
 
 const cookieParser = require('cookie-parser');
 const  passport = require('passport');
 const addCommentsHandlers = require('./comments');
-const addPostHandlers = require('./post');
+const addPostHandlers = require('./posts');
 
 module.exports = function (server) {
     const io = require('socket.io')(server);
