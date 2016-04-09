@@ -1,0 +1,27 @@
+.grid {
+    &-row {
+        display: block;
+        width: 100%;
+        @include clearfix();
+    }
+
+    &-col {
+        float: left;
+
+        &_main {
+            width: percentage(620/$container-width);
+            margin-right: percentage(20/$container-width);
+            background-color: greenyellow;
+        }
+
+        &_secondary {
+            width: percentage(300/$container-width);
+            background-color: red;
+        }
+    }
+
+
+}
+
+
+

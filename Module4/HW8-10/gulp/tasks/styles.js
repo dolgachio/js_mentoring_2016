@@ -2,6 +2,7 @@
 
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
+const reload = require('browser-sync').reload;
 const config = require('../../config.js');
 const clean = require('gulp-rimraf');
 const sourcemaps = require('gulp-sourcemaps');
@@ -37,21 +38,9 @@ gulp.task('build:styles', () => {
         .pipe(sass({ style: 'expanded' }).on('error', sass.logError))
         .pipe(postcss(processors))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(dest.styles));
+        .pipe(gulp.dest(dest.styles))
+        .pipe(reload({stream: true}));
 });
-
-/*gulp.task('build:styles', function () {
-    return gulp.src(src.sass)
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sass({ style: 'expanded' }).on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 3 versions'],
-            cascade: false
-        }))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(dest.styles));
-});*/
 
 gulp.task('clean:css', function () {
     return gulp.src(dest.styles + '/*.css', {

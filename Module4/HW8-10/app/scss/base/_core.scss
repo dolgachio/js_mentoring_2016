@@ -1,0 +1,28 @@
+*, *:before, *:after {
+    box-sizing: border-box
+}
+
+body {
+    @include bold();
+    font-size: $base-font-size + px;
+}
+
+fieldset,
+input,
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+fieldset,
+input {
+    border: 0 none;
+}
+
+input {
+    font-size: 1em;
+}
+
+ul {
+    list-style: none;
+}

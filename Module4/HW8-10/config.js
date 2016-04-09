@@ -13,7 +13,7 @@ const buildPath = 'dist';
 
 const src = {
     html: path.join(appPath,'/*.html'),
-    styles: path.join(appPath + '/styles/**/*.scss'),
+    styles: path.join(appPath + '/scss/**/*.scss'),
     img: path.join(appPath, 'img', '**', '/*.*'),
     fonts: path.join(appPath, 'fonts', '/*.*')
 };
