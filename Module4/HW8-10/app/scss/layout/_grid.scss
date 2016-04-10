@@ -8,16 +8,25 @@
     &-col {
         float: left;
 
-        &_main {
-            width: percentage(620/$container-width);
-            margin-right: percentage(20/$container-width);
-            background-color: greenyellow;
+        //TODO: refactor naming for column's mods
+        &_l {
+            width: percentage( 620 / $container-inner-width);
+            margin-right:  percentage( 20 / $container-inner-width);
         }
 
-        &_secondary {
-            width: percentage(300/$container-width);
-            background-color: red;
+        &_md-1 {
+            width: percentage( 300 / $container-inner-width );
         }
+
+        &_md-2 {
+            width: percentage( 380 / 620);
+            margin-right: percentage(20 / 620);
+        }
+
+        &_sm {
+            width: percentage(220 / 620);
+        }
+
     }
 
 

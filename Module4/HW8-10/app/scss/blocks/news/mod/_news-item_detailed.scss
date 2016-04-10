@@ -1,0 +1,33 @@
+.news-item {
+    &_detailed {
+        padding-left: 0;
+        @include clearfix;
+
+        &:before {
+            display: none;
+        }
+
+        & .news-item__figure {
+            float: left;
+            width: 100px;
+        }
+
+        & .news-item__img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        & .news-item__title {
+            line-height: 1.2;
+
+            &-container {
+                float: left;
+                width: 280px;
+                padding-top: 7px;
+                padding-left: 8px;
+                @include bold;
+            }
+        }
+    }
+}
+

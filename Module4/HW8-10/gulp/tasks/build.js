@@ -4,5 +4,5 @@ const gulp = require('gulp');
 const runSequence = require('run-sequence');
 
 gulp.task('build', function () {
-    runSequence(['html', 'styles', 'fonts', 'server']);
+    runSequence(['html', 'styles', 'fonts', 'img', 'server']);
 });

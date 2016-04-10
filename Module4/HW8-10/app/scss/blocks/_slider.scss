@@ -1,0 +1,70 @@
+.slider {
+    position: relative;
+    margin-top: 20px;
+    border-bottom: 5px solid #c70000;
+
+    &__img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    &__main {
+        padding: 14px 20px 40px 0;
+    }
+
+    &__title {
+        margin: 0 0 10px 0;
+        padding: 0;
+
+        line-height: 1.2;
+        color: rgb(200, 0, 0);
+        @include get-font-size(30);
+    }
+
+    &__description {
+        color: rgb(51, 51, 51);
+        line-height: 1.286;
+        @include get-font-size(14);
+    }
+
+    &-controls {
+        position: absolute;
+        right: 12px;
+        bottom: 11px;
+        font-size: 0;
+        
+        &__counter {
+            display: inline-block;
+            margin-right: 7px;
+            vertical-align: middle;
+            font-size: 18px;
+            line-height: 1.111;
+            color: rgb(51, 51, 51);
+            @include bold;
+        }
+
+        &__timer {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            vertical-align: middle;
+            background-color: red;
+        }
+
+        &__btn {
+            display: inline-block;
+            width: 12px;
+            height: 24px;
+            vertical-align: middle;
+            background-color: red;
+            border: none;
+
+            &_prev {
+                margin-right: 10px;
+
+            }
+        }
+
+    }
+}

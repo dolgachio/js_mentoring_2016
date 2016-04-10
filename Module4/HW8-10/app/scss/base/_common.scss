@@ -1,5 +1,10 @@
 .container {
     max-width: $container-width + px;
     margin: 0 auto;
-    background-color: #ddd;
+    padding: 30px 20px 30px 20px;
+}
+
+.link {
+    text-decoration: none;
+    text-transform: none;
 }

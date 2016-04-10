@@ -1,0 +1,46 @@
+.block-title {
+    vertical-align: middle;
+    border-bottom: 2px solid #333333;
+
+    &__inner {
+        display: inline-block;
+        margin: 0 0 -7px 0;
+        padding: 0 10px 0 0;
+        vertical-align: middle;
+        font-size: 24px;
+        line-height: 1.25;
+        background-color: #fff;
+        font-weight: normal;
+    }
+
+    &_prime {
+        color: rgb(51, 51, 51);
+        border-bottom-color: #333333;
+    }
+
+    &_secondary {
+        color: rgb(61, 118, 204);
+        border-bottom-color: #c80000;
+    }
+
+    &_video {
+        text-align: center;
+        font-size: 14px;
+
+        & .block-title__inner {
+            padding: 0 5px;
+            margin:0 0 -15px 0;
+            font-size: 18px;
+            line-height: 1;
+            text-transform: uppercase;
+            color: rgb(106, 0, 153);
+        }
+    }
+
+    &_interesting {
+        & .block-title__inner {
+            margin: 0;
+        }
+    }
+}
+

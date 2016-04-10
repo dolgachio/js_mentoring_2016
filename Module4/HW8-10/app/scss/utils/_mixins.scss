@@ -43,3 +43,7 @@
 @mixin bold-italic {
     font-family: $main-font-bold-italic;
 }
+
+@mixin get-font-size($actual-size) {
+    font-size: $actual-size / $base-font-size + em;
+}

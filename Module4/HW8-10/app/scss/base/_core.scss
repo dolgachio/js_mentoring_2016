@@ -3,7 +3,7 @@
 }
 
 body {
-    @include bold();
+    @include regular;
     font-size: $base-font-size + px;
 }
 

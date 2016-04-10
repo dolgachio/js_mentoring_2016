@@ -27,8 +27,7 @@ gulp.task('build:styles', () => {
         autoprefixer({
             browsers: ['last 3 versions', 'IE 8'],
             cascade: false
-        }),
-        cssnano
+        })
     ];
 
 

@@ -1,0 +1,16 @@
+.icon {
+    display: inline-block;
+    margin-left: 3px;
+
+    &_photo {
+        width: 16px;
+        height: 12px;
+        background-color: red;
+    }
+
+    &_video {
+        width: 16px;
+        height: 12px;
+        background-color: red;
+    }
+}

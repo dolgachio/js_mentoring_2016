@@ -2,6 +2,7 @@
 
 require('./tasks/html');
 require('./tasks/styles');
+require('./tasks/images');
 require('./tasks/server');
 require('./tasks/fonts');
 require('./tasks/build');
