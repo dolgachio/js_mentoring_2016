@@ -55,6 +55,8 @@
 
     &__control-btn {
         position: absolute;
+        top: 0;
+        right: 0;
         width: 60px;
         height: 100%;
         border: none;
@@ -63,9 +65,6 @@
         &:before {
             content: '';
             position: absolute;
-            width: 21px;
-            height: 40px;
-            background-color: red;
         }
 
         &:hover {
@@ -83,6 +82,7 @@
             &:before {
                 top: 65px;
                 left: 15px;
+                @include sprite($sprite-arrow-big-prev);
             }
         }
 
@@ -93,6 +93,7 @@
             &:before {
                 top: 65px;
                 right: 15px;
+                @include sprite($sprite-arrow-big-next);
             }
 
         }

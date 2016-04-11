@@ -36,15 +36,12 @@
             left: 3px;
             bottom: 7px;
 
-            width: 24px;
-            height: 19px;
-
             &_video {
-                background-color: green;
+                @include sprite($sprite-icon-video-big);
             }
 
-            &_video {
-                background-color: purple;
+            &_photo {
+                @include sprite($sprite-icon-photo-big);
             }
         }
 

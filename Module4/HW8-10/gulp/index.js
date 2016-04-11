@@ -1,6 +1,7 @@
 'use strict';
 
 require('./tasks/html');
+require('./tasks/sprite');
 require('./tasks/styles');
 require('./tasks/images');
 require('./tasks/server');

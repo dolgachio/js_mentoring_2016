@@ -3,14 +3,10 @@
     margin-left: 3px;
 
     &_photo {
-        width: 16px;
-        height: 12px;
-        background-color: red;
+        @include sprite($sprite-icon-photo-small);
     }
 
     &_video {
-        width: 16px;
-        height: 12px;
-        background-color: red;
+        @include sprite($sprite-icon-video-small);
     }
 }

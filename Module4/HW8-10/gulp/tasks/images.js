@@ -1,12 +1,16 @@
 'use strict';
 
-var gulp = require('gulp');
-var copyFiles = require('../utils/copy');
-var config = require('../../config.js');
+const gulp = require('gulp');
+const config = require('../../config.js');
+const imagemin = require('gulp-imagemin');
+const plumber = require('gulp-plumber');
 
-var src = config.getSrc();
-var dest = config.getDest();
+const src = config.getSrc();
+const dest = config.getDest();
 
 gulp.task('img', function() {
-    copyFiles(src.img, dest.img);
+    gulp.src(src.img)
+        .pipe(plumber())
+        .pipe(imagemin())
+        .pipe(gulp.dest(dest.img));
 });

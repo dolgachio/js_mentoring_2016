@@ -10,16 +10,14 @@ const sass = require('gulp-sass');
 const runSequence = require('run-sequence');
 
 const postcss = require('gulp-postcss');
-var autoprefixer = require('autoprefixer');
-var cssnano = require('cssnano');
-
-
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
 
 const src = config.getSrc();
 const dest = config.getDest();
 
-gulp.task('styles', function () {
-    runSequence('clean:css', ['build:styles']);
+gulp.task('styles', ['clean:css', 'sprite'], function () {
+    runSequence('build:styles');
 });
 
 gulp.task('build:styles', () => {
@@ -29,7 +27,6 @@ gulp.task('build:styles', () => {
             cascade: false
         })
     ];
-
 
     return gulp.src(src.styles)
         .pipe(plumber())

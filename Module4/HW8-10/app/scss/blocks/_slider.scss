@@ -45,24 +45,27 @@
 
         &__timer {
             display: inline-block;
-            width: 18px;
-            height: 18px;
             margin-right: 10px;
             vertical-align: middle;
-            background-color: red;
+
+            &_1 {
+                @include sprite($sprite-timer-1);
+            }
         }
 
         &__btn {
             display: inline-block;
-            width: 12px;
-            height: 24px;
             vertical-align: middle;
-            background-color: red;
+            background: none;
             border: none;
 
             &_prev {
                 margin-right: 10px;
+                @include sprite($sprite-arrow-small-prev);
+            }
 
+            &_next {
+                @include sprite($sprite-arrow-small-next);
             }
         }
 
