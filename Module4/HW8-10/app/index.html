@@ -7,6 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
+    <script src="./js/vendors.js"></script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -15,54 +16,59 @@
     <article class="container">
         <section class="grid-row">
             <main class="grid-col grid-col_l">
-                <nav class="theme-menu">
-                    <h3 class="theme-menu__title">
+                <nav class="menu">
+                    <h3 class="menu__title">
                         Hot themes
                     </h3>
 
-                    <ul class="theme-menu__list">
-                        <li class="theme-menu__item">
-                            <a href="#" class="theme-menu__link" >EURO-2016 Playoffs</a>
+                    <ul class="menu__list">
+                        <li class="menu__option">
+                            <a href="#" class="link" >EURO-2016 Playoffs</a>
                         </li>
 
-                        <li class="theme-menu__item">
-                            <a href="#" class="theme-menu__link" >El’ Classico</a>
+                        <li class="menu__option">
+                            <a href="#" class="link" >El’ Classico</a>
                         </li>
                     </ul>
-                    <!--.theme-menu-list-->
+                    <!--.menu-list-->
                 </nav>
-                <!--.theme-menu -->
+                <!--.menu -->
 
-                <div class="slider">
-                    <div class="grid-row">
+                <div class="carousal">
+                    <div class="carousal-item grid-row">
                         <div class="grid-col grid-col_md-2">
                             <a href="#" class="link">
-                                <img src="./img/yurgen_crop_liverpool.png" class="slider__img" alt="Jurgen Klopp makes a sexy Liverpool">
+                                <img class="carousal-item__img" src="./img/yurgen_crop_liverpool.png" alt="Jurgen Klopp makes a sexy Liverpool">
                             </a>
                         </div>
                         <!--.grid-col-->
 
-                        <aside class="grid-col grid-col_sm slider__main">
-                            <a href="#" class="link">
-                                <h2 class="slider__title">Jurgen Klopp makes a sexy Liverpool</h2>
-                                <div class="slider__description">Liverpool outcast Jose Enrique set to be handed lifeline by Jurgen Klopp</div>
-                            </a>
-                            <!--.slider__link-->
+                        <aside class="carousal-item__content grid-col grid-col_sm">
 
-                            <div class="slider-controls">
-                                <button class="slider-controls__btn slider-controls__btn_prev"></button>
-                                <span class="slider-controls__counter">7/10</span>
-                                <span class="slider-controls__timer slider-controls__timer_1"></span>
-                                <button class="slider-controls__btn slider-controls__btn_next"></button>
+                                <h2 class="carousal-item__title">
+                                    <a href="#" class="link">Jurgen Klopp makes a sexy Liverpool</a>
+                                </h2>
+                                <div class="carousal-item__description">
+                                    <a href="#" class="link">
+                                        Liverpool outcast Jose Enrique set to be handed lifeline by Jurgen Klopp
+                                    </a>
+                                </div>
+                            <!--.carousal__link-->
+
+                            <div class="carousal-controls">
+                                <button class="carousal-controls__btn carousal-controls__btn_prev"></button>
+                                <span class="carousal-controls__counter">7/10</span>
+                                <span class="carousal-controls__timer carousal-controls__timer_1"></span>
+                                <button class="carousal-controls__btn carousal-controls__btn_next"></button>
                             </div>
-                            <!--.slider-controls-->
+                            <!--.carousal-controls-->
                         </aside>
                         <!--.grid-col-->
                     </div>
                     <!--.grid-row-->
 
                 </div>
-                <!--.slider-->
+                <!--.carousal-->
 
                 <div class="main-news">
                     <header class="block-title block-title_prime">
@@ -346,7 +352,7 @@
             <aside class="grid-col grid-col_md-1">
                 <div class="news news_content_video">
                     <header class="block-title block-title_video">
-                        <h3 class="block-title__inner">Видео</h3>
+                        <h3 class="block-title__inner block-title__inner_video">Видео</h3>
                     </header>
                     <!--.block-title-->
 
@@ -439,7 +445,7 @@
 
                 <div class="news news_content_interesting">
                     <header class="block-title block-title_interesting">
-                        <h3 class="block-title__inner">Интересные статьи</h3>
+                        <h3 class="block-title__inner block-title__inner_interesting">Интересные статьи</h3>
                     </header>
                     <!--.block-title-->
 

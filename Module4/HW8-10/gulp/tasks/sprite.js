@@ -18,7 +18,7 @@ gulp.task('sprite', (cb) => {
     let spriteData = gulp.src(src.sprite)
         .pipe(spritesmith({
             imgName: '../img/sprite.png',
-            cssName: 'sprite.scss',
+            cssName: '_sprite.scss',
             cssVarMap: function(sprite) {
                 sprite.name = 'sprite-' + sprite.name;
             },

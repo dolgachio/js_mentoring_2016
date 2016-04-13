@@ -1,4 +1,4 @@
-.theme-menu {
+.menu {
     background-color: #d7d8d9;
     @include clearfix;
 
@@ -18,19 +18,14 @@
         @include clearfix;
     }
     
-    &__item {
+    &__option {
         float: left;
-    }
-
-    &__link {
-        display: block;
-        width: 100%;
         height: 100%;
         padding: 5px 15px 7px 15px;
         line-height: 1.056;
         text-decoration: none;
         font-weight: normal;
-        color: rgb(51, 51, 51);;
+        color: rgb(51, 51, 51);
         @include get-font-size(18);
     }
 }

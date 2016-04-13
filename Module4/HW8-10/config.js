@@ -3,13 +3,15 @@
 module.exports = {
     getSrc,
     getDest,
-    getBuildPath
+    getBuildPath,
+    getVendors
 };
 
 const path = require('path');
 
 const appPath = 'app';
 const buildPath = 'dist';
+const vendorsPath = path.join('app', 'vendors');
 
 const src = {
     html: path.join(appPath,'/*.html'),
@@ -23,8 +25,19 @@ const src = {
 const dest = {
     html: path.join(buildPath),
     styles: path.join(buildPath, 'css'),
+    js: path.join(buildPath, 'js'),
     img: path.join(buildPath, 'img'),
     fonts: path.join(buildPath, 'fonts')
+};
+
+const vendors = {
+    scripts: [
+        path.join(vendorsPath, 'html5shiv/dist/html5shiv-printshiv.js')
+    ],
+
+    scriptsMin: [
+        path.join(vendorsPath, 'html5shiv/dist/html5shiv-printshiv.min.js')
+    ]
 };
 
 function getSrc() {
@@ -37,4 +50,8 @@ function getDest() {
 
 function getBuildPath() {
     return buildPath;
+}
+
+function getVendors() {
+    return vendors;
 }

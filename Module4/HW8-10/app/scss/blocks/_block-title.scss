@@ -11,6 +11,19 @@
         line-height: 1.25;
         background-color: #fff;
         font-weight: normal;
+
+        &_video {
+            padding: 0 5px;
+            margin:0 0 -15px 0;
+            font-size: 18px;
+            line-height: 1;
+            text-transform: uppercase;
+            color: rgb(106, 0, 153);
+        }
+
+        &_interesting {
+            margin: 0;
+        }
     }
 
     &_prime {
@@ -26,21 +39,6 @@
     &_video {
         text-align: center;
         font-size: 14px;
-
-        & .block-title__inner {
-            padding: 0 5px;
-            margin:0 0 -15px 0;
-            font-size: 18px;
-            line-height: 1;
-            text-transform: uppercase;
-            color: rgb(106, 0, 153);
-        }
-    }
-
-    &_interesting {
-        & .block-title__inner {
-            margin: 0;
-        }
     }
 }
 

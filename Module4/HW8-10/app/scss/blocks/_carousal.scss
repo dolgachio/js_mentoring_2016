@@ -1,30 +1,33 @@
-.slider {
+//TODO: find correct spelling
+.carousal {
     position: relative;
     margin-top: 20px;
     border-bottom: 5px solid #c70000;
 
-    &__img {
-        max-width: 100%;
-        height: auto;
-    }
+    &-item {
+        &__img {
+            max-width: 100%;
+            height: auto;
+        }
 
-    &__main {
-        padding: 14px 20px 40px 0;
-    }
+        &__content {
+            padding: 14px 20px 40px 0;
+        }
 
-    &__title {
-        margin: 0 0 10px 0;
-        padding: 0;
+        &__title {
+            margin: 0 0 10px 0;
+            padding: 0;
+            color: rgb(200, 0, 0);
+            line-height: 1.2;
 
-        line-height: 1.2;
-        color: rgb(200, 0, 0);
-        @include get-font-size(30);
-    }
+            @include get-font-size(30);
+        }
 
-    &__description {
-        color: rgb(51, 51, 51);
-        line-height: 1.286;
-        @include get-font-size(14);
+        &__description {
+            color: rgb(51, 51, 51);
+            line-height: 1.286;
+            @include get-font-size(14);
+        }
     }
 
     &-controls {
@@ -32,7 +35,7 @@
         right: 12px;
         bottom: 11px;
         font-size: 0;
-        
+
         &__counter {
             display: inline-block;
             margin-right: 7px;

@@ -9,3 +9,4 @@ require('./tasks/fonts');
 require('./tasks/build');
 require('./tasks/watch');
 require('./tasks/develop');
+require('./tasks/vendors');
