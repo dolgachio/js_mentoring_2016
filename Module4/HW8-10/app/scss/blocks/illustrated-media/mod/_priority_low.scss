@@ -1,0 +1,23 @@
+.illustrated-media {
+    &_priority_low {
+        border-bottom: 5px solid #333333;
+    }
+
+    &_priority_low &-item {
+        margin-bottom: 15px;
+        padding-left:  0;
+        @include clearfix;
+
+        &__title {
+            &-container {
+                float: left;
+                width: 195px;
+                padding-left: 10px;
+
+                font-size: 18px;
+                line-height: 1.111;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

@@ -1,29 +1,20 @@
-.news {
+.illustrated-media {
     margin-bottom: 25px;
 
     &__list {
         margin-top: 10px;
+        list-style-type: none;
     }
 
     &-item {
         position: relative;
         padding-left: 10px;
         margin-bottom: 5px;
-
-        &:before {
-            content: "";
-            position: absolute;
-            top: 9px;
-            left: 0;
-
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #333;
-        }
+        @include clearfix;
 
         &__figure {
             position: relative;
+            float: left;
             margin: 0;
         }
 
@@ -31,7 +22,7 @@
             max-width: 100%;
         }
 
-        &__content-flag {
+        &__type-flag {
             position: absolute;
             left: 3px;
             bottom: 7px;
@@ -63,9 +54,7 @@
                 line-height: 1.5;
                 font-weight: normal;
             }
-
         }
-
     }
 
     &__more {

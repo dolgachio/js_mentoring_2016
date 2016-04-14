@@ -11,8 +11,14 @@
         line-height: 1.25;
         background-color: #fff;
         font-weight: normal;
+        color: rgb(51, 51, 51);
+        border-bottom-color: #333333;
 
-        &_video {
+        &_attention {
+            color: rgb(61, 118, 204);
+        }
+
+        &_emphasize {
             padding: 0 5px;
             margin:0 0 -15px 0;
             font-size: 18px;
@@ -21,22 +27,17 @@
             color: rgb(106, 0, 153);
         }
 
-        &_interesting {
+        &_simple {
             margin: 0;
         }
+
     }
 
-    &_prime {
-        color: rgb(51, 51, 51);
-        border-bottom-color: #333333;
-    }
-
-    &_secondary {
-        color: rgb(61, 118, 204);
+    &_attention {
         border-bottom-color: #c80000;
     }
 
-    &_video {
+    &_emphasize {
         text-align: center;
         font-size: 14px;
     }

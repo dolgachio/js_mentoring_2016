@@ -1,4 +1,3 @@
-//TODO: find correct spelling
 .carousal {
     position: relative;
     margin-top: 20px;
@@ -19,7 +18,6 @@
             padding: 0;
             color: rgb(200, 0, 0);
             line-height: 1.2;
-
             @include get-font-size(30);
         }
 

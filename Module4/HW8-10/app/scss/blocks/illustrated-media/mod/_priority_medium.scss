@@ -1,0 +1,28 @@
+.illustrated-media {
+    &_priority_medium {
+        margin-bottom: 43px;
+        padding-bottom: 6px;
+        border-bottom: 5px solid #333333;
+    }
+
+    &_priority_medium &__list {
+        margin-top: 20px;
+    }
+
+    &_priority_medium &-item {
+        margin-bottom: 10px;
+        padding-left: 0;
+
+        &__title {
+            line-height: 1;
+            @include bold;
+
+            &-container {
+                margin: 0;
+                padding: 0 12px;
+                overflow: hidden;
+                font-size: 14px;
+            }
+        }
+    }
+}
