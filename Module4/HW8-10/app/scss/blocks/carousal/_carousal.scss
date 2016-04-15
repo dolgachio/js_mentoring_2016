@@ -5,7 +5,7 @@
 
     &-item {
         &__img {
-            max-width: 100%;
+            max-width:  100%;
             height: auto;
         }
 
@@ -64,7 +64,7 @@
             border: none;
 
             &:before {
-                content: '';
+                content: "";
                 position: absolute;
                 width: 18px;
                 height: 18px;
