@@ -1,12 +1,73 @@
 .icon {
+    position: relative;
     display: inline-block;
     margin-left: 3px;
+    width: 16px;
 
     &_photo {
-        @include sprite($sprite-icon-photo-small);
+        height: 12px;
+        background-color: #333333;
+        border-radius: 2px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            width: 8px;
+            height: 8px;
+            margin: auto;
+            border: 2px solid #fff;
+            border-radius: 50%;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            width: 10px;
+            height: 4px;
+            margin: auto;
+            border-top: 2px solid #333333;
+            border-radius: 2px;
+        }
+
+        .ie8 & {
+            @include sprite($sprite-icon-photo-small);
+            background-color: transparent;
+
+            &:before, &:after {
+                display: none;
+            }
+        }
     }
 
     &_video {
-        @include sprite($sprite-icon-video-small);
+        height: 13px;
+        background-color: #333333;
+        border-radius: 2px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            width: 0;
+            height: 0;
+            margin: auto;
+            border-left: 6px solid #fff;
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+        }
+
+        .ie8 & {
+            background-color: transparent;
+            @include sprite($sprite-icon-video-small);
+
+            &:before {
+                display: none;
+            }
+        }
     }
 }

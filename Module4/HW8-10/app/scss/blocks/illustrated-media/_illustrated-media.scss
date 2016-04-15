@@ -26,13 +26,77 @@
             position: absolute;
             left: 3px;
             bottom: 7px;
+            width: 24px;
+            height: 20px;
 
             &_video {
-                @include sprite($sprite-icon-video-big);
+                border: 3px solid #fff;
+                background-color: #6a0099;
+                border-radius: 5px;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; bottom: 0; right: 0;
+                    width: 0;
+                    height: 0;
+                    margin: auto;
+                    border-left: 10px solid #fff;
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                }
+
+                .ie8 & {
+                    border: none;
+                    background-color: transparent;
+                    @include sprite($sprite-icon-video-big);
+
+                    &:before {
+                        display: none;
+                    }
+                }
             }
 
             &_photo {
-                @include sprite($sprite-icon-photo-big);
+                border: 3px solid #fff;
+                background-color: #c80000;
+                border-radius: 5px;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; bottom: 0; right: 0;
+                    width: 10px;
+                    height: 10px;
+                    margin: auto;
+                    border: 3px solid #fff;
+                    border-radius: 50%;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: -4px;
+                    left: 0;
+                    right: 0;
+                    z-index: 1;
+                    width: 10px;
+                    height: 6px;
+                    margin: auto;
+                    border-top: 3px solid #fff;
+                    border-radius: 3px;
+                    background-color: #c80000;
+                }
+
+                .ie8 & {
+                    background-color: transparent;
+                    border: none;
+                    @include sprite($sprite-icon-photo-big);
+
+                    &:after, &:before {
+                        display: none;
+                    }
+                }
             }
         }
 

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html class="no-js" lang="ru">
+<!--[if IE 8]>    <html class="ie8"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Main Page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/main.css"/>
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" media="all" href="css/main-ie.css"/>
+    <![endif]-->
     <script src="./js/vendors.js"></script>
 </head>
 <body>
@@ -55,7 +59,9 @@
                             <!--.carousal__link-->
 
                             <div class="carousal-controls">
-                                <button class="carousal-controls__btn carousal-controls__btn_prev"></button>
+                                <button class="carousal-controls__btn carousal-controls__btn_prev">
+                                    <div class="carousal-controls__btn_css"></div>
+                                </button>
                                 <span class="carousal-controls__counter">7/10</span>
                                 <span class="carousal-controls__timer carousal-controls__timer_1"></span>
                                 <button class="carousal-controls__btn carousal-controls__btn_next"></button>
