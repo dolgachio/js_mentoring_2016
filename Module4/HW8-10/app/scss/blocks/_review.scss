@@ -113,7 +113,8 @@
 
             .ie8 &:before {
                 top: 65px;
-                right: 15px;
+                right: 10px;
+                border: none;
                 @include sprite($sprite-arrow-big-next);
             }
         }

@@ -53,13 +53,13 @@
             text-align: center;
 
             &-wrap {
-                margin-right: -10px;
+                margin-right: 0;
             }
         }
 
         &-item {
             width: percentage(142 / 630);
-            margin-right: 10px;
+            margin-right: 0;
             text-align: left;
 
             &__title {
@@ -80,6 +80,19 @@
                     font-size: 16px;
                 }
             }
+        }
+    }
+
+    .ie8 & {
+        &__list {
+            &-wrap {
+                margin-right: -17px;
+            }
+        }
+
+        &-item {
+            width: percentage(142/637);
+            margin-right: percentage(17/637);
         }
     }
 

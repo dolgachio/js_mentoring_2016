@@ -5,16 +5,16 @@
         @include clearfix;
 
         &__figure {
-            max-width: 50%;
+            max-width: 34%;
         }
 
         &__title {
             &-container {
-                max-width: 50%;
+                max-width: 66%;
                 padding-left: 10px;
                 line-height: 1.111;
                 text-overflow: ellipsis;
-                @include get-font-size(18);
+                font-size: 18px;
             }
         }
     }
@@ -31,9 +31,30 @@
             width: 44%;
             border-bottom: none;
         }
+
+        &_priority_low &-item {
+            &__title {
+                &-container {
+                    font-size: 20px;
+                }
+            }
+        }
+
     }
 
     @include breakpoint(mobile) {
+        &_priority_low {
+            border-bottom: 5px solid #333333;
+        }
+
+        &__title {
+            &-container {
+                font-size: 22px;
+            }
+        }
+    }
+
+    .ie8 & {
         &_priority_low {
             border-bottom: 5px solid #333333;
         }
