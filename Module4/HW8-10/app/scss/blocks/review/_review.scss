@@ -1,5 +1,5 @@
 .review {
-    border-bottom: 2px solid #333333;
+    border-bottom: 2px solid $black;
 
     &__list {
         width: 3000px;
@@ -30,7 +30,7 @@
             font-size: 14px;
             line-height: 1.2;
             font-weight: normal;
-            color: rgb(199, 0, 0);
+            color: $red;
         }
 
         &__img {
@@ -43,7 +43,7 @@
             text-decoration: none;
             text-transform: none;
             font-weight: normal;
-            color: rgb(61, 118, 204);
+            color: $blue;
 
             &-container {
                 margin: 0;
@@ -83,8 +83,8 @@
                 top: 71px;
                 left: 22px;
                 border: 6px solid transparent;
-                border-bottom-color: #c80000;
-                border-left-color: #c80000;
+                border-bottom-color: $red;
+                border-left-color: $red;
                 transform: rotate(45deg);
             }
         }
@@ -99,8 +99,8 @@
                 top: 71px;
                 left: 10px;
                 border: 6px solid transparent;
-                border-bottom-color: #c80000;
-                border-left-color: #c80000;
+                border-bottom-color: $red;
+                border-left-color: $red;
                 transform: rotate(-135deg);
             }
         }

@@ -21,7 +21,7 @@
 
     @include breakpoint(desktop) {
         &_priority_low {
-            border-bottom: 5px solid #333333;
+            border-bottom: 5px solid $black;
         }
     }
 
@@ -44,7 +44,7 @@
 
     @include breakpoint(mobile) {
         &_priority_low {
-            border-bottom: 5px solid #333333;
+            border-bottom: 5px solid $black;
         }
 
         &__title {

@@ -16,13 +16,13 @@
         &__title {
             margin: 0 0 10px 0;
             padding: 0;
-            color: rgb(200, 0, 0);
+            color: $red;
             line-height: 1.2;
             @include get-font-size(30);
         }
 
         &__description {
-            color: rgb(51, 51, 51);
+            color: $black;
             line-height: 1.286;
             @include get-font-size(14);
         }
@@ -40,7 +40,7 @@
             vertical-align: middle;
             font-size: 18px;
             line-height: 1.111;
-            color: rgb(51, 51, 51);
+            color: $black;
             @include bold;
         }
 
@@ -77,8 +77,8 @@
                     top: 3px;
                     left: 2px;
                     border: 4px solid transparent;
-                    border-bottom-color: #c80000;
-                    border-left-color: #c80000;
+                    border-bottom-color: $red;
+                    border-left-color: $red;
                     transform: rotate(45deg);
                 }
             }
@@ -88,8 +88,8 @@
                     top: 3px;
                     left: -100%;
                     border: 4px solid transparent;
-                    border-bottom-color: #c80000;
-                    border-left-color: #c80000;
+                    border-bottom-color: $red;
+                    border-left-color: $red;
                     transform: rotate(-135deg);
                 }
 

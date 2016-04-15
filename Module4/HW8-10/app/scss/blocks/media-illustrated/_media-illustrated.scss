@@ -49,7 +49,7 @@
 
             &_photo {
                 border: 3px solid #fff;
-                background-color: #c80000;
+                background-color: $red;
                 border-radius: 5px;
 
                 &:before {
@@ -75,7 +75,7 @@
                     margin: auto;
                     border-top: 3px solid #fff;
                     border-radius: 3px;
-                    background-color: #c80000;
+                    background-color: $red;
                 }
             }
         }
@@ -84,11 +84,11 @@
             font-size: 100%;
             text-transform: none;
             text-decoration: none;
-            color: rgb(51, 51, 51);
+            color: $black;
 
             &:hover {
                 text-decoration: underline;
-                color: #3d76cc
+                color: $blue
             }
 
             &-container {
@@ -107,7 +107,7 @@
         line-height: 1.111;
         text-decoration: none;
         text-transform: none;
-        color: rgb(61, 118, 204);
+        color: $blue;
         @include get-font-size(18);
     }
 }
