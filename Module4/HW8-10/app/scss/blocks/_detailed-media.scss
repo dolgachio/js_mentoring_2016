@@ -3,21 +3,17 @@
 
     &__list {
         font-size: 0;
-
+        padding-top: 10px;
         &-wrap {
-            margin-right: -17px;
-            padding-top: 10px;
-            overflow-x: hidden;
+            overflow: hidden;
         }
     }
     
     &-item {
         display: inline-block;
-        width: 142px;
-        margin-right: 17px;
         vertical-align: top;
 
-        &-img {
+        &__img {
             display: block;
             max-width: 100%;
             height: auto;
@@ -30,11 +26,59 @@
             color: rgb(51, 51, 51);
 
             &-container {
-                height: 110px;
+                min-height: 110px;
                 margin: 0;
-                padding: 0;
+                padding: 0 0 10px 0;
                 font-size: 14px;
                 font-weight: normal;
+            }
+        }
+    }
+
+    @include breakpoint(desktop) {
+        &__list {
+            &-wrap {
+                margin-right: -17px;
+            }
+        }
+
+        &-item {
+            width: percentage(142 / 637);
+            margin-right: percentage(17/637);
+        }
+    }
+
+    @include breakpoint(tablet) {
+        &__list {
+            text-align: center;
+
+            &-wrap {
+                margin-right: -10px;
+            }
+        }
+
+        &-item {
+            width: percentage(142 / 630);
+            margin-right: 10px;
+            text-align: left;
+
+            &__title {
+                &-container {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    @include breakpoint(mobile) {
+        &-item {
+            width: percentage(142 / 630);
+            margin-left: percentage(10/630);
+
+            &__title {
+                &-container {
+                    font-size: 16px;
+                }
             }
         }
     }

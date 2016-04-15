@@ -5,30 +5,49 @@
         @include clearfix();
     }
 
-    &-col {
-        float: left;
 
-        //TODO: refactor naming for column's mods
-        &_l {
-            width: percentage( 620 / $container-inner-width);
-            margin-right:  percentage( 20 / $container-inner-width);
+    @include breakpoint(desktop) {
+        &-col {
+            float: left;
+
+            &_l {
+                width: percentage(620 / $container-inner-width);
+                margin-right: percentage(20 / $container-inner-width);
+            }
+
+            &_md-1 {
+                width: percentage(300 / $container-inner-width);
+            }
+
+            &_md-2 {
+                width: percentage(380 / 620);
+                margin-right: percentage(20 / 620);
+            }
+
+            &_sm {
+                width: percentage(220 / 620);
+            }
         }
-
-        &_md-1 {
-            width: percentage( 300 / $container-inner-width );
-        }
-
-        &_md-2 {
-            width: percentage( 380 / 620);
-            margin-right: percentage(20 / 620);
-        }
-
-        &_sm {
-            width: percentage(220 / 620);
-        }
-
     }
 
+    @include breakpoint(tablet) {
+         &-col {
+             &_md-1 {
+                 @include clearfix;
+             }
+
+             &_md-2 {
+                 float: left;
+                 width: 55%;
+                 margin-right: 5%;
+             }
+
+             &_sm {
+                 float: left;
+                 width: 40%;
+             }
+         }
+    }
 
 }
 

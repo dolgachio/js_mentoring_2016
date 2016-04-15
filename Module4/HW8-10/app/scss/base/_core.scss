@@ -26,3 +26,21 @@ input {
 ul {
     list-style: none;
 }
+
+@include breakpoint(desktop) {
+    body {
+        font-size: $base-font-size + px;
+    }
+}
+
+@include breakpoint(tablet) {
+    body {
+        font-size: $base-font-size + 2 + px;
+    }
+}
+
+@include breakpoint(mobile) {
+    body {
+        font-size: $base-font-size + 4 + px;
+    }
+}

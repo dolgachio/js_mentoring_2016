@@ -1,23 +1,41 @@
 .illustrated-media {
-    &_priority_low {
-        border-bottom: 5px solid #333333;
-    }
-
     &_priority_low &-item {
         margin-bottom: 15px;
         padding-left:  0;
         @include clearfix;
 
+        &__figure {
+            max-width: 50%;
+        }
+
         &__title {
             &-container {
-                float: left;
-                width: 195px;
+                max-width: 50%;
                 padding-left: 10px;
-
-                font-size: 18px;
                 line-height: 1.111;
                 text-overflow: ellipsis;
+                @include get-font-size(18);
             }
+        }
+    }
+
+    @include breakpoint(desktop) {
+        &_priority_low {
+            border-bottom: 5px solid #333333;
+        }
+    }
+
+    @include breakpoint(tablet) {
+        &_priority_low {
+            float: left;
+            width: 44%;
+            border-bottom: none;
+        }
+    }
+
+    @include breakpoint(mobile) {
+        &_priority_low {
+            border-bottom: 5px solid #333333;
         }
     }
 }

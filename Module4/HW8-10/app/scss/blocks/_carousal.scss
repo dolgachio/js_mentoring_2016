@@ -71,4 +71,10 @@
         }
 
     }
+    
+    @include breakpoint(mobile) {
+        &-item {
+            text-align: center;
+        }
+    }
 }

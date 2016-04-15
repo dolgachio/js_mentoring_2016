@@ -51,9 +51,9 @@
             &-container {
                 margin: 0;
                 padding: 0;
-                font-size: 14px;
                 line-height: 1.5;
                 font-weight: normal;
+                @include get-font-size(14);
 
                 &_detailed {
                     float: left;

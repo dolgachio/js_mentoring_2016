@@ -6,20 +6,53 @@
     &_priority_high &-item {
         margin-bottom: 19px;
         padding: 0;
-        
+
         &__figure {
             float: none;
         }
 
-        &__title-container {
-            font-size: 18px;
-            line-height: 1.111;
-            @include bold;
+        &__title {
+            &-container {
+                float: none;
+                font-size: 18px;
+                line-height: 1.111;
+                @include bold;
+            }
         }
 
         &__type-flag {
             left: 8px;
             bottom: 12px;
+        }
+    }
+
+    @include breakpoint(tablet) {
+        &_priority_high &-item {
+            &__figure {
+                margin: 0 40px;
+            }
+
+            &__title-container {
+                padding: 0 40px;
+            }
+        }
+    }
+
+    @include breakpoint(mobile) {
+        &_priority_high {
+            text-align: center;
+        }
+
+        &_priority_high &-item {
+            &__figure {
+                display: inline-block;
+            }
+
+            &__title {
+                &-container {
+                    padding: 0 20px;
+                }
+            }
         }
     }
 }
