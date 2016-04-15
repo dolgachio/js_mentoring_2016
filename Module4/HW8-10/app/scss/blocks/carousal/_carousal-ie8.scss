@@ -1,0 +1,19 @@
+.ie8 .carousal {
+    &-controls {
+        &__btn {
+            &_prev {
+                @include sprite($sprite-arrow-small-prev);
+                &:before {
+                    display: none;
+                }
+            }
+
+            &_next {
+                @include sprite($sprite-arrow-small-next);
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+}

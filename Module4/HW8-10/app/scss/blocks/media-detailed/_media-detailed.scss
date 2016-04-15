@@ -1,4 +1,4 @@
-.detailed-media {
+.media-detailed {
     margin-top: 20px;
 
     &__list {
@@ -82,18 +82,4 @@
             }
         }
     }
-
-    .ie8 & {
-        &__list {
-            &-wrap {
-                margin-right: -17px;
-            }
-        }
-
-        &-item {
-            width: percentage(142/637);
-            margin-right: percentage(17/637);
-        }
-    }
-
 }

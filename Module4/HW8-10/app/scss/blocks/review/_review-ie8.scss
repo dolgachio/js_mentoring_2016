@@ -1,0 +1,21 @@
+.ie8 .review {
+    &__control-btn {
+        &_prev {
+            &:before {
+                top: 65px;
+                left: 15px;
+                border: none;
+                @include sprite($sprite-arrow-big-prev);
+            }
+        }
+
+        &_next {
+            &:before {
+                top: 65px;
+                right: 10px;
+                border: none;
+                @include sprite($sprite-arrow-big-next);
+            }
+        }
+    }
+}

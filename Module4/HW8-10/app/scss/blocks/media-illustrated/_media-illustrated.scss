@@ -1,4 +1,4 @@
-.illustrated-media {
+.media-illustrated {
     margin-bottom: 25px;
 
     &__list {
@@ -45,16 +45,6 @@
                     border-top: 5px solid transparent;
                     border-bottom: 5px solid transparent;
                 }
-
-                .ie8 & {
-                    border: none;
-                    background-color: transparent;
-                    @include sprite($sprite-icon-video-big);
-
-                    &:before {
-                        display: none;
-                    }
-                }
             }
 
             &_photo {
@@ -86,16 +76,6 @@
                     border-top: 3px solid #fff;
                     border-radius: 3px;
                     background-color: #c80000;
-                }
-
-                .ie8 & {
-                    background-color: transparent;
-                    border: none;
-                    @include sprite($sprite-icon-photo-big);
-
-                    &:after, &:before {
-                        display: none;
-                    }
                 }
             }
         }

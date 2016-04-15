@@ -1,9 +1,9 @@
 @import './menu';
-@import './carousal';
-@import './detailed-media';
+@import './carousal/index';
+@import './media-detailed/index';
 @import './block-title';
-@import './icon';
+@import './icon/index';
 @import './origin';
-@import './illustrated-media/index';
+@import './media-illustrated/index';
 @import './media';
-@import './review';
+@import './review/index';

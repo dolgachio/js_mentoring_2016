@@ -1,4 +1,4 @@
-.illustrated-media {
+.media-illustrated {
     &_priority_low &-item {
         margin-bottom: 15px;
         padding-left:  0;
@@ -51,12 +51,6 @@
             &-container {
                 font-size: 22px;
             }
-        }
-    }
-
-    .ie8 & {
-        &_priority_low {
-            border-bottom: 5px solid #333333;
         }
     }
 }

@@ -1,0 +1,25 @@
+.ie8 .media-illustrated{
+    &-item {
+        &__type-flag {
+            &_video {
+                border: none;
+                background-color: transparent;
+                @include sprite($sprite-icon-video-big);
+
+                &:before {
+                    display: none;
+                }
+            }
+
+            &_photo {
+                background-color: transparent;
+                border: none;
+                @include sprite($sprite-icon-photo-big);
+
+                &:after, &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+}

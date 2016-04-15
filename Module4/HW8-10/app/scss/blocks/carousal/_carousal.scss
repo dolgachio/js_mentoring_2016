@@ -81,13 +81,6 @@
                     border-left-color: #c80000;
                     transform: rotate(45deg);
                 }
-
-                .ie8 & {
-                    @include sprite($sprite-arrow-small-prev);
-                    &:before {
-                        display: none;
-                    }
-                }
             }
 
             &_next {
@@ -100,12 +93,7 @@
                     transform: rotate(-135deg);
                 }
 
-                .ie8 & {
-                    @include sprite($sprite-arrow-small-next);
-                    &:before {
-                        display: none;
-                    }
-                }
+
             }
         }
 

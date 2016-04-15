@@ -87,13 +87,6 @@
                 border-left-color: #c80000;
                 transform: rotate(45deg);
             }
-
-            .ie8 &:before {
-                top: 65px;
-                left: 15px;
-                border: none;
-                @include sprite($sprite-arrow-big-prev);
-            }
         }
 
         &_next {
@@ -109,13 +102,6 @@
                 border-bottom-color: #c80000;
                 border-left-color: #c80000;
                 transform: rotate(-135deg);
-            }
-
-            .ie8 &:before {
-                top: 65px;
-                right: 10px;
-                border: none;
-                @include sprite($sprite-arrow-big-next);
             }
         }
     }

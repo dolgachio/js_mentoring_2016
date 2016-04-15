@@ -1,4 +1,4 @@
-.illustrated-media {
+.media-illustrated {
     &_priority_medium {
         padding-bottom: 6px;
     }
@@ -45,12 +45,6 @@
     }
 
     @include breakpoint(mobile) {
-        &_priority_medium {
-            border-bottom: 5px solid #333333;
-        }
-    }
-
-    .ie8 & {
         &_priority_medium {
             border-bottom: 5px solid #333333;
         }

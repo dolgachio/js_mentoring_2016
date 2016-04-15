@@ -34,14 +34,6 @@
             border-radius: 2px;
         }
 
-        .ie8 & {
-            @include sprite($sprite-icon-photo-small);
-            background-color: transparent;
-
-            &:before, &:after {
-                display: none;
-            }
-        }
     }
 
     &_video {
@@ -59,15 +51,6 @@
             border-left: 6px solid #fff;
             border-top: 3px solid transparent;
             border-bottom: 3px solid transparent;
-        }
-
-        .ie8 & {
-            background-color: transparent;
-            @include sprite($sprite-icon-video-small);
-
-            &:before {
-                display: none;
-            }
         }
     }
 }

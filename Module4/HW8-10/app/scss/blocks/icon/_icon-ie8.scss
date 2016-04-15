@@ -1,0 +1,19 @@
+.ie8 .icon {
+    &_photo {
+        @include sprite($sprite-icon-photo-small);
+        background-color: transparent;
+
+        &:before, &:after {
+            display: none;
+        }
+    }
+
+    &_video {
+        background-color: transparent;
+        @include sprite($sprite-icon-video-small);
+
+        &:before {
+            display: none;
+        }
+    }
+}
