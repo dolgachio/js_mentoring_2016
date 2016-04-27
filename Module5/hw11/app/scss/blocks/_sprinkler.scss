@@ -1,0 +1,25 @@
+.sprinkler {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    margin: 15px auto;
+    padding: 15px;
+    background-color: #fff;
+
+    &__main-form {
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+.state {
+    &_list {
+        height: 100%;
+        overflow: auto;
+    }
+    
+    &_hide {
+        display: none;
+    }
+}
+
