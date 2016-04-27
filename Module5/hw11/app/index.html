@@ -121,6 +121,23 @@
                                 required/>
                     </div>
                 </div>
+                    
+                <div class="form-group state__controls">
+                    <h5>Notification type</h5>
+                    <label for="calendar">
+                         Calendar
+                    </label>
+                    <input id="calendar"
+                           type="radio"
+                           value="calendar"
+                           v-model="type">
+
+                    <label for="local">Local</label>
+                    <input id="local"
+                           type="radio"
+                           value="local"
+                           v-model="type">
+                </div>                   
 
                 <div class="col-lg-offset-2 col-lg-10">
                     <button v-on:click="toMainState()" type="button" class="btn">Cancel</button>

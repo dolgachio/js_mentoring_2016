@@ -4,8 +4,6 @@ const navigationService = require('../services/navigation.service.js');
 const notifyService = require('../services/notify.service.js');
 const notifyStore = require('../services/notify.store.js');
 
-let _this;
-
 module.exports = {
     init: function () {
         return new Vue({
@@ -14,11 +12,11 @@ module.exports = {
                 title: '',
                 date: '',
                 time: '',
-                events: ''
+                events: '',
+                type: 'calendar'
             },
             ready: function () {
                 console.log('add state');
-                _this = this;
             },
 
             methods: {
@@ -33,7 +31,7 @@ module.exports = {
 
                     const successCb = () => {
                         notifyStore.saveData({title: this.title, date: normalizedDate});
-                        cleanInputs(_this);
+                        cleanInputs(this);
                         alert('Notification is successfully created!');
                     };
 
@@ -44,11 +42,9 @@ module.exports = {
                     notifyService.add({
                         title: this.title,
                         startDate: normalizedDate,
-                        endDate: normalizedDate
+                        endDate: normalizedDate,
+                        type: this.type
                     }, successCb, failCb);
-
-                    /*window.plugins.calendar
-                        .createEvent(this.title,'Sprinkle flower','sprinkle', normalizedDate, normalizedDate, successCb, failCb);*/
 
                 },
 
@@ -85,5 +81,6 @@ function cleanInputs(_this) {
     _this.$set('title', '');
     _this.$set('date', '');
     _this.$set('time', '');
+    _this.$set('type', 'calendar');
 }
 

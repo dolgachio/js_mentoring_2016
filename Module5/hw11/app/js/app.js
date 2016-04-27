@@ -1,9 +1,5 @@
 'use strict';
 
-//require('./modules/wall.view.js');
-//require('./modules/core.js');
-
-
 const mainViewFactory = require('./modules/main.view.js');
 const addViewFactory = require('./modules/add.view.js');
 const listViewFactory = require('./modules/list.view.js');
