@@ -25,8 +25,6 @@ module.exports = {
                 },
 
                 addNotification: function () {
-                    console.log(this.title, this.date, this.time);
-
                     let normalizedDate = parseDate(this.date, this.time);
 
                     const successCb = () => {

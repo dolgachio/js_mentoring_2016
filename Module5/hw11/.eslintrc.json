@@ -218,6 +218,8 @@
     "io": true,
     "Vue": true,
     "VueTouch": true,
+    "cordova": true,
+    "MyCalendar": true,
     "sinon": true,
     "expect": true
   }
