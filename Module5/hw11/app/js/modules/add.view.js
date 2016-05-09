@@ -43,7 +43,7 @@ module.exports = {
                 },
 
                 init: function () {
-
+                    console.log('add state initialized');
                 }
             }
         });

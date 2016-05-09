@@ -16,5 +16,4 @@ document.addEventListener('deviceready', function () {
         ADD: addView.init,
         LIST: listView.init
     });
-
 }, false);

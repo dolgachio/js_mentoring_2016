@@ -19,7 +19,7 @@ function add(config = {}, successCb, failCb) {
                 message: config.title,
                 at: config.startDate
             });
-            successCb('');
+            successCb();
             break;
 
         case NOTIFY_TYPES.CUSTOM_CALENDAR:

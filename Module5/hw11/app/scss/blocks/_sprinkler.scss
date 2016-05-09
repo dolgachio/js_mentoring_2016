@@ -26,5 +26,15 @@
     &__controls {
         text-align: center;
     }
+
+    &__title {
+        padding: 15px;
+        border: 2px solid #ddd;
+        text-align: center;
+
+        &_add {
+            border: none;
+        }
+    }
 }
 

@@ -5,9 +5,7 @@ module.exports = {
     init: function () {
         return new Vue({
             el: '.state_main',
-            data: {
-
-            },
+            data: {},
 
             methods: {
                 navigateTo: function (stateName) {
