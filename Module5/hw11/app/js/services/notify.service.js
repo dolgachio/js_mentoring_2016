@@ -9,7 +9,7 @@ module.exports = {
 function add(config = {}, successCb, failCb) {
     switch(config.type) {
         case NOTIFY_TYPES.CALENDAR:
-            window.plugins.calendar
+            plugins.calendar
                 .createEvent(config.title, 'Water flower', 'sprinkle', config.startDate, config.endDate, successCb, failCb);
             break;
 
@@ -23,7 +23,6 @@ function add(config = {}, successCb, failCb) {
             break;
 
         case NOTIFY_TYPES.CUSTOM_CALENDAR:
-            alert('Custom notify adding attempt!');
             MyCalendar.addEvent(config.title, 'Water flower', config.startDate, config.endDate, successCb, failCb);
             break;
 

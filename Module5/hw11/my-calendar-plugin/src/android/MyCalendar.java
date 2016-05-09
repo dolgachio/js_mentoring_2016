@@ -1,4 +1,4 @@
-package com.mentoring.plugin;
+package mentoring.plugin;
 
 import android.app.Activity;
 import android.content.Intent;

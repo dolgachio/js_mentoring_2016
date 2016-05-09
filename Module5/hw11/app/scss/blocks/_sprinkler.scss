@@ -1,8 +1,8 @@
 .sprinkler {
     position: relative;
-    width: 80%;
-    height: 80%;
-    margin: 15px auto;
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
     padding: 15px;
     background-color: #fff;
 
@@ -15,7 +15,8 @@
 .state {
     &_list {
         height: 100%;
-        overflow: auto;
+        width: 100%;
+        overflow-y: auto;
     }
     
     &_hide {

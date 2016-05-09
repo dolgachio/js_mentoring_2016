@@ -219,6 +219,7 @@
     "Vue": true,
     "VueTouch": true,
     "cordova": true,
+    "plugins": true,
     "MyCalendar": true,
     "sinon": true,
     "expect": true

@@ -5,8 +5,7 @@
   "main": "config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "em-a": "gulp build && cordova emulate android",
-    "em-b": "gulp build && cordova emulate browser",
+    "start": "gulp build && cordova emulate android",
     "release": "gulp build && cordova build android"
   },
   "author": "stas",

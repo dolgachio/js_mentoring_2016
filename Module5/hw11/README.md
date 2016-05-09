@@ -1,5 +1,9 @@
-1.To emulate in browser - npm run em-browser
-1.To emulate on device - npm run em-android
+To run application
 
 1. npm install
-2. npm start
+2. npm start - launch emulation on default android device
+
+Was tested on Android 4.3.2 and Google Nexus 5
+
+In my application I use 3 plugins to add notifications:
+1.

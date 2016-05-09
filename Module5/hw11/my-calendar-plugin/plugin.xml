@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.mentoring.MyCalendar"
+        id="mentoring-MyCalendar"
         version="0.0.1">
 
   <name>MyCalendar</name>
@@ -19,11 +19,11 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="MyCalendar">
-        <param name="android-package" value="com.mentoring.plugin.MyCalendar"/>
+        <param name="android-package" value="mentoring.plugin.MyCalendar"/>
       </feature>
     </config-file>
 
-    <source-file src="src/android/MyCalendar.java" target-dir="src/com/mentoring/plugin/"/>
+    <source-file src="src/android/MyCalendar.java" target-dir="src/mentoring/plugin/"/>
   </platform>
 
 </plugin>

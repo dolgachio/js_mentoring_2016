@@ -11,7 +11,6 @@ module.exports = {
                 notifications: []
             },
             ready: function () {
-                console.log('list state started');
                 const storedNotifications = localStorage.getItem(CONST.NOTIFICATIONS_STORAGE);
 
                 if(storedNotifications) {
@@ -25,8 +24,6 @@ module.exports = {
                 },
 
                 init: function () {
-                    console.log('list state is initialized');
-
                     const storedNotifications = notifyStore.getNotifications();
 
                     if(storedNotifications) {

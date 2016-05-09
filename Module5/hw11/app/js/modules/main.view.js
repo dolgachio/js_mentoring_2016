@@ -12,10 +12,6 @@ module.exports = {
             methods: {
                 navigateTo: function (stateName) {
                     navigationService.go(stateName);
-                },
-
-                init: function () {
-                    console.log('main state initialized');
                 }
             }
         });

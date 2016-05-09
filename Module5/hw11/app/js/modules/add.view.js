@@ -15,20 +15,16 @@ module.exports = {
                 events: '',
                 type: 'calendar'
             },
-            ready: function () {
-                console.log('add state');
-            },
-
             methods: {
                 toMainState: function () {
                     navigationService.go('MAIN');
                 },
 
                 addNotification: function () {
-                    let normalizedDate = parseDate(this.date, this.time);
+                    const normalizedDate = parseDate(this.date, this.time);
 
                     const successCb = () => {
-                        notifyStore.saveData({title: this.title, date: normalizedDate});
+                        notifyStore.saveData({title: this.title, date: normalizedDate, type: this.type});
                         cleanInputs(this);
                         alert('Notification is successfully created!');
                     };
@@ -47,7 +43,7 @@ module.exports = {
                 },
 
                 init: function () {
-                    console.log('add state is initialized');
+
                 }
             }
         });
@@ -58,16 +54,16 @@ function parseDate(dateString, timeString) {
     let yy;
     let mm;
     let dd;
-
     let hh;
     let min;
+    let timeArr;
 
     let dateArr = dateString.split('-');
     yy = dateArr[0];
     mm = dateArr[1] === 0 ? 0 : dateArr[1] - 1;
     dd = dateArr[2];
 
-    let timeArr = timeString.split(':');
+    timeArr = timeString.split(':');
     hh = timeArr[0];
     min = timeArr[1];
 
