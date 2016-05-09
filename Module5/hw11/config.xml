@@ -22,7 +22,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="android" spec="~5.1.1" />
     <plugin name="cordova-plugin-console" spec="~1.0.3" />
     <plugin name="cordova-plugin-device" spec="~1.1.2" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
@@ -30,4 +29,5 @@
     <plugin name="cordova-plugin-calendar" spec="~4.4.7" />
     <plugin name="de.appplant.cordova.plugin.local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications" />
     <plugin name="com.mentoring.MyCalendar" spec="my-calendar-plugin/" />
+    <engine name="android" spec="~5.1.1" />
 </widget>

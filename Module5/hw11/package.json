@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp build && cordova emulate android",
-    "release": "gulp build && cordova build android"
+    "release": "gulp build && cordova build android",
+    "postinstall": "cordova prepare android"
   },
   "author": "stas",
   "license": "ISC",
