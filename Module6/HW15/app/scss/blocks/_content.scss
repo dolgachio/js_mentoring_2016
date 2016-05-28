@@ -1,0 +1,17 @@
+.content {
+    width: 80%;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: #fff;
+
+    &-wrapper {
+        background-color: #d4f3ff;
+    }
+
+    &__title {
+        margin: 30px 0;
+        padding: 0;
+        font-weight: bold;
+    }
+}
