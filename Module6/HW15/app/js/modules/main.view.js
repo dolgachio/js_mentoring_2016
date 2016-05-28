@@ -1,84 +1,30 @@
 'use strict';
-const CONST = require('../CONST');
-const charts = require('../services/charts');
-const utils = require('../services/utils');
-
 
 module.exports = new Vue({
             el: '#main-view',
             data: {
-                name: 'User',
-                heroesData: {},
-                heroesList: [],
-                heroesPrevPage: null,
-                heroesNextPage: null
+                visibleChartNumber: 0,
+                chartsQty: 2
             },
-            ready: function () {
-                this._updateHeroes(CONST.HEROES_URL);
-
-                //buildExtendedBarChart();
-            },
-
             methods: {
-                isHeroesPrevDisabled: function () {
-                    return !this.$get('heroesPrevPage');
-                },
+                nextChart: function () {
+                    const nextNumber = this.$get('visibleChartNumber') + 1;
 
-                isHeroesNextDisabled: function () {
-                    return !this.$get('heroesNextPage');
-                },
-
-                getNextHeroesPage: function () {
-                    const nextPageUrl = this.$get('heroesNextPage');
-
-                    if(nextPageUrl) {
-                        this._updateHeroes(nextPageUrl);
+                    if(nextNumber < this.$get('chartsQty')) {
+                        this.$set('visibleChartNumber', nextNumber);
                     }
                 },
 
-                getPrevHeroesPage: function () {
-                    const prevPageUrl = this.$get('heroesPrevPage');
+                prevChart: function () {
+                    const prevNumber = this.$get('visibleChartNumber') - 1;
 
-                    if(prevPageUrl) {
-                        this._updateHeroes(prevPageUrl);
+                    if(prevNumber >= 0) {
+                        this.$set('visibleChartNumber', prevNumber);
                     }
                 },
 
-                changeHeroesChartColors: function () {
-                    const heroes = this.$get('heroesList');
-
-                    _buildHeroesChart(heroes, 'height');
-                },
-
-                _updateHeroes: function (url) {
-                    return this.$http.get(url)
-                        .then( resp => {
-                            const data = resp.data;
-
-                            this.$set('heroesData', data);
-                            this.$set('heroesList', data.results);
-
-                            this.$set('heroesPrevPage', data.previous);
-                            this.$set('heroesNextPage', data.next);
-
-                            return resp;
-                        })
-                        .then(resp => {
-                            const heroes = resp.data.results;
-                            _buildHeroesChart(heroes, 'height');
-                        });
+                isVisible(number) {
+                    return number === this.$get('visibleChartNumber');
                 }
             }
 });
-
-function _cleanRootChart() {
-    const root = document.querySelector('.chart');
-    root ? root.innerHTML = '' : '';
-}
-
-function _buildHeroesChart(heroes, compareField) {
-    const heroesConvertedData = utils.convertDataForSimpleChart(heroes, 'name', compareField);
-    _cleanRootChart();
-    charts.buildSimpleChart(heroesConvertedData, compareField);
-}
-

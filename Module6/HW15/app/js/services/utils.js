@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-    convertDataForSimpleChart
+    convertDataForSimpleChart,
+    cleanRootChart
 };
 
 function convertDataForSimpleChart(data, nameField, valueField) {
@@ -11,10 +12,15 @@ function convertDataForSimpleChart(data, nameField, valueField) {
 
     for(var i = 0; i < dataLength; i++) {
         result.push({
-            value: +normData[i][valueField] || 0,
+            value: parseInt(normData[i][valueField], 10) || 0,
             name: normData[i][nameField]
         });
     }
 
     return result;
+}
+
+function cleanRootChart(rootClass) {
+    const root = document.querySelector(rootClass);
+    root ? root.innerHTML = '' : '';
 }

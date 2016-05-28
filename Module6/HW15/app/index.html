@@ -7,27 +7,54 @@
     </head>
     <body class="content-wrapper">
         <main class="content" id="main-view">
-            <h1 class="content__title">Star Wars charts</h1>
-            <h2>Star Wars heroes comparison</h2>
-            <div class="chart">
 
+
+            <h1 class="content__title">Star Wars charts</h1>
+
+            <button class="btn btn-primary" v-on:click="prevChart()">Prev Chart</button>
+            <button class="btn btn-primary" v-on:click="nextChart()">Next Chart</button>
+
+
+            <div v-show="isVisible(0)">
+                <div class="chart-outer" id="simple-chart-view">
+                    <h2>Star Wars heroes height comparison</h2>
+                    <div class="chart js-chart-heroes-height"></div>
+                    <div class="controls-outer">
+                        <div class="controls">
+                            <button v-on:click="getPrevHeroesPage()"
+                                    :disabled="isHeroesPrevDisabled()"
+                                    class="btn btn-primary">Prev</button>
+                            <button v-on:click="getNextHeroesPage()"
+                                    :disabled="isHeroesNextDisabled()"
+                                    class="btn btn-primary">Next</button>
+                            <button v-on:click="changeHeroesChartColors()"
+                                    class="btn btn-danger">Change colors</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="controls-outer">
-                <div class="controls">
-                    <button v-on:click="getPrevHeroesPage()"
-                            :disabled="isHeroesPrevDisabled()"
-                            class="btn btn-primary">Prev</button>
-                    <button v-on:click="getNextHeroesPage()"
-                            :disabled="isHeroesNextDisabled()"
-                            class="btn btn-primary">Next</button>
-                    <button v-on:click="changeHeroesChartColors()"
-                            class="btn btn-danger">Change colors</button>
+            <br>
+
+            <div v-show="isVisible(1)">
+                <div class="chart-outer" id="detailed-chart-view">
+                    <h2>Star Wars Star Ships crew</h2>
+                    <div class="chart chart_detailed js-chart-star-ships-crew"></div>
+                    <div class="controls-outer">
+                        <div class="controls">
+                            <button v-on:click="getPrevVehiclesPage()"
+                                    :disabled="isVehiclesPrevDisabled()"
+                                    class="btn btn-primary">Prev</button>
+                            <button v-on:click="getNextVehiclesPage()"
+                                    :disabled="isVehiclesNextDisabled()"
+                                    class="btn btn-primary">Next</button>
+                            <button v-on:click="changeVehiclesChartColors()"
+                                    class="btn btn-danger">Change colors</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
-
-
         <script type="text/javascript" src="js/vendor.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
     </body>
