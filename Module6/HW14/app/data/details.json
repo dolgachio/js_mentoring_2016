@@ -1,0 +1,133 @@
+[
+  {
+    "title": "face",
+    "options": [
+      {
+        "id": 0,
+        "url": "http://localhost:8080/img/avatar/face/1.gif"
+      },
+      {
+        "id": 1,
+        "url": "/img/avatar/face/2.gif"
+      },
+      {
+        "id": 2,
+        "url": "/img/avatar/face/3.gif"
+      },
+      {
+        "id": 3,
+        "url": "/img/avatar/face/4.gif"
+      }
+    ]
+  },
+
+  {
+    "title": "nose",
+    "options": [
+      {
+        "id": 0,
+        "url": "http://localhost:8080/img/avatar/nose/1.gif"
+      },
+      {
+        "id": 1,
+        "url": "/img/avatar/nose/2.gif"
+      },
+      {
+        "id": 2,
+        "url": "/img/avatar/nose/3.gif"
+      },
+      {
+        "id": 3,
+        "url": "/img/avatar/nose/4.gif"
+      }
+    ]
+  },
+
+  {
+    "title": "eyes",
+    "options": [
+      {
+        "id": 0,
+        "url": "http://localhost:8080/img/avatar/eyes/1.gif"
+      },
+      {
+        "id": 1,
+        "url": "/img/avatar/eyes/2.gif"
+      },
+      {
+        "id": 2,
+        "url": "/img/avatar/eyes/3.gif"
+      },
+      {
+        "id": 3,
+        "url": "/img/avatar/eyes/4.gif"
+      }
+    ]
+  },
+
+  {
+    "title": "hair",
+    "options": [
+      {
+        "id": 0,
+        "url": "http://localhost:8080/img/avatar/hair/1.gif"
+      },
+      {
+        "id": 1,
+        "url": "/img/avatar/hair/2.gif"
+      },
+      {
+        "id": 2,
+        "url": "/img/avatar/hair/3.gif"
+      },
+      {
+        "id": 3,
+        "url": "/img/avatar/hair/4.gif"
+      }
+    ]
+  },
+
+  {
+    "title": "mouse",
+    "options": [
+      {
+        "id": 0,
+        "url": "http://localhost:8080/img/avatar/mouse/1.gif"
+      },
+      {
+        "id": 1,
+        "url": "/img/avatar/mouse/2.gif"
+      },
+      {
+        "id": 2,
+        "url": "/img/avatar/mouse/3.gif"
+      },
+      {
+        "id": 3,
+        "url": "/img/avatar/mouse/4.gif"
+      }
+    ]
+  },
+
+  {
+    "title": "mustache",
+    "options": [
+      {
+        "id": 0,
+        "url": "http://localhost:8080/img/avatar/mustache/1.gif"
+      },
+      {
+        "id": 1,
+        "url": "/img/avatar/mustache/2.gif"
+      },
+      {
+        "id": 2,
+        "url": "/img/avatar/mustache/3.gif"
+      },
+      {
+        "id": 3,
+        "url": "/img/avatar/mustache/4.gif"
+      }
+    ]
+  }
+]

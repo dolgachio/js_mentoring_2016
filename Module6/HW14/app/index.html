@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <title>Avatar App</title>
+    </head>
+    <body class="content-wrapper">
+        <main class="content" id="main-view">
+            <section class="grid">
+                <h1 class="content__title">Avatar Maker</h1>
+
+                <div class="grid-col grid-col_secondary">
+                    <h3>Avatar</h3>
+                    <canvas class="avatar js-avatar" width="96" height="96"></canvas>
+                    <div class="controls">
+                        <h5>* could be downloaded only if at least one option is chosen</h5>
+                        <a class="btn btn-primary"
+                           v-on:click="download($event)">Download</a>
+                    </div>
+                </div>
+                <!--.grid-col_secondary-->
+
+                <div class="grid-col grid-col_main" v-on:click="detailsClicked($event)">
+                    <div class="group">
+                        <h3 class="group__title">Face</h3>
+                        <ul class="group-list js-group-face"></ul>
+                    </div>
+
+                    <div class="group">
+                        <h3 class="group__title">Hair</h3>
+                        <ul class="group-list js-group-hair"></ul>
+                    </div>
+
+
+                    <div class="group">
+                        <h3 class="group__title">Eyes</h3>
+                        <ul class="group-list js-group-eyes"></ul>
+                    </div>
+
+                    <div class="group">
+                        <h3 class="group__title">Nose</h3>
+                        <ul class="group-list js-group-nose"></ul>
+                    </div>
+
+                    <div class="group">
+                        <h3 class="group__title">Mouse</h3>
+                        <ul class="group-list js-group-mouse"></ul>
+                    </div>
+
+                    <div class="group">
+                        <h3 class="group__title">Mustache</h3>
+                        <ul class="group-list js-group-mustache"></ul>
+                    </div>
+                </div>
+                <!--.grid-col_main-->
+            </section>
+        </main>
+        <script type="text/javascript" src="js/vendor.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+</html>

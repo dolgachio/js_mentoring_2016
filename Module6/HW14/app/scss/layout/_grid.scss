@@ -1,0 +1,19 @@
+.grid {
+    @include clearfix;
+
+    &-col {
+        float: left;
+        height: 100%;
+
+        &_secondary {
+            width: 28%;
+        }
+
+        &_main {
+            width: 70%;
+            margin-left: 10px;
+            padding-left: 50px;
+            border-left: 2px solid #ddd;
+        }
+    }
+}
