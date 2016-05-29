@@ -3,17 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <title>Graphs App</title>
+        <title>Charts App</title>
     </head>
     <body class="content-wrapper">
         <main class="content" id="main-view">
-
-
             <h1 class="content__title">Star Wars charts</h1>
 
             <button class="btn btn-primary" v-on:click="prevChart()">Prev Chart</button>
             <button class="btn btn-primary" v-on:click="nextChart()">Next Chart</button>
-
 
             <div v-show="isVisible(0)">
                 <div class="chart-outer" id="simple-chart-view">
@@ -34,12 +31,10 @@
                 </div>
             </div>
 
-            <br>
-
             <div v-show="isVisible(1)">
                 <div class="chart-outer" id="detailed-chart-view">
-                    <h2>Star Wars Star Ships crew</h2>
-                    <div class="chart chart_detailed js-chart-star-ships-crew"></div>
+                    <h2>Star Wars Vehicles crew</h2>
+                    <div class="chart chart_detailed js-chart-vehicles-crew"></div>
                     <div class="controls-outer">
                         <div class="controls">
                             <button v-on:click="getPrevVehiclesPage()"
@@ -52,6 +47,13 @@
                                     class="btn btn-danger">Change colors</button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div v-show="isVisible(2)">
+                <div class="chart-outer" id="layout-chart-view">
+                    <h2>Star Wars Planets in films</h2>
+                    <div class="chart chart_layout js-chart-films"></div>
                 </div>
             </div>
         </main>

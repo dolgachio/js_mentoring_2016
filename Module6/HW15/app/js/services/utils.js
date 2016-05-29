@@ -2,6 +2,7 @@
 
 module.exports = {
     convertDataForSimpleChart,
+    convertDataForLayout,
     cleanRootChart
 };
 
@@ -18,6 +19,25 @@ function convertDataForSimpleChart(data, nameField, valueField) {
     }
 
     return result;
+}
+
+function convertDataForLayout(data, nameField, childrenField) {
+    const normData = data || [];
+
+    const dataLength = normData.length;
+    const result = [];
+
+    for(var i = 0; i < dataLength; i++) {
+        result.push({
+            name: normData[i][nameField],
+            children: normData[i][childrenField]
+        });
+    }
+
+    return {
+        name: 'films',
+        children: result
+    };
 }
 
 function cleanRootChart(rootClass) {

@@ -4,7 +4,7 @@ module.exports = new Vue({
             el: '#main-view',
             data: {
                 visibleChartNumber: 0,
-                chartsQty: 2
+                chartsQty: 3
             },
             methods: {
                 nextChart: function () {

@@ -2,7 +2,8 @@
 
 module.exports = {
     buildSimpleChart,
-    buildExtendedBarChart
+    buildExtendedBarChart,
+    buildLayoutChart
 };
 
 function buildSimpleChart(data, desc, rootClass) {
@@ -27,15 +28,15 @@ function buildSimpleChart(data, desc, rootClass) {
         .append('g')
         .attr('transform', (d, i) => `translate(0,${i * barHeight})`);
 
-    bar.append("rect")
-        .attr("width", (d) => x(d.value))
-        .attr("height", barHeight - 1)
+    bar.append('rect')
+        .attr('width', (d) => x(d.value))
+        .attr('height', barHeight - 1)
         .style('fill', () => d3.rgb(_getRandomRgbColorIndex(), _getRandomRgbColorIndex(), _getRandomRgbColorIndex()));
 
     bar.append('text')
-        .attr("x", d => x(d.value - 5))
-        .attr("y", barHeight / 2)
-        .attr("dy", ".35em")
+        .attr('x', d => x(d.value - 5))
+        .attr('y', barHeight / 2)
+        .attr('dy', '.35em')
         .text(d => `${d.name} ${desc}: ${d.value}`);
 }
 
@@ -94,6 +95,61 @@ function buildExtendedBarChart(data, rootClass) {
         .attr('y', d => y(d.value))
         .attr('height', d => height - y(d.value))
         .style('fill', d3.rgb(_getRandomRgbColorIndex(), _getRandomRgbColorIndex(), _getRandomRgbColorIndex()));
+}
+
+function buildLayoutChart(data, rootClass) {
+    const diameter = 800;
+    const format = d3.format(',d');
+    const color = d3.scale.category20c();
+
+    const bubble = d3.layout.pack()
+        .sort(null)
+        .size([diameter, diameter])
+        .padding(1.5);
+
+    const svg = d3.select(rootClass)
+        .append('svg')
+        .attr('width', diameter)
+        .attr('height', diameter)
+        .attr('class', 'bubble');
+
+    const node = svg.selectAll('.node')
+        .data(bubble.nodes(classes(data))
+        .filter(d => !d.children))
+        .enter()
+        .append('g')
+        .attr('class', 'node')
+        .attr('transform', d => `translate(${d.x},${d.y})`);
+
+    node.append('title')
+        .text(d => d.className + ': ' + format(d.value));
+
+    node.append('circle')
+        .attr('r', d => d.r)
+        .style('fill', d => color(d.packageName));
+
+    node.append('text')
+        .attr('dy', '.3em')
+        .style('text-anchor', 'middle')
+        .text( d => d.className.substring(0, d.r / 3));
+
+
+    function classes(data) {
+        const classes = [];
+        function recurse(name, node) {
+            if (node.children) {
+                node.children
+                    .forEach( child => recurse(node.name, child) );
+            } else {
+                classes.push({packageName: name, className: node.name, value: node.size});
+            }
+        }
+        recurse(null, data);
+        return { children: classes };
+    }
+
+    d3.select(self.frameElement)
+        .style('height', diameter + 'px');
 }
 
 function _getRandomRgbColorIndex() {

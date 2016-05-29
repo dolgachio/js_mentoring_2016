@@ -47,7 +47,6 @@ module.exports = new Vue({
             _buildVehiclesChart(vehicles);
         },
 
-
         _updateVehicles: function (url) {
             return this.$http.get(url)
                 .then( resp => {
@@ -68,7 +67,6 @@ module.exports = new Vue({
         }
     }
 });
-
 
 function _buildVehiclesChart(vehicles) {
     const vehiclesConvertedData = utils.convertDataForSimpleChart(vehicles, 'name', 'crew');
