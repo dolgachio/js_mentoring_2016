@@ -6,7 +6,7 @@ const watch  = require('gulp-watch');
 
 const src = config.getSrc();
 
-gulp.task('watch', ['server'], function(){
+gulp.task('watch', function(){
     gulp.watch(src.html, ['html']);
     gulp.watch(src.styles, ['styles']);
     gulp.watch(src.js, ['js']);
