@@ -4,6 +4,7 @@
   "description": "xxx",
   "main": "gulpfile.js",
   "scripts": {
+    "start": "gulp develop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
